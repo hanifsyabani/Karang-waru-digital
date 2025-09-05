@@ -1,41 +1,142 @@
+"use client";
+
+import CardStatistik from "@/components/landing_page/card-statistik";
+import HeaderSection from "@/components/landing_page/header-section";
+import Jumbotron from "@/components/landing_page/jumbotron";
+import { Badge } from "@/components/ui/badge";
+import { cardStatsItems } from "@/lib/items";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
+import CardBerita from "@/components/landing_page/berita/card-berita";
 import { Button } from "@/components/ui/button";
-import { ChevronUp, Info } from "lucide-react";
+import { Info } from "lucide-react";
 
 export default function page() {
   return (
     <>
-      <section
-        style={{ backgroundImage: "url('/desa-main.png')", height: "90vh" }}
-        className="h-screen bg-cover bg-center flex items-center text-white px-4"
+      <Swiper
+        spaceBetween={30}
+        effect={"fade"}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[EffectFade, Navigation, Pagination, Autoplay]}
+        className="mySwiper"
       >
-        <div className="absolute inset-0 bg-black/30 z-0" />
+        <SwiperSlide>
+          <section
+            style={{
+              backgroundImage: "url('/desa-main.png')",
+              height: "100vh",
+            }}
+            className=" bg-cover bg-center flex items-center text-white px-10"
+          >
+            <div className="absolute inset-0 bg-black/30 z-0" />
 
-        <div className="relative space-y-9 ">
-          <button className="bg-green-950 flex items-center gap-2 cursor-pointer text-green-400 border border-green-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
-            <ChevronUp size={20} />
-            <span className="bg-green-400 shadow-green-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-            Desa Digital
-          </button>
-          <div className="space-y-2">
-            <h1 className="text-6xl font-extrabold tracking-wide">
-              Desa Karang Waru
+            <Jumbotron />
+          </section>
+        </SwiperSlide>
+        <SwiperSlide>
+          <section
+            style={{
+              backgroundImage: "url('/desa-second.png')",
+              height: "100vh",
+            }}
+            className=" bg-cover bg-center flex items-center text-white px-10"
+          >
+            <div className="absolute inset-0 bg-black/30 z-0" />
+
+            <Jumbotron />
+          </section>
+        </SwiperSlide>
+      </Swiper>
+
+      <section className="px-8 py-20">
+        <div className="flex justify-center py-4">
+          <Badge className="bg-green-100 text-primary text-xl">
+            Data Statistik
+          </Badge>
+        </div>
+        <p className="text-center text-lg">
+          {" "}
+          Gambaran data perkembangan Desa Karang Waru
+        </p>
+
+        <div className="flex justify-center items-center gap-10 py-10">
+          {cardStatsItems.map((item) => (
+            <CardStatistik item={item} key={item.title} />
+          ))}
+        </div>
+      </section>
+
+      <section className="px-8 py-20 space-y-2">
+        <HeaderSection
+          title="Berita Terkini"
+          subtitle="Ikuti berita terkini Desa Karang Waru"
+        />
+
+        <div className="my-10">
+          <CardBerita />
+        </div>
+      </section>
+
+      <section className="px-8 py-10 space-y-2">
+        <HeaderSection
+          title="UMKM Desa"
+          subtitle="Temukan berbagai produk unggulan dari UMKM Desa Karang Waru"
+        />
+
+        <div className="my-10">
+          <CardBerita />
+        </div>
+      </section>
+
+      <section>
+        <div className="px-8 py-10 space-y-2 bg-gradient-to-r from-primary to-green-800 text-center">
+          <div className="space-y-5 ">
+            <div className="flex items-center justify-center gap-2">
+              <div className="rounded-full bg-green-100 w-2 h-2 " />
+              <h1 className="text-white font-semibold text-xl">Desa Digital</h1>
+            </div>
+            <h1 className="text-5xl text-white font-bold">
+              Ingin mengenal Desa Karang Waru lebih dekat?
             </h1>
-            <p className="text-lg md:text-2xl z-10">
-              Kecamatan Balai Agung, Kabupaten Musi Banyuasin, Provinsi Sumatera
-              Selatan
+            <p className="text-xl text-white">
+              Temukan Informasi Lengkap Desa Karang Waru dan Layanan yang
+              tersedia
             </p>
           </div>
-          <div className="flex gap-4">
-            <Button className="bg-white  text-primary px-6 py-3 rounded-md hover:bg-white/90 cursor-pointer">
-              <Info size={20} />
-              Jelajahi Desa
+
+          <div className="flex justify-center items-center gap-4 mt-10">
+            <Button className="bg-white text-green-800 cursor-pointer hover:bg-gray-300  ">
+              <Info />
+              Lihat Layanan Desa
             </Button>
-            <Button className="bg-primary text-white px-6 py-3 rounded-md hover:bg-green-700 cursor-pointer">
-              <Info size={20} />
-              Layanan Desa
+            <Button className="bg-green-800 text-white cursor-pointer ">
+              <Info /> Tentang Desa Kami
             </Button>
           </div>
         </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#4CAF50" />{" "}
+              {/* sama dengan from-primary */}
+              <stop offset="100%" stopColor="#166534" />{" "}
+              {/* sama dengan to-green-800 */}
+            </linearGradient>
+          </defs>
+          <path
+            fill="url(#waveGradient)"
+            fillOpacity="1"
+            d="M0,160L80,138.7C160,117,320,75,480,74.7C640,75,800,117,960,128C1120,139,1280,117,1360,106.7L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"
+          ></path>
+        </svg>
       </section>
     </>
   );
