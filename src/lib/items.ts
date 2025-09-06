@@ -1,3 +1,5 @@
+import {  Globe, Mail, Phone } from "lucide-react";
+
 export const navLinks = [
   {
     title: "Beranda",
@@ -52,7 +54,7 @@ export const cardStatsItems = [
   },
 ];
 
-export const LayananDesa = [
+export const layananDesa = [
   {
     title: "Posyandu",
     href: "/layanan/posyandu",
@@ -76,5 +78,83 @@ export const LayananDesa = [
   {
     title: "Bantuan Sosial",
     href: "/layanan/bantuan-sosial",
+  },
+];
+
+export const umkmContent = [
+  {
+    title: "Koperasi SADAR",
+    category: "Lainnya",
+    image: "koperasi-sadar.png",
+    href: "/umkm/koperasi-sadar",
+  },
+  {
+    title: "Toko Batik Nusantara",
+    category: "Toko",
+    image: "batik-nusantara.png",
+    href: "/umkm/toko-batik-nusantara",
+  },
+  {
+    title: "Warung Makan Bu Tini",
+    category: "Kuliner",
+    image: "warung-bu-tini.png",
+    href: "/umkm/warung-bu-tini",
+  },
+  {
+    title: "Kedai Kopi Sejahtera",
+    category: "Kuliner",
+    image: "kedai-kopi-sejahtera.png",
+    href: "/umkm/kedai-kopi-sejahtera",
+  },
+  {
+    title: "Pengrajin Rotan Makmur",
+    category: "Kerajinan",
+    image: "rotan-makmur.png",
+    href: "/umkm/pengrajin-rotan-makmur",
+  },
+  {
+    title: "Bengkel Motor Jaya",
+    category: "Jasa",
+    image: "bengkel-motor-jaya.png",
+    href: "/umkm/bengkel-motor-jaya",
+  },
+];
+
+export const contactItems = [
+  {
+    title: "Website",
+    description: "Kunjungi website resmi desa",
+    body: "karangwaru.desa.id",
+    href: "https://karangwaru.desa.id",
+    icon: Globe,
+    color: {
+      bg: "bg-blue-100",
+      text: "text-blue-600",
+      link: "text-blue-600 hover:text-blue-800",
+    },
+  },
+  {
+    title: "Email",
+    description: "Hubungi kami melalui email",
+    body: "info@karangwaru.desa.id",
+    href: "mailto:info@karangwaru.desa.id",
+    icon: Mail,
+    color: {
+      bg: "bg-green-100",
+      text: "text-green-600",
+      link: "text-green-600 hover:text-green-800",
+    },
+  },
+  {
+    title: "Telepon",
+    description: "Hubungi kantor desa",
+    body: "+62 271 234567",
+    href: "tel:+6271234567",
+    icon: Phone,
+    color: {
+      bg: "bg-orange-100",
+      text: "text-orange-600",
+      link: "text-orange-600 hover:text-orange-800",
+    },
   },
 ];

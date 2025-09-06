@@ -1,4 +1,4 @@
-import { LayananDesa, navLinks } from "@/lib/items";
+import { layananDesa, navLinks } from "@/lib/items";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +40,7 @@ export default function Footer() {
 
       <div>
         <TitleFooter title="Layanan Desa" />
-        <LinkFooter data={LayananDesa} />
+        <LinkFooter data={layananDesa} />
       </div>
 
       <div>
