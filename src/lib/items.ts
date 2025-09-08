@@ -1,4 +1,4 @@
-import {  Globe, Mail, Phone } from "lucide-react";
+import {  Book, BookCheck, Globe, Info, LayoutPanelTop, Mail, Map, Phone } from "lucide-react";
 
 export const navLinks = [
   {
@@ -158,3 +158,27 @@ export const contactItems = [
     },
   },
 ];
+
+
+export const tabsProfil = [
+  {
+    title : "Informasi Umum",
+    icon : Info
+  },
+  {
+    title : "Sejarah",
+    icon : Book
+  },
+  {
+    title : "Visi dan Misi",
+    icon : BookCheck
+  },
+  {
+    title : "Struktur Pemerintahan",
+    icon : LayoutPanelTop
+  },
+  {
+    title :"Geografis",
+    icon : Map
+  }
+]

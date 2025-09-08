@@ -164,9 +164,7 @@ export default function page() {
           <defs>
             <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#4CAF50" />{" "}
-              {/* sama dengan from-primary */}
               <stop offset="100%" stopColor="#166534" />{" "}
-              {/* sama dengan to-green-800 */}
             </linearGradient>
           </defs>
           <path

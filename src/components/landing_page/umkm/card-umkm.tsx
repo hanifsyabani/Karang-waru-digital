@@ -4,7 +4,15 @@ import { ArrowRight, Megaphone, User, Verified } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CardUmkm({ data }: any) {
+
+interface UmkmProps {
+  title: string;
+  category: string;
+  href: string;
+
+}
+
+export default function CardUmkm({ data }: { data: UmkmProps }) {
   return (
     <div className=" rounded-lg cursor-pointer overflow-hidden border shadow-lg group">
       <Image

@@ -15,8 +15,11 @@ export default function AppLayout({
   return (
     <>
       <Navbar />
-      {children}
-      <Footer/>
+      <main className="pt-16">
+        {children}
+      </main>
+
+      <Footer />
     </>
   );
 }
