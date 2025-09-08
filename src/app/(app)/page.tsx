@@ -23,7 +23,7 @@ export default function page() {
       <Swiper
         spaceBetween={30}
         effect={"fade"}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 3500, disableOnInteraction: false }}
         pagination={{
           clickable: true,
         }}
@@ -34,7 +34,7 @@ export default function page() {
           <section
             style={{
               backgroundImage: "url('/desa-main.png')",
-              height: "100vh",
+              height: "90vh",
             }}
             className=" bg-cover bg-center flex items-center text-white px-10"
           >
@@ -46,8 +46,8 @@ export default function page() {
         <SwiperSlide>
           <section
             style={{
-              backgroundImage: "url('/desa-second.png')",
-              height: "100vh",
+              backgroundImage: "url('/bg-2.jpg')",
+              height: "90vh",
             }}
             className=" bg-cover bg-center flex items-center text-white px-10"
           >

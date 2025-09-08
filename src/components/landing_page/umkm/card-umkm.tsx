@@ -9,7 +9,6 @@ interface UmkmProps {
   title: string;
   category: string;
   href: string;
-
 }
 
 export default function CardUmkm({ data }: { data: UmkmProps }) {
