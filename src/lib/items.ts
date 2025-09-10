@@ -1,4 +1,4 @@
-import {  Book, BookCheck, Globe, Info, LayoutPanelTop, Mail, Map, Phone } from "lucide-react";
+import {  Book, BookCheck, Boxes, Cookie, Globe, GraduationCap, Hammer, HandMetal, Heart, Info, LayoutPanelTop, Mail, Map, Newspaper, Phone, Shirt, Sprout, Stethoscope, Users, Wrench } from "lucide-react";
 
 export const navLinks = [
   {
@@ -180,5 +180,91 @@ export const tabsProfil = [
   {
     title :"Geografis",
     icon : Map
+  }
+]
+
+
+export const tabsBerita = [
+  {
+    title : "Semua Kategori",
+    icon : Info
+  },
+  {
+    title : "Umum",
+    icon : Newspaper
+  },
+  {
+    title : "Kegiatan",
+    icon : Users
+  },
+  {
+    title : "Infrastruktur",
+    icon : Hammer
+  },
+  {
+    title :"Kesehatan",
+    icon : Stethoscope
+  },
+  {
+    title :"Pendidikan",
+    icon : GraduationCap
+  },
+]
+
+export const tabsUmkm = [
+  {
+    title : "Semua Kategori",
+    icon : Info
+  },
+  {
+    title : "Kuliner",
+    icon : Cookie
+  },
+  {
+    title : "Kerajinan",
+    icon : HandMetal
+  },
+  {
+    title : "Fashion",
+    icon : Shirt
+  },
+  {
+    title : "Jasa",
+    icon : Wrench
+  },
+  {
+    title : "Pertanian",
+    icon : Sprout
+  },
+  {
+    title : "Lainnya",
+    icon : Boxes
+  }
+]
+
+export const tabsLayanan =[
+  {
+    title : "Semua Kategori",
+    icon : Info
+  },
+  {
+    title: "Surat",
+    icon: Mail
+  },
+  {
+    title: "Kesehatan",
+    icon: Heart
+  },
+  {
+    title: "Pendidikan",
+    icon: GraduationCap
+  },
+  {
+    title: "Sosial",
+    icon: Users
+  },
+  {
+    title: "Lainnya",
+    icon: Info
   }
 ]

@@ -6,7 +6,7 @@ import InfoUmum from "@/components/landing_page/profil/info-umum";
 import Sejarah from "@/components/landing_page/profil/sejarah";
 import StrukturPemerintahan from "@/components/landing_page/profil/struktur-pemerintahan";
 import VisiMisi from "@/components/landing_page/profil/visi-misi";
-import { Button } from "@/components/ui/button";
+import TabPage from "@/components/landing_page/tab-page";
 import { tabsProfil } from "@/lib/items";
 import { useState } from "react";
 
@@ -30,21 +30,8 @@ export default function page() {
   }
   return (
     <>
-      <HeaderPage title="Profil Desa Karang Waru" />
-
-      <div className="flex items-center gap-8 px-10 " >
-        {tabsProfil.map((item) => (
-          <Button
-            key={item.title}
-            className={`text-lg font-semibold hover:text-white cursor-pointer hover:bg-primary ${item.title === tab ? "text-white bg-primary" : "text-gray-500 bg-gray-200"
-              }`}
-            onClick={() => setTab(item.title)}
-          >
-            <item.icon size={24} />
-            <p className="text-sm">{item.title}</p>
-          </Button>
-        ))}
-      </div>
+      <HeaderPage header="Profil Desa" title="Profil Desa Karang Waru" subtitle="Mengenal Sejarah, Visi dan Misi, dan Struktur Pemerintahan Desa Karang Waru" />
+      <TabPage data={tabsProfil} setTab={setTab} tab={tab} />
 
       <div className="px-10">
         {changeTab(tab)}

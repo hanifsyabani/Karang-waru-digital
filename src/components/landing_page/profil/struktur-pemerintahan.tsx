@@ -1,12 +1,12 @@
 import React from 'react';
-import { 
-  Crown, 
-  Users, 
-  FileText, 
-  Shield, 
-  Building, 
-  Heart, 
-  Briefcase, 
+import {
+  Crown,
+  Users,
+  FileText,
+  Shield,
+  Building,
+  Heart,
+  Briefcase,
   GraduationCap,
   Phone,
   Mail,
@@ -135,7 +135,7 @@ export default function StrukturPemerintahan() {
 
   const bpd = [
     "Bapak H. Sutrisno (Ketua)",
-    "Ibu Hj. Mariam (Wakil Ketua)", 
+    "Ibu Hj. Mariam (Wakil Ketua)",
     "Bapak Agus Salim (Sekretaris)",
     "Ibu Tri Wahyuni (Anggota)",
     "Bapak Hendra Gunawan (Anggota)",
@@ -182,25 +182,13 @@ export default function StrukturPemerintahan() {
     <div className="py-8 space-y-8">
       <HeaderProfil title="Struktur Pemerintahan" />
 
-      {/* Pengantar */}
-      <div className="bg-gradient-to-r from-primary to-green-800 text-white rounded-lg shadow-lg p-8">
-        <div className="max-w-4xl">
-          <h2 className="text-3xl font-bold mb-4">Pemerintahan Desa Karang Waru</h2>
-          <p className="text-lg leading-relaxed">
-            Struktur pemerintahan desa yang profesional dan demokratis, 
-            berkomitmen memberikan pelayanan terbaik kepada masyarakat dengan 
-            mengedepankan transparansi, akuntabilitas, dan partisipasi masyarakat.
-          </p>
-        </div>
-      </div>
-
       {/* Pimpinan Desa */}
       <div className="bg-white rounded-lg shadow-md p-6">
         <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
           <Crown className="mr-3 text-primary" size={28} />
           Pimpinan Desa
         </h3>
-        
+
         <div className="grid md:grid-cols-2 gap-6">
           {strukturUtama.map((pejabat, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
@@ -214,14 +202,14 @@ export default function StrukturPemerintahan() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="p-6">
                 <div className="space-y-4">
                   <div>
                     <h5 className="font-semibold text-gray-800 mb-1">Tugas Pokok:</h5>
                     <p className="text-gray-600 text-sm">{pejabat.tugas}</p>
                   </div>
-                  
+
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="font-semibold text-gray-700">Pendidikan:</span>
@@ -232,7 +220,7 @@ export default function StrukturPemerintahan() {
                       <p className="text-gray-600">{pejabat.pengalaman}</p>
                     </div>
                   </div>
-                  
+
                   <div className="border-t pt-4">
                     <div className="flex space-x-4 text-sm">
                       <div className="flex items-center text-gray-600">
@@ -252,13 +240,12 @@ export default function StrukturPemerintahan() {
         </div>
       </div>
 
-      {/* Kepala Seksi dan Kepala Urusan */}
       <div className="bg-white rounded-lg shadow-md p-6">
         <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
           <Users className="mr-3 text-primary" size={28} />
           Kepala Seksi & Kepala Urusan
         </h3>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {kasiKaur.map((pejabat, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
@@ -271,7 +258,7 @@ export default function StrukturPemerintahan() {
                   <h4 className="font-bold text-gray-800 text-lg">{pejabat.jabatan}</h4>
                   <p className="text-primary font-semibold">{pejabat.nama}</p>
                 </div>
-                
+
                 <div className="text-center">
                   <span className="text-sm font-medium text-gray-700">Bidang Tugas:</span>
                   <p className="text-gray-600 text-sm mt-1">{pejabat.bidang}</p>
@@ -288,7 +275,7 @@ export default function StrukturPemerintahan() {
           <MapPin className="mr-3 text-primary" size={28} />
           Kepala Dusun
         </h3>
-        
+
         <div className="grid md:grid-cols-2 gap-6">
           {kadus.map((dusun, index) => (
             <div key={index} className="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg p-6 border border-gray-200 hover:shadow-md transition-shadow">
@@ -297,7 +284,7 @@ export default function StrukturPemerintahan() {
                 <div className="flex-1">
                   <h4 className="font-bold text-gray-800 text-lg">{dusun.dusun}</h4>
                   <p className="text-primary font-semibold mb-2">{dusun.nama}</p>
-                  
+
                   <div className="space-y-2 text-sm text-gray-600">
                     <div className="flex justify-between">
                       <span>Jumlah RT:</span>
@@ -325,13 +312,13 @@ export default function StrukturPemerintahan() {
           <FileText className="mr-3 text-primary" size={28} />
           Badan Permusyawaratan Desa (BPD)
         </h3>
-        
+
         <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6">
           <p className="text-gray-700 mb-4">
-            BPD merupakan lembaga yang berfungsi menetapkan peraturan desa bersama kepala desa, 
+            BPD merupakan lembaga yang berfungsi menetapkan peraturan desa bersama kepala desa,
             menampung dan menyalurkan aspirasi masyarakat.
           </p>
-          
+
           <div className="grid md:grid-cols-2 gap-4">
             {bpd.map((anggota, index) => (
               <div key={index} className="flex items-center space-x-3 p-3 bg-white rounded-lg">
@@ -351,7 +338,7 @@ export default function StrukturPemerintahan() {
           <Building className="mr-3 text-primary" size={28} />
           Lembaga Kemasyarakatan Desa
         </h3>
-        
+
         <div className="grid md:grid-cols-2 gap-6">
           {lembagaDesa.map((lembaga, index) => (
             <div key={index} className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
@@ -361,7 +348,7 @@ export default function StrukturPemerintahan() {
                   <h4 className="font-bold text-lg">{lembaga.nama}</h4>
                 </div>
               </div>
-              
+
               <div className="p-4">
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
@@ -383,56 +370,12 @@ export default function StrukturPemerintahan() {
         </div>
       </div>
 
-      {/* Jam Kerja dan Kontak */}
-      <div className="bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg shadow-md p-6">
-        <h3 className="text-2xl font-semibold mb-6">Informasi Pelayanan</h3>
-        
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white bg-opacity-10 rounded-lg p-4 backdrop-blur-sm">
-            <div className="flex items-center space-x-2 mb-3">
-              <Calendar size={20} />
-              <h4 className="font-semibold">Jam Pelayanan</h4>
-            </div>
-            <div className="text-sm space-y-1 opacity-90">
-              <p>Senin - Jumat: 08.00 - 16.00</p>
-              <p>Sabtu: 08.00 - 12.00</p>
-              <p>Minggu & Libur: Tutup</p>
-            </div>
-          </div>
-          
-          <div className="bg-white bg-opacity-10 rounded-lg p-4 backdrop-blur-sm">
-            <div className="flex items-center space-x-2 mb-3">
-              <MapPin size={20} />
-              <h4 className="font-semibold">Alamat Kantor</h4>
-            </div>
-            <p className="text-sm opacity-90">
-              Jl. Raya Karang Waru No. 123<br />
-              Desa Karang Waru<br />
-              Kec. [Nama Kecamatan]
-            </p>
-          </div>
-          
-          <div className="bg-white bg-opacity-10 rounded-lg p-4 backdrop-blur-sm">
-            <div className="flex items-center space-x-2 mb-3">
-              <Phone size={20} />
-              <h4 className="font-semibold">Kontak</h4>
-            </div>
-            <div className="text-sm space-y-1 opacity-90">
-              <p>Telepon: (0271) 123456</p>
-              <p>Email: karangwaru@gmail.com</p>
-              <p>Website: karangwaru.desa.id</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Penutup */}
       <div className="text-center bg-gray-50 rounded-lg p-8">
         <h3 className="text-2xl font-semibold text-gray-800 mb-4">Siap Melayani Masyarakat</h3>
         <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          Seluruh perangkat desa dan lembaga kemasyarakatan Karang Waru berkomitmen penuh 
-          untuk memberikan pelayanan terbaik kepada masyarakat. Kami mengutamakan 
-          transparansi, akuntabilitas, dan partisipasi aktif masyarakat dalam setiap 
+          Seluruh perangkat desa dan lembaga kemasyarakatan Karang Waru berkomitmen penuh
+          untuk memberikan pelayanan terbaik kepada masyarakat. Kami mengutamakan
+          transparansi, akuntabilitas, dan partisipasi aktif masyarakat dalam setiap
           program pembangunan dan pelayanan publik.
         </p>
       </div>

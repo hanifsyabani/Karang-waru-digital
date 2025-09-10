@@ -1,21 +1,22 @@
 
 interface HeaderPageProps {
     title: string
-
+    subtitle: string
+    header : string 
 }
 
-export default function HeaderPage({ title }: HeaderPageProps) {
+export default function HeaderPage({ title, subtitle, header }: HeaderPageProps) {
     return (
         <>
             <div className="text-center bg-gradient-to-r from-primary to-green-800 pt-8 space-y-4 ">
                 <div className="flex items-center justify-center gap-2">
                     <div className="rounded-full bg-green-100 w-2 h-2 " />
-                    <h1 className="text-white font-semibold text-xl">Desa Digital</h1>
+                    <h1 className="text-white font-semibold text-xl">{header}</h1>
                 </div>
 
                 <div className="space-y-4">
                     <h1 className="text-5xl text-white font-bold">{title}</h1>
-                    <p className="text-white text-lg">Mengenal Sejarah, Visi dan Misi, dan Struktur Pemerintahan Desa Karang Waru</p>
+                    <p className="text-white text-lg">{subtitle}</p>
                 </div>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

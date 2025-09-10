@@ -121,7 +121,6 @@ export default function VisiMisi() {
     <div className="py-8 space-y-8">
       <HeaderProfil title="Visi dan Misi" />
 
-      {/* Motto Desa */}
       <div className="text-center bg-gradient-to-r from-primary to-green-800 text-white rounded-lg shadow-lg p-8">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold mb-4">"Karang Waru Maju, Sejahtera, dan Berbudaya"</h2>
@@ -131,13 +130,12 @@ export default function VisiMisi() {
         </div>
       </div>
 
-      {/* Visi */}
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6">
+        <div className="bg-white border border-primary text-primary p-6">
           <h3 className="text-2xl font-semibold flex items-center">
             <Eye className="mr-3" size={28} />
             VISI DESA KARANG WARU
-          </h3>
+          </h3> 
         </div>
         <div className="p-8">
           <div className="text-center">
@@ -246,17 +244,17 @@ export default function VisiMisi() {
       <div className="bg-gradient-to-br from-orange-500 to-red-600 text-white rounded-lg shadow-md p-6">
         <h3 className="text-2xl font-semibold mb-6 text-center">Nilai-Nilai Dasar Pembangunan</h3>
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="text-center p-4 bg-white bg-opacity-10 rounded-lg backdrop-blur-sm">
+          <div className="text-center p-4 bg-white text-black bg-opacity-10 rounded-lg backdrop-blur-sm">
             <div className="text-3xl mb-3">🤝</div>
             <h4 className="font-semibold mb-2">Gotong Royong</h4>
             <p className="text-sm opacity-90">Semangat kebersamaan dan saling membantu dalam setiap kegiatan pembangunan desa</p>
           </div>
-          <div className="text-center p-4 bg-white bg-opacity-10 rounded-lg backdrop-blur-sm">
+          <div className="text-center p-4 bg-white text-black bg-opacity-10 rounded-lg backdrop-blur-sm">
             <div className="text-3xl mb-3">🔍</div>
             <h4 className="font-semibold mb-2">Transparansi</h4>
             <p className="text-sm opacity-90">Keterbukaan informasi dan akuntabilitas dalam pengelolaan pemerintahan dan pembangunan</p>
           </div>
-          <div className="text-center p-4 bg-white bg-opacity-10 rounded-lg backdrop-blur-sm">
+          <div className="text-center p-4 bg-white text-black bg-opacity-10 rounded-lg backdrop-blur-sm">
             <div className="text-3xl mb-3">🌱</div>
             <h4 className="font-semibold mb-2">Berkelanjutan</h4>
             <p className="text-sm opacity-90">Pembangunan yang memperhatikan keseimbangan ekonomi, sosial, dan lingkungan</p>

@@ -20,7 +20,7 @@ export default function HeaderSection({
         </div>
       </div>
 
-      <p>{subtitle}</p>
+      <p className="my-2">{subtitle}</p>
     </>
   );
 }

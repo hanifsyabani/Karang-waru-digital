@@ -25,11 +25,10 @@ export default function Navbar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`transition-colors ${
-                    isActive
+                  className={`transition-colors ${isActive
                       ? "text-primary font-semibold border-b-2 border-primary pb-1"
                       : "text-gray-700 hover:text-primary"
-                  }`}
+                    }`}
                 >
                   {link.title}
                 </Link>
@@ -39,7 +38,9 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="flex items-center gap-2">
-        <Button className="bg-primary cursor-pointer ">Masuk</Button>
+        <Link href={"/login"}>
+          <Button className="bg-primary cursor-pointer ">Masuk</Button>
+        </Link>
         <Button
           className="border border-primary cursor-pointer hover:bg-white"
           variant={"outline"}

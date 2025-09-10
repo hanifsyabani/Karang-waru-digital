@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function CardBerita() {
   return (
-    <div className=" rounded-lg cursor-pointer overflow-hidden border shadow-lg group">
+    <div className="rounded-lg cursor-pointer overflow-hidden border shadow-lg group">
       <Image
         src="/desa-main.png"
         alt="logo"
