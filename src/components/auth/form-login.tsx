@@ -1,6 +1,6 @@
 'use client'
 
-import { AlertCircleIcon, CheckCircle2Icon, CircleDot, Home, LogIn, PopcornIcon } from "lucide-react";
+import { CircleDot, Home, LogIn} from "lucide-react";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -10,9 +10,9 @@ import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Login } from "@/service/auth";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   email: z.string().regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { error: "Invalid email" }),
@@ -32,55 +32,17 @@ export default function FormLogin() {
     mutationFn: (data: FormFields) => Login(data),
     onSuccess: () => {
       setISLoading(false)
+      toast.success('Login Berhasil', {
+        theme: "colored"
+      })
       router.push('/admin')
-      return (
-        <div className="grid w-full max-w-xl items-start gap-4">
-          <Alert>
-            <CheckCircle2Icon />
-            <AlertTitle>Success! Your changes have been saved</AlertTitle>
-            <AlertDescription>
-              This is an alert with icon, title and description.
-            </AlertDescription>
-          </Alert>
-          <Alert>
-            <PopcornIcon />
-            <AlertTitle>
-              This Alert has a title and an icon. No description.
-            </AlertTitle>
-          </Alert>
-          <Alert variant="destructive">
-            <AlertCircleIcon />
-            <AlertTitle>Unable to process your payment.</AlertTitle>
-            <AlertDescription>
-              <p>Please verify your billing information and try again.</p>
-              <ul className="list-inside list-disc text-sm">
-                <li>Check your card details</li>
-                <li>Ensure sufficient funds</li>
-                <li>Verify billing address</li>
-              </ul>
-            </AlertDescription>
-          </Alert>
-        </div>
-      )
+     
 
     }, onError: () => {
       setISLoading(false)
-      return (
-        <div className="grid w-full max-w-xl items-start gap-4">
-          <Alert>
-            <AlertCircleIcon />
-            <AlertTitle>Unable to process your payment.</AlertTitle>
-            <AlertDescription>
-              <p>Please verify your billing information and try again.</p>
-              <ul className="list-inside list-disc text-sm">
-                <li>Check your card details</li>
-                <li>Ensure sufficient funds</li>
-                <li>Verify billing address</li>
-              </ul>
-            </AlertDescription>
-          </Alert>
-        </div>
-      )
+      toast.error('Periksa Kembali Email dan Password Anda', {
+        theme: "colored"
+      })
     }
   })
 
@@ -123,7 +85,7 @@ export default function FormLogin() {
         </div>
 
         <Button className="w-full cursor-pointer mt-4">
-          {isLoading ? <div className="loading" /> : (
+          {isLoading ? <span className="loader" /> : (
             <>
               <LogIn />
               <p>Masuk</p>

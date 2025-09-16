@@ -26,8 +26,8 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   className={`transition-colors ${isActive
-                      ? "text-primary font-semibold border-b-2 border-primary pb-1"
-                      : "text-gray-700 hover:text-primary"
+                    ? "text-primary font-semibold border-b-2 border-primary pb-1"
+                    : "text-gray-700 hover:text-primary"
                     }`}
                 >
                   {link.title}
@@ -41,12 +41,14 @@ export default function Navbar() {
         <Link href={"/login"}>
           <Button className="bg-primary cursor-pointer ">Masuk</Button>
         </Link>
-        <Button
-          className="border border-primary cursor-pointer hover:bg-white"
-          variant={"outline"}
-        >
-          Daftar
-        </Button>
+        <Link href={"/register"}>
+          <Button
+            className="border border-primary cursor-pointer hover:bg-white"
+            variant={"outline"}
+          >
+            Daftar
+          </Button>
+        </Link>
       </div>
     </nav>
   );
