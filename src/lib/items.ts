@@ -304,6 +304,11 @@ export const adminNavLinks = [
     icon: LayoutDashboard,
   },
   {
+    title: "Akun",
+    href: "/admin/akun",
+    icon: Users,
+  },
+  {
     title: "Profil Desa",
     href: "/admin/profil",
     icon: Info,

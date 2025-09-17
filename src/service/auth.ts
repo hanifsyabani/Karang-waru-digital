@@ -27,6 +27,23 @@ export async function Login(data: LoginData) {
   }
 }
 
+export async function Logout() {
+  try {
+    await axios.post(
+      `${API_URL}/logout`,
+      {},
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+
 export async function Register(data: RegisterData) {
   try {
     const res = await axios.post(`${API_URL}/register`, data, {

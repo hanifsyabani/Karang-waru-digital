@@ -153,6 +153,17 @@
   animation: rotation 2s linear infinite;
 }
 
+.loader-green {
+  width: 20px;
+  height: 20px;
+  border: 5px dotted #4CAF50;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
