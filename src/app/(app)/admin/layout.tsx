@@ -1,12 +1,21 @@
+import NavbarDash from "@/components/dashboard/navbar-dash";
+import SidebarDashboard from "@/components/dashboard/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function AdminLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
   return (
-    <div>
-        {children}
-    </div>
+    <SidebarProvider>
+      <SidebarDashboard />
+      <main className="bg-gray-100 w-full" >
+        <NavbarDash />
+        <div className="p-4">
+          {children}
+        </div>
+      </main>
+    </SidebarProvider>
   )
 }

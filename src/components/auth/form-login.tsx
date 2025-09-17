@@ -1,6 +1,6 @@
 'use client'
 
-import { CircleDot, Home, LogIn} from "lucide-react";
+import { CircleDot, Home, LogIn } from "lucide-react";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -30,14 +30,18 @@ export default function FormLogin() {
 
   const { mutate: login } = useMutation({
     mutationFn: (data: FormFields) => Login(data),
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
+      console.log(data.user.role);
       setISLoading(false)
       toast.success('Login Berhasil', {
         theme: "colored"
       })
-      router.push('/admin')
-     
 
+      if (data.user.role === 'admin') {
+        router.push('/admin')
+      } else {
+        router.push('/user')
+      }
     }, onError: () => {
       setISLoading(false)
       toast.error('Periksa Kembali Email dan Password Anda', {

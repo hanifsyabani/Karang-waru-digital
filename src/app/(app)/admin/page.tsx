@@ -1,6 +1,8 @@
 
 export default function page() {
   return (
-    <div>Admin</div>
+    <div className="bg-white rounded-xl p-4">
+      Admin
+    </div>
   )
 }

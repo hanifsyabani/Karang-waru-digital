@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 // Daftar halaman yang perlu proteksi login
-const protectedRoutes = ['/admin'];
+const protectedRoutes = ['/admin', '/user'];
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('access_token')?.value;
@@ -22,5 +22,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/user/:path*'],
 };

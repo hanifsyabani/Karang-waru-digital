@@ -1,4 +1,32 @@
-import {  Book, BookCheck, Boxes, Cookie, Globe, GraduationCap, Hammer, HandMetal, Heart, Info, LayoutPanelTop, Mail, Map, Newspaper, Phone, Shirt, Sprout, Stethoscope, Users, Wrench } from "lucide-react";
+import {
+  Book,
+  BookCheck,
+  Boxes,
+  LayoutDashboard,
+  Store,
+  FileText,
+  BarChart3,
+  Image,
+  Settings,
+  Shield,
+  Cookie,
+  Globe,
+  GraduationCap,
+  Hammer,
+  HandMetal,
+  Heart,
+  Info,
+  LayoutPanelTop,
+  Mail,
+  Map,
+  Newspaper,
+  Phone,
+  Shirt,
+  Sprout,
+  Stethoscope,
+  Users,
+  Wrench,
+} from "lucide-react";
 
 export const navLinks = [
   {
@@ -159,112 +187,180 @@ export const contactItems = [
   },
 ];
 
-
 export const tabsProfil = [
   {
-    title : "Informasi Umum",
-    icon : Info
+    title: "Informasi Umum",
+    icon: Info,
   },
   {
-    title : "Sejarah",
-    icon : Book
+    title: "Sejarah",
+    icon: Book,
   },
   {
-    title : "Visi dan Misi",
-    icon : BookCheck
+    title: "Visi dan Misi",
+    icon: BookCheck,
   },
   {
-    title : "Struktur Pemerintahan",
-    icon : LayoutPanelTop
+    title: "Struktur Pemerintahan",
+    icon: LayoutPanelTop,
   },
   {
-    title :"Geografis",
-    icon : Map
-  }
-]
-
+    title: "Geografis",
+    icon: Map,
+  },
+];
 
 export const tabsBerita = [
   {
-    title : "Semua Kategori",
-    icon : Info
+    title: "Semua Kategori",
+    icon: Info,
   },
   {
-    title : "Umum",
-    icon : Newspaper
+    title: "Umum",
+    icon: Newspaper,
   },
   {
-    title : "Kegiatan",
-    icon : Users
+    title: "Kegiatan",
+    icon: Users,
   },
   {
-    title : "Infrastruktur",
-    icon : Hammer
-  },
-  {
-    title :"Kesehatan",
-    icon : Stethoscope
-  },
-  {
-    title :"Pendidikan",
-    icon : GraduationCap
-  },
-]
-
-export const tabsUmkm = [
-  {
-    title : "Semua Kategori",
-    icon : Info
-  },
-  {
-    title : "Kuliner",
-    icon : Cookie
-  },
-  {
-    title : "Kerajinan",
-    icon : HandMetal
-  },
-  {
-    title : "Fashion",
-    icon : Shirt
-  },
-  {
-    title : "Jasa",
-    icon : Wrench
-  },
-  {
-    title : "Pertanian",
-    icon : Sprout
-  },
-  {
-    title : "Lainnya",
-    icon : Boxes
-  }
-]
-
-export const tabsLayanan =[
-  {
-    title : "Semua Kategori",
-    icon : Info
-  },
-  {
-    title: "Surat",
-    icon: Mail
+    title: "Infrastruktur",
+    icon: Hammer,
   },
   {
     title: "Kesehatan",
-    icon: Heart
+    icon: Stethoscope,
   },
   {
     title: "Pendidikan",
-    icon: GraduationCap
+    icon: GraduationCap,
+  },
+];
+
+export const tabsUmkm = [
+  {
+    title: "Semua Kategori",
+    icon: Info,
   },
   {
-    title: "Sosial",
-    icon: Users
+    title: "Kuliner",
+    icon: Cookie,
+  },
+  {
+    title: "Kerajinan",
+    icon: HandMetal,
+  },
+  {
+    title: "Fashion",
+    icon: Shirt,
+  },
+  {
+    title: "Jasa",
+    icon: Wrench,
+  },
+  {
+    title: "Pertanian",
+    icon: Sprout,
   },
   {
     title: "Lainnya",
-    icon: Info
-  }
-]
+    icon: Boxes,
+  },
+];
+
+export const tabsLayanan = [
+  {
+    title: "Semua Kategori",
+    icon: Info,
+  },
+  {
+    title: "Surat",
+    icon: Mail,
+  },
+  {
+    title: "Kesehatan",
+    icon: Heart,
+  },
+  {
+    title: "Pendidikan",
+    icon: GraduationCap,
+  },
+  {
+    title: "Sosial",
+    icon: Users,
+  },
+  {
+    title: "Lainnya",
+    icon: Info,
+  },
+];
+
+import {} from "lucide-react";
+
+export const adminNavLinks = [
+  {
+    title: "Dashboard",
+    href: "/admin",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Profil Desa",
+    href: "/admin/profil",
+    icon: Info,
+  },
+  {
+    title: "Berita",
+    href: "/admin/berita",
+    icon: Newspaper,
+  },
+  {
+    title: "UMKM",
+    href: "/admin/umkm",
+    icon: Store,
+  },
+  {
+    title: "Layanan Desa",
+    href: "/admin/layanan",
+    icon: FileText,
+  },
+  {
+    title: "Data Penduduk",
+    href: "/admin/penduduk",
+    icon: Users,
+  },
+  {
+    title: "Pendidikan",
+    href: "/admin/pendidikan",
+    icon: GraduationCap,
+  },
+  {
+    title: "Kesehatan",
+    href: "/admin/kesehatan",
+    icon: Stethoscope,
+  },
+  {
+    title: "Infrastruktur",
+    href: "/admin/infrastruktur",
+    icon: Hammer,
+  },
+  {
+    title: "APBDes",
+    href: "/admin/apbdes",
+    icon: BarChart3,
+  },
+  {
+    title: "Galeri",
+    href: "/admin/galeri",
+    icon: Image,
+  },
+  {
+    title: "Manajemen Pengguna",
+    href: "/admin/users",
+    icon: Shield,
+  },
+  {
+    title: "Pengaturan Website",
+    href: "/admin/settings",
+    icon: Settings,
+  },
+];
