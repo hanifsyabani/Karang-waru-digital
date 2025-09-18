@@ -1,8 +1,6 @@
 import axios from "axios";
 
-type AkunData = {
 
-}
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -20,3 +18,5 @@ export async function GetAllAkun() {
     throw new Error(error.response.data.message);
   }
 }
+
+

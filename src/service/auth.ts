@@ -58,3 +58,18 @@ export async function Register(data: RegisterData) {
     throw new Error(error.response.data.message);
   }
 }
+
+export async function GetProfile() {
+  try {
+    const res = await axios.get(`${API_URL}/profile`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}

@@ -13,10 +13,11 @@ import {
 
 } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query"
-import { Logout } from "@/service/auth"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import { GetProfile, Logout } from "@/service/auth"
 import { useState } from "react"
 import { toast } from "react-toastify"
+import Loader from "../ui/loader"
 
 export default function NavbarDash() {
     const [isLoading, setIsLoading] = useState(false)
@@ -38,13 +39,20 @@ export default function NavbarDash() {
             })
         }
     })
+
+    const { data: dataProfile, isLoading: isLoadingProfile } = useQuery({
+        queryFn: () => GetProfile(),
+        queryKey: ['profile'],
+    })
+
+    if (isLoadingProfile) return <Loader />
     return (
         <div className="flex items-center justify-between pr-8 pl-4 py-2">
             <div className="flex items-center gap-2">
                 <SidebarTrigger />
                 <div>
-                    <h1>Selamat Datang, <span className="font-bold">Admin</span></h1>
-                    <p>Kelola data desa, layanan, dan informasi dengan lebih mudah di Dashboard Karang-Waru.</p>
+                    <h1 className="font-bold text-xl">Selamat Datang, <span >Admin</span></h1>
+                    <p className="text-sm">Kelola data desa, layanan, dan informasi dengan lebih mudah di Dashboard Karang-Waru.</p>
                 </div>
             </div>
             <div className="flex items-center gap-2">
@@ -72,6 +80,10 @@ export default function NavbarDash() {
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
+                <div>
+                    <h1 className="font-semibold text-primary text-sm">{dataProfile.data.name}</h1>
+                    <p className="text-xs text-gray-500">{dataProfile.data.role}</p>
+                </div>
             </div>
         </div>
     )

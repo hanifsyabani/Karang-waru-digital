@@ -31,7 +31,6 @@ export default function FormLogin() {
   const { mutate: login } = useMutation({
     mutationFn: (data: FormFields) => Login(data),
     onSuccess: ({ data }) => {
-      console.log(data.user.role);
       setISLoading(false)
       toast.success('Login Berhasil', {
         theme: "colored"
