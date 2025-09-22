@@ -1,20 +1,20 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Edit, MapPin, Users, Building, Clock, Phone, Mail, Save } from 'lucide-react';
+import { Edit, MapPin, Users, Building, Clock, Phone, Mail } from 'lucide-react';
 import Geografis from './geografis';
 import Demografis from './demografis';
 import Sejarah from './sejarah';
 import VisiMisi from './visi-misi';
 import StrukturPemerintahan from './struktur-pemerintahan';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { useMutation } from '@tanstack/react-query';
+import InfoUmum from './info-umum';
+
+
+
 
 export default function ProfilDashboard() {
   const [activeTab, setActiveTab] = useState('informasi-umum');
+
 
   const tabs = [
     { id: 'informasi-umum', label: 'Informasi Umum', icon: Building },
@@ -25,126 +25,14 @@ export default function ProfilDashboard() {
     { id: 'struktur', label: 'Struktur Pemerintahan', icon: Users }
   ];
 
-  const renderInformasiUmum = () => {
-    const {} = useMutation({
-      
-    })
-    return (
 
-      <form className="space-y-6">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Informasi Umum Desa</h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <Label className="block text-sm font-medium text-gray-700 mb-2">Alamat</Label>
-            <Textarea
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              rows={3}
-              placeholder="Masukkan alamat lengkap desa"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label className="block text-sm font-medium text-gray-700 mb-2">Kecamatan</Label>
-              <input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                placeholder="Nama kecamatan"
-              />
-            </div>
-            <div>
-              <Label className="block text-sm font-medium text-gray-700 mb-2">Kabupaten</Label>
-              <Input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ringgreeb-500 focus:bordergreeb-500"
-                placeholder="Nama kabupaten"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label className="block text-sm font-medium text-gray-700 mb-2">Provinsi</Label>
-              <Input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ringgreeb-500 focus:bordergreeb-500"
-                placeholder="Nama provinsi"
-              />
-            </div>
-            <div>
-              <Label className="block text-sm font-medium text-gray-700 mb-2">Kode Pos</Label>
-              <Input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ringgreeb-500 focus:bordergreeb-500"
-                placeholder="Kode pos"
-              />
-            </div>
-          </div>
-
-          <div>
-            <Label className="block text-sm font-medium text-gray-700 mb-2">Tahun Pembentukan</Label>
-            <Input
-              type="number"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ringgreeb-500 focus:bordergreeb-500"
-              placeholder="Tahun pembentukan desa"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label className="block text-sm font-medium text-gray-700 mb-2">Telepon</Label>
-              <Input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ringgreeb-500 focus:bordergreeb-500"
-                placeholder="Nomor telepon"
-              />
-            </div>
-            <div>
-              <Label className="block text-sm font-medium text-gray-700 mb-2">Email</Label>
-              <Input
-                type="email"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Email resmi desa"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <h4 className="text-lg font-medium text-gray-800 mb-3">Jam Pelayanan</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="border border-gray-200 rounded-lg p-4">
-              <h5 className="font-medium text-gray-700 mb-2 capitalize"></h5>
-              <div className="grid grid-cols-2 gap-2">
-                <Input
-                  type="time"
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <Input
-                  type="time"
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className='flex justify-end'>
-          <Button className='cursor-pointer'>
-            <Save />Simpan
-          </Button>
-        </div>
-      </form>
-    )
-  }
 
 
 
   const renderTabContent = () => {
     switch (activeTab) {
       case 'informasi-umum':
-        return renderInformasiUmum();
+        return <InfoUmum />;
       case 'geografis':
         return <Geografis />;
       case 'demografis':
@@ -156,7 +44,7 @@ export default function ProfilDashboard() {
       case 'struktur':
         return <StrukturPemerintahan />;
       default:
-        return renderInformasiUmum();
+        return <InfoUmum/>;
     }
   };
 
