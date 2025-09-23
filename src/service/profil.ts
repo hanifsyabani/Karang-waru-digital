@@ -30,3 +30,17 @@ export async function PostInfoUmum(data :any) {
     throw new Error(error.response.data.message);
   }
 }
+export async function PutInfoUmum(data :any) {
+  try {
+    const res = await axios.put(`${API_URL}/profil-desa`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}

@@ -5,40 +5,66 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import z from 'zod';
-import { PostInfoUmum } from '@/service/profil';
+import { GetInfoUmum, PostInfoUmum, PutInfoUmum } from '@/service/profil';
 import { toast } from 'react-toastify';
 import { useForm, } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Save } from 'lucide-react';
+import Loader from '@/components/ui/loader';
 
 
-  const schema = z.object({
-    alamat: z.string(),
-    kecamatan: z.string(),
-    kabupaten: z.string(),
-    provinsi: z.string(),
-    kode_pos: z.string(),
-    jumlah_penduduk: z.string().min(1),
-    jumlah_laki: z.string().min(1),
-    jumlah_perempuan: z.string().min(1),
-    jumlah_kk: z.string().min(1),
-    tahun_pembentukan: z.string().min(1),
-    telepon: z.string(),
-    email: z.email(),
-  })
-  type FormFields = z.infer<typeof schema>
+const schema = z.object({
+  alamat: z.string(),
+  kecamatan: z.string(),
+  kabupaten: z.string(),
+  provinsi: z.string(),
+  kode_pos: z.string(),
+  jumlah_penduduk: z.string().min(1),
+  jumlah_laki: z.string().min(1),
+  jumlah_perempuan: z.string().min(1),
+  jumlah_kk: z.string().min(1),
+  tahun_pembentukan: z.string().min(1),
+  telepon: z.string(),
+  email: z.email(),
+})
+type FormFields = z.infer<typeof schema>
 
 
 export default function InfoUmum() {
 
   const [isLoading, setIsLoading] = useState(false)
+  const [mode, setMode] = useState<'submit' | 'edit'>('submit')
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormFields>({
+
+  const { data: dataInfoUmum, isLoading: isLoadingInfoUmum, refetch } = useQuery({
+    queryFn: () => GetInfoUmum(),
+    queryKey: ['info-umum'],
+  })
+
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormFields>({
     resolver: zodResolver(schema),
   });
+
+  useEffect(() => {
+    if (dataInfoUmum?.data) {
+      setMode('edit')
+      setValue('alamat', dataInfoUmum.data.alamat || '')
+      setValue('kecamatan', dataInfoUmum.data.kecamatan || '')
+      setValue('kabupaten', dataInfoUmum.data.kabupaten || '')
+      setValue('provinsi', dataInfoUmum.data.provinsi || '')
+      setValue('kode_pos', dataInfoUmum.data.kode_pos || '')
+      setValue('jumlah_penduduk', dataInfoUmum.data.jumlah_penduduk?.toString() || '')
+      setValue('jumlah_laki', dataInfoUmum.data.jumlah_laki?.toString() || '')
+      setValue('jumlah_perempuan', dataInfoUmum.data.jumlah_perempuan?.toString() || '')
+      setValue('jumlah_kk', dataInfoUmum.data.jumlah_kk?.toString() || '')
+      setValue('tahun_pembentukan', dataInfoUmum.data.tahun_pembentukan?.toString() || '')
+      setValue('telepon', dataInfoUmum.data.telepon || '')
+      setValue('email', dataInfoUmum.data.email || '')
+    }
+  })
 
   const { mutate: postInfo } = useMutation({
     mutationFn: (data: FormFields) => PostInfoUmum(data),
@@ -47,6 +73,24 @@ export default function InfoUmum() {
       toast.success('Informasi Umum Berhasil diubah', {
         theme: "colored"
       })
+      refetch()
+    },
+    onError: () => {
+      setIsLoading(false)
+      toast.error('Informasi Umum Gagal diubah', {
+        theme: "colored"
+      })
+    }
+  })
+
+  const { mutate: updateInfo } = useMutation({
+    mutationFn: (data: FormFields) => PutInfoUmum(data),
+    onSuccess: () => {
+      setIsLoading(false)
+      toast.success('Informasi Umum Berhasil diubah', {
+        theme: "colored"
+      })
+      refetch()
     },
     onError: () => {
       setIsLoading(false)
@@ -58,8 +102,10 @@ export default function InfoUmum() {
 
   function onSubmit(data: FormFields) {
     setIsLoading(true)
-    postInfo(data)
+    { mode === 'edit' ? updateInfo(data) : postInfo(data) }
   }
+
+  if (isLoadingInfoUmum) return <Loader />
   return (
     <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
       <h3 className="text-xl font-semibold text-gray-800 mb-4">Informasi Umum Desa</h3>
@@ -208,7 +254,9 @@ export default function InfoUmum() {
         <Button className='cursor-pointer'>
           {isLoading ? <span className='loader' /> : (
             <>
-              <Save />Simpan
+              {mode === 'edit' ? (
+                <><Save className='h-4 w-4 mr-2' /> Simpan Perubahan</>
+              ) : 'Submit'}
             </>
           )}
         </Button>
