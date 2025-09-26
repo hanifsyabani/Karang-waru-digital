@@ -44,3 +44,49 @@ export async function PutInfoUmum(data :any) {
     throw new Error(error.response.data.message);
   }
 }
+
+
+
+export async function GetDemografis() {
+  try {
+    const res = await axios.get(`${API_URL}/demografis`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+
+export async function PostDemografis(data :any) {
+  try {
+    const res = await axios.post(`${API_URL}/demografis`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+export async function PutDemografis(data :any) {
+  try {
+    const res = await axios.put(`${API_URL}/demografis`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}

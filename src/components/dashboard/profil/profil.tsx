@@ -18,7 +18,6 @@ export default function ProfilDashboard() {
 
   const tabs = [
     { id: 'informasi-umum', label: 'Informasi Umum', icon: Building },
-    { id: 'geografis', label: 'Geografis', icon: MapPin },
     { id: 'demografis', label: 'Demografis', icon: Users },
     { id: 'sejarah', label: 'Sejarah', icon: Edit },
     { id: 'visi-misi', label: 'Visi & Misi', icon: Edit },
@@ -33,8 +32,6 @@ export default function ProfilDashboard() {
     switch (activeTab) {
       case 'informasi-umum':
         return <InfoUmum />;
-      case 'geografis':
-        return <Geografis />;
       case 'demografis':
         return <Demografis />;
       case 'sejarah':
@@ -44,7 +41,7 @@ export default function ProfilDashboard() {
       case 'struktur':
         return <StrukturPemerintahan />;
       default:
-        return <InfoUmum/>;
+        return <InfoUmum />;
     }
   };
 
