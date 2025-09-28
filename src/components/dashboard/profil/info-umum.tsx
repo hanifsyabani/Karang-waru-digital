@@ -251,7 +251,7 @@ export default function InfoUmum() {
 
 
       <div className='flex justify-end'>
-        <Button className='cursor-pointer'>
+        <Button className='cursor-pointer' type='submit' disabled={isLoading}>
           {isLoading ? <span className='loader' /> : (
             <>
               {mode === 'edit' ? (
