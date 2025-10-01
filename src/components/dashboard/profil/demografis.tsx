@@ -80,7 +80,6 @@ export default function Demografis() {
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormFields>({
         resolver: zodResolver(schema),
-
     })
 
     useEffect(() => {

@@ -90,3 +90,48 @@ export async function PutDemografis(data :any) {
     throw new Error(error.response.data.message);
   }
 }
+
+
+export async function GetSejarah() {
+  try {
+    const res = await axios.get(`${API_URL}/sejarah`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+
+export async function PostSejarah(data :any) {
+  try {
+    const res = await axios.post(`${API_URL}/sejarah`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+export async function PutSejarah(data :any) {
+  try {
+    const res = await axios.put(`${API_URL}/sejarah`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
