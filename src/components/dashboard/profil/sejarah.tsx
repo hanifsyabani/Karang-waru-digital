@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import Loader from "@/components/ui/loader";
 import { Textarea } from "@/components/ui/textarea";
-import { GetInfoUmum, GetSejarah, PostSejarah } from "@/service/profil";
+import { GetInfoUmum, GetSejarah, PostSejarah, PutSejarah } from "@/service/profil";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -17,13 +18,14 @@ type FormFields = z.infer<typeof schema>;
 
 export default function Sejarah() {
     const [isLoading, setIsLoading] = useState(false);
+    const [mode, setMode] = useState<'create' | 'edit'>('create');
 
     const { data: dataInfoUmum, isLoading: isLoadingInfoUmum } = useQuery({
         queryFn: () => GetInfoUmum(),
         queryKey: ['info-umum'],
     })
 
-    const { data: dataSejarah, isLoading: isLoadingSejarah } = useQuery({
+    const { data: dataSejarah, isLoading: isLoadingSejarah, refetch } = useQuery({
         queryFn: () => GetSejarah(),
         queryKey: ['sejarah'],
     })
@@ -36,32 +38,32 @@ export default function Sejarah() {
         if (dataInfoUmum?.data?.id) {
             setValue('profil_desa_id', Number(dataInfoUmum.data.id));
         }
-        // if (dataDemografis?.data) {
-        //     const demografis = dataDemografis.data;
-        //     setMode('edit')
-        //     setValue('profil_desa_Id',Number(demografis.profil_desa_id));
-        //     setValue('balita', demografis.balita);
-        //     setValue('anak', demografis.anak);
-        //     setValue('dewasa', demografis.dewasa);
-        //     setValue('lansia', demografis.lansia);
-        //     setValue('pertanian', demografis.pertanian);
-        //     setValue('perdagangan', demografis.perdagangan);
-        //     setValue('jasa', demografis.jasa);
-        //     setValue('industri', demografis.industri);
-        //     setValue('sekolah', demografis.sekolah);
-        //     setValue('puskesmas', demografis.puskesmas);
-        //     setValue('masjid', demografis.masjid);
-        //     setValue('pasar_tradisional', demografis.pasar_tradisional);
-        //     setValue('pos_keamanan', demografis.pos_keamanan);
-        //     setValue('balai_desa', demografis.balai_desa);
-        // }
-    }, [dataInfoUmum, setValue]);
+        if (dataSejarah?.data) {
+            const sejarah = dataSejarah.data;
+            setMode('edit')
+            setValue('profil_desa_id', Number(sejarah.profil_desa_id));
+            setValue('body', sejarah.body);
+        }
+    }, [dataInfoUmum, setValue, dataSejarah]);
 
     const { mutate: postSejarah } = useMutation({
         mutationFn: (data: FormFields) => PostSejarah(data),
         onSuccess: () => {
             setIsLoading(false);
             toast.success("Data sejarah desa berhasil disimpan");
+            refetch();
+        },
+        onError: () => {
+            setIsLoading(false);
+            toast.error("Terjadi kesalahan saat menyimpan data sejarah desa");
+        }
+    })
+    const { mutate: changeSejarah } = useMutation({
+        mutationFn: (data: FormFields) => PutSejarah(data),
+        onSuccess: () => {
+            setIsLoading(false);
+            toast.success("Data sejarah desa berhasil disimpan");
+            refetch();
         },
         onError: () => {
             setIsLoading(false);
@@ -71,8 +73,11 @@ export default function Sejarah() {
 
     function onSubmit(data: FormFields) {
         setIsLoading(true);
-        postSejarah(data);
+        { mode === 'edit' ? changeSejarah(data) : postSejarah(data) }
     }
+
+
+    if (isLoadingInfoUmum || isLoadingSejarah) return <Loader />
 
     return (
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -89,8 +94,12 @@ export default function Sejarah() {
             </div>
 
             <div className="flex justify-end">
-                <Button className="cursor-pointer">
-                    {isLoading ? <span className="loader" /> : "Simpan Sejarah Desa"}
+                <Button className='cursor-pointer' type='submit' disabled={isLoading}>
+                    {isLoading ? <span className="loader" /> : (
+                        <>
+                            {mode === 'edit' ? 'Simpan Perubahan' : 'Simpan Data'}
+                        </>
+                    )}
                 </Button>
             </div>
         </form>
