@@ -135,3 +135,48 @@ export async function PutSejarah(data :any) {
     throw new Error(error.response.data.message);
   }
 }
+
+
+export async function GetVisiMisi() {
+  try {
+    const res = await axios.get(`${API_URL}/visi-misi`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+
+export async function PostVisiMisi(data :any) {
+  try {
+    const res = await axios.post(`${API_URL}/visi-misi`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+export async function PutVisiMisi(data :any) {
+  try {
+    const res = await axios.put(`${API_URL}/visi-misi`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
