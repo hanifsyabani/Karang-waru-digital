@@ -2,11 +2,9 @@
 
 import React, { useState } from 'react';
 import { Edit, MapPin, Users, Building, Clock, Phone, Mail } from 'lucide-react';
-import Geografis from './geografis';
 import Demografis from './demografis';
 import Sejarah from './sejarah';
 import VisiMisi from './visi-misi';
-import StrukturPemerintahan from './struktur-pemerintahan';
 import InfoUmum from './info-umum';
 
 
@@ -21,7 +19,6 @@ export default function ProfilDashboard() {
     { id: 'demografis', label: 'Demografis', icon: Users },
     { id: 'sejarah', label: 'Sejarah', icon: Edit },
     { id: 'visi-misi', label: 'Visi & Misi', icon: Edit },
-    { id: 'struktur', label: 'Struktur Pemerintahan', icon: Users }
   ];
 
 
@@ -38,8 +35,6 @@ export default function ProfilDashboard() {
         return <Sejarah />;
       case 'visi-misi':
         return <VisiMisi />;
-      case 'struktur':
-        return <StrukturPemerintahan />;
       default:
         return <InfoUmum />;
     }

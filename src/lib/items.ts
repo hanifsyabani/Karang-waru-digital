@@ -369,3 +369,18 @@ export const adminNavLinks = [
     icon: Settings,
   },
 ];
+
+
+export const tabBerita = [
+  {
+    title: "Dashboard",
+    icon: LayoutDashboard,
+    active : 'dashboard'
+
+  },
+  {
+    title: "Kelola Berita",
+    icon: Newspaper,
+    active : 'kelola-berita'
+  },
+]

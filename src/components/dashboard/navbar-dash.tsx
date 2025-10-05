@@ -47,7 +47,7 @@ export default function NavbarDash() {
 
     if (isLoadingProfile) return <Loader />
     return (
-        <div className="flex items-center justify-between pr-8 pl-4 py-2">
+        <div className="flex items-center justify-between pr-8 pl-4 py-4 bg-white">
             <div className="flex items-center gap-2">
                 <SidebarTrigger />
                 <div>
