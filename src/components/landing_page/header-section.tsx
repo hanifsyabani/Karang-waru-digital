@@ -1,4 +1,3 @@
-import { LucideIcon, Newspaper } from "lucide-react";
 import { Badge } from "../ui/badge";
 
 export default function HeaderSection({

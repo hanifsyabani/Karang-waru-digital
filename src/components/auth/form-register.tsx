@@ -9,7 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Login, Register } from "@/service/auth";
+import {  Register } from "@/service/auth";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";

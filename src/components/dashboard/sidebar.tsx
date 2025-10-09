@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar";
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,  SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar";
 import { adminNavLinks } from "@/lib/items";
 
 

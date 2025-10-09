@@ -10,7 +10,7 @@ import TabPage from "@/components/landing_page/tab-page";
 import { tabsProfil } from "@/lib/items";
 import { useState } from "react";
 
-export default function page() {
+export default function Page() {
 
   const [tab, setTab] = useState<string>(tabsProfil[0].title);
 

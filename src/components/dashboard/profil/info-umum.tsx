@@ -64,7 +64,7 @@ export default function InfoUmum() {
       setValue('telepon', dataInfoUmum.data.telepon || '')
       setValue('email', dataInfoUmum.data.email || '')
     }
-  })
+  }, [dataInfoUmum, setValue])
 
   const { mutate: postInfo } = useMutation({
     mutationFn: (data: FormFields) => PostInfoUmum(data),
@@ -102,7 +102,12 @@ export default function InfoUmum() {
 
   function onSubmit(data: FormFields) {
     setIsLoading(true)
-    { mode === 'edit' ? updateInfo(data) : postInfo(data) }
+    if (mode === "edit") {
+      updateInfo(data)
+    }
+    else {
+      postInfo(data)
+    }
   }
 
   if (isLoadingInfoUmum) return <Loader />

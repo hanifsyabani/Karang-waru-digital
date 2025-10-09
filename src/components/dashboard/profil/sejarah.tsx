@@ -73,7 +73,12 @@ export default function Sejarah() {
 
     function onSubmit(data: FormFields) {
         setIsLoading(true);
-        { mode === 'edit' ? changeSejarah(data) : postSejarah(data) }
+        if (mode === "edit") {
+            changeSejarah(data)
+        }
+        else {
+            postSejarah(data)
+        }
     }
 
 

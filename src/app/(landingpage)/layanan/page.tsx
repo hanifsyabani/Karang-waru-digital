@@ -4,11 +4,11 @@ import CardBerita from "@/components/landing_page/berita/card-berita";
 import HeaderPage from "@/components/landing_page/header-page";
 import HeaderSection from "@/components/landing_page/header-section";
 import TabPage from "@/components/landing_page/tab-page";
-import { tabsBerita, tabsLayanan } from "@/lib/items";
+import {  tabsLayanan } from "@/lib/items";
 import { Handshake } from "lucide-react";
 import { useState } from "react";
 
-export default function page() {
+export default function Page() {
   const [tabFilter, setTabFilter] = useState<string>(tabsLayanan[0].title);
   return (
     <>

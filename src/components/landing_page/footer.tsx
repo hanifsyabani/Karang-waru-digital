@@ -1,5 +1,5 @@
 import { layananDesa, navLinks } from "@/lib/items";
-import { Facebook, Instagram, Mail, Phone } from "lucide-react";
+import {  Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 

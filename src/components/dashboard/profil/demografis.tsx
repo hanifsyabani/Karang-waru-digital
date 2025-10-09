@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Loader from '@/components/ui/loader';
-import { GetDemografis, GetInfoUmum, PostDemografis, PostInfoUmum, PutDemografis } from '@/service/profil';
+import { GetDemografis, GetInfoUmum, PostDemografis ,PutDemografis } from '@/service/profil';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react'
@@ -38,7 +38,7 @@ export default function Demografis() {
     const [mode, setMode] = useState<'submit' | 'edit'>('submit')
 
 
-    const [komposisiPenduduk, setKomposisiPenduduk] = useState<
+    const [komposisiPenduduk] = useState<
         { key: FormFieldKeys; label: string; jumlah: number }[]
     >([
         { key: 'balita', label: 'Balita', jumlah: 0 },
@@ -49,7 +49,7 @@ export default function Demografis() {
 
 
 
-    const [mataPencaharian, setMataPencaharian] = useState<
+    const [mataPencaharian] = useState<
         { key: FormFieldKeys; jenis: string; persentase: number }[]>([
             { key: 'pertanian', jenis: 'Pertanian', persentase: 0 },
             { key: 'perdagangan', jenis: 'Perdagangan', persentase: 0 },
@@ -57,7 +57,7 @@ export default function Demografis() {
             { key: 'industri', jenis: 'Industri Kecil', persentase: 0 }
         ]);
 
-    const [fasilitasUmum, setFasilitasUmum] = useState<{
+    const [fasilitasUmum] = useState<{
         key: FormFieldKeys; jenis: string; jumlah: number
     }[]>([
         { key: 'sekolah', jenis: 'Sekolah', jumlah: 0 },

@@ -1,6 +1,6 @@
 import NavbarDash from "@/components/dashboard/navbar-dash";
 import SidebarDashboard from "@/components/dashboard/sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function AdminLayout({
   children,

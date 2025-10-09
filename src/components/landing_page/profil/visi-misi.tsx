@@ -123,7 +123,7 @@ export default function VisiMisi() {
 
       <div className="text-center bg-gradient-to-r from-primary to-green-800 text-white rounded-lg shadow-lg p-8">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold mb-4">"Karang Waru Maju, Sejahtera, dan Berbudaya"</h2>
+          <h2 className="text-2xl font-bold mb-4">Karang Waru Maju, Sejahtera, dan Berbudaya</h2>
           <p className="text-lg opacity-90">
             Semangat membangun desa yang modern namun tetap menjunjung tinggi nilai-nilai luhur budaya bangsa
           </p>
@@ -141,9 +141,9 @@ export default function VisiMisi() {
           <div className="text-center">
             <div className="text-6xl mb-6">🌟</div>
             <blockquote className="text-2xl font-semibold text-gray-800 leading-relaxed mb-6 italic">
-              "Terwujudnya Desa Karang Waru sebagai desa mandiri, sejahtera, dan berbudaya 
+              Terwujudnya Desa Karang Waru sebagai desa mandiri, sejahtera, dan berbudaya 
               yang berlandaskan pada nilai-nilai gotong royong, transparansi, dan berkelanjutan 
-              menuju masyarakat yang maju dan harmonis pada tahun 2030"
+              menuju masyarakat yang maju dan harmonis pada tahun 2030
             </blockquote>
             <div className="flex justify-center space-x-4">
               <span className="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-semibold">Mandiri</span>
@@ -273,7 +273,7 @@ export default function VisiMisi() {
         </p>
         <div className="flex justify-center">
           <div className="bg-primary text-white px-8 py-3 rounded-full font-semibold shadow-lg">
-            "Bersama Membangun, Bersama Maju"
+            Bersama Membangun, Bersama Maju
           </div>
         </div>
       </div>

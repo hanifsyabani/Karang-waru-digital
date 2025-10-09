@@ -8,7 +8,7 @@ import { tabsBerita } from "@/lib/items";
 import { Newspaper } from "lucide-react";
 import { useState } from "react";
 
-export default function page() {
+export default function Page() {
 
     const [tabFilter, setTabFilter] = useState<string>(tabsBerita[0].title);
 

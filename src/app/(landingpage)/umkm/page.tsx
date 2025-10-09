@@ -4,11 +4,11 @@ import HeaderPage from "@/components/landing_page/header-page";
 import HeaderSection from "@/components/landing_page/header-section";
 import TabPage from "@/components/landing_page/tab-page";
 import CardUmkm from "@/components/landing_page/umkm/card-umkm";
-import { tabsBerita, tabsUmkm, umkmContent } from "@/lib/items";
+import {  tabsUmkm, umkmContent } from "@/lib/items";
 import { Store } from "lucide-react";
 import { useState } from "react";
 
-export default function page() {
+export default function Page() {
     const [tabFilter, setTabFilter] = useState<string>(tabsUmkm[0].title);
     return (
         <div className="pb-10">

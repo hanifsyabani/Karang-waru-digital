@@ -384,3 +384,27 @@ export const tabBerita = [
     active : 'kelola-berita'
   },
 ]
+
+
+export const selectKategori = [
+  {
+    value : "umum",
+    label : "Umum"
+  },
+  {
+    value : "kegiatan",
+    label : "Kegiatan"
+  },
+  {
+    value : "infrastruktur",
+    label : "Infrastruktur"
+  },
+  {
+    value : "kesehatan",
+    label : "Kesehatan"
+  },
+  {
+    value : "pendidikan",
+    label : "Pendidikan"
+  }
+]

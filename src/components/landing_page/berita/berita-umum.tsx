@@ -1,9 +1,9 @@
 import CardBerita from "./card-berita";
 
-export default function Berita({data} : any) {
+export default function Berita() {
   return (
-    <div>
+    <>
       <CardBerita />
-    </div>
+    </>
   )
 }

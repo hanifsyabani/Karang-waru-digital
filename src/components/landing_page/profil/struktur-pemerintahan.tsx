@@ -11,7 +11,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  Calendar
 } from 'lucide-react';
 import HeaderProfil from './header-profil';
 

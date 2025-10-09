@@ -1,5 +1,4 @@
-import { Building, Calendar, Home, Mail, MapPin, Phone, Users } from "lucide-react";
-import HeaderSection from "../header-section";
+import { Building, Calendar, Mail, MapPin, Phone, Users } from "lucide-react";
 import HeaderProfil from "./header-profil";
 
 export default function InfoUmum() {
