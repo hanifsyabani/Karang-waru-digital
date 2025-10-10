@@ -19,6 +19,22 @@ export async function GetAllBerita() {
   }
 }
 
+
+export async function GetBeritaByID(id :string) {
+  try {
+    const res = await axios.get(`${API_URL}/berita/${id}`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+
 export async function PostBerita(data :any) {
   try {
     const res = await axios.post(`${API_URL}/berita`, data, {
@@ -33,9 +49,9 @@ export async function PostBerita(data :any) {
     throw new Error(error.response.data.message);
   }
 }
-export async function PutBerita(data :any) {
+export async function PutBerita(data :any, id:string) {
   try {
-    const res = await axios.put(`${API_URL}/berita`, data, {
+    const res = await axios.put(`${API_URL}/berita/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",

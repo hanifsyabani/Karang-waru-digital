@@ -9,15 +9,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 import { selectKategori } from "@/lib/items";
 import { generateSlug } from "@/lib/utils";
-import { PostBerita } from "@/service/berita";
+import { GetBeritaByID, PostBerita, PutBerita } from "@/service/berita";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation} from "@tanstack/react-query";
-import { FileText, Plus } from "lucide-react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { FileText, Pen, Plus } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import z from "zod";
+
+interface ModalProps {
+    refetch: () => void
+    task: string
+    id?: string
+}
 
 
 const schema = z.object({
@@ -33,18 +39,37 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 
-export default function ModalAddBerita({refetch}: {refetch: () => void}) {
+export default function ModalBerita({ refetch, task, id }: ModalProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [previewImage, setPreviewImage] = useState<string | null>(null);
 
 
- 
+    const { data: dataBerita } = useQuery({
+        queryFn: () => GetBeritaByID(id || ""),
+        queryKey: ['beritaByID', id],
+        enabled: task === "edit" && !!id,
+    })
 
 
-    const { handleSubmit, register, formState: { errors }, setValue } = useForm<FormFields>({
+    const { handleSubmit, register, formState: { errors }, setValue, watch } = useForm<FormFields>({
         resolver: zodResolver(schema),
     })
+
+    useEffect(() => {
+        if (dataBerita?.data) {
+            const data = dataBerita.data;
+            setValue('title', data.title || '');
+            setValue('category', data.category || '');
+            setValue('content', data.content || '');
+            setValue('writer', data.writer || '');
+            setValue('date', data.date || '');
+            setValue('status', data.status || '');
+            setValue('slug', data.slug || '');
+            setValue('image', data.image || '');
+            setPreviewImage(data.image || '');
+        }
+    }, [dataBerita, setValue])
 
 
     const { mutate: addBerita } = useMutation({
@@ -60,34 +85,63 @@ export default function ModalAddBerita({refetch}: {refetch: () => void}) {
             toast.error("Terjadi kesalahan, silahkan coba lagi");
         }
     })
+    const { mutate: editBerita } = useMutation({
+        mutationFn: (data: FormFields) => PutBerita(data, id || ""),
+        onSuccess: () => {
+            setIsOpen(false);
+            setIsLoading(false);
+            toast.success("Berita berhasil diubah");
+            refetch();
+        },
+        onError: () => {
+            setIsLoading(false);
+            toast.error("Terjadi kesalahan, silahkan coba lagi");
+        }
+    })
 
     async function onSubmit(data: FormFields) {
         setIsLoading(true);
-        let image = "";
-        if (data.image && data.image[0]) {
-            image = await uploadToCloudinary(data.image[0]);
+
+        let imageUrl = dataBerita?.data?.image || ""; // Simpan URL lama sebagai default
+
+        // Cek apakah ada file BARU yang diunggah.
+        // data.image akan berupa FileList jika user memilih file baru.
+        if (data.image instanceof FileList && data.image.length > 0) {
+            imageUrl = await uploadToCloudinary(data.image[0]);
         }
 
         const rawData = {
             ...data,
-            image,
-            slug: generateSlug(data.title)
+            image: imageUrl, // Gunakan imageUrl yang sudah diproses
+            slug: generateSlug(data.title),
         };
 
-        addBerita(rawData);
+        if (task === "edit" && id) {
+            editBerita(rawData);
+        } else {
+            addBerita(rawData);
+        }
     }
 
-    return (
 
+    return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-primary cursor-pointer">
-                    <Plus />Tambah Berita
-                </Button>
+                {task === "add" ? (
+                    <Button className="bg-primary cursor-pointer">
+                        <Plus />Tambah Berita
+                    </Button>
+                ) : (
+                    <Button className="bg-green-500 text-white hover:bg-green-800 cursor-pointer">
+                        <Pen />
+                    </Button>
+                )}
             </DialogTrigger>
             <DialogContent className="max-w-5xl overflow-y-auto max-h-[90vh] ">
                 <DialogHeader>
-                    <DialogTitle>Tambah Berita</DialogTitle>
+                    <DialogTitle>
+                        {task === "add" ? "Tambah Berita" : "Ubah Berita"}
+                    </DialogTitle>
                     <DialogDescription>
                         This action cannot be undone. This will permanently delete your account
                         and remove your data from our servers.
@@ -109,7 +163,7 @@ export default function ModalAddBerita({refetch}: {refetch: () => void}) {
                     <div className="flex items-center">
                         <div className="w-1/2">
                             <Label className="block text-sm font-bold text-gray-700 mb-2">Kategori *</Label>
-                            <Select onValueChange={(value) => setValue("category", value)} >
+                            <Select onValueChange={(value) => setValue("category", value)} value={watch("category")} >
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Pilih kategori" />
                                 </SelectTrigger>
@@ -128,7 +182,7 @@ export default function ModalAddBerita({refetch}: {refetch: () => void}) {
 
                         <div className="w-1/2 ml-4">
                             <Label className="block text-sm font-bold text-gray-700 mb-2">Status *</Label>
-                            <Select onValueChange={(value) => setValue("status", value)}
+                            <Select onValueChange={(value) => setValue("status", value)} value={watch("status")}
                             >
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Pilih status" />
@@ -180,7 +234,6 @@ export default function ModalAddBerita({refetch}: {refetch: () => void}) {
                                     }
                                 }}
                                 accept="image/*"
-                            // {...register("image")}
                             />
                             <Label htmlFor="image-upload" className="cursor-pointer">
                                 <div className="text-gray-500 mx-auto">
@@ -196,6 +249,8 @@ export default function ModalAddBerita({refetch}: {refetch: () => void}) {
                                         src={previewImage}
                                         alt="Preview"
                                         className="mx-auto max-h-64 rounded-lg shadow-md"
+                                        width={100}
+                                        height={100}
                                     />
                                 </div>
                             )}
@@ -220,9 +275,9 @@ export default function ModalAddBerita({refetch}: {refetch: () => void}) {
                             Batal
                         </Button>
                         <Button
-                            className="flex-1"
+                            className="flex-1 cursor-pointer"
                         >
-                            {isLoading ? <span className="loader" /> : "Tambah Berita"}
+                            {isLoading ? <span className="loader" /> : "Simpan"}
                         </Button>
                     </div>
                 </form>
