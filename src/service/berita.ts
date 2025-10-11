@@ -63,3 +63,17 @@ export async function PutBerita(data :any, id:string) {
     throw new Error(error.response.data.message);
   }
 }
+export async function DeleteBerita(id:string) {
+  try {
+    const res = await axios.delete(`${API_URL}/berita/${id}`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
