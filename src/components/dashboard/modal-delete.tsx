@@ -10,7 +10,7 @@ interface ModalDeleteProps {
     setIsLoading: (isLoading: boolean) => void;
 }
 
-export default function ModalDelete({ isOpen, setIsOpen, isLoading,  onDelete, setIsLoading }: ModalDeleteProps) {
+export default function ModalDelete({ isOpen, setIsOpen, isLoading, onDelete, setIsLoading }: ModalDeleteProps) {
 
     function handleDelete() {
         setIsLoading(true);
@@ -22,7 +22,7 @@ export default function ModalDelete({ isOpen, setIsOpen, isLoading,  onDelete, s
             <DialogContent className="max-w-xl overflow-y-auto max-h-[90vh]">
                 <DialogHeader>
                     <DialogTitle>
-                            Hapus Berita
+                        Hapus Berita
                     </DialogTitle>
                     <DialogDescription>
                         This action cannot be undone. This will permanently delete your account
@@ -31,8 +31,11 @@ export default function ModalDelete({ isOpen, setIsOpen, isLoading,  onDelete, s
                 </DialogHeader>
                 <DialogFooter>
                     <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
-                    <Button className="bg-red-600 text-white hover:bg-red-700 cursor-pointer"
-                        onClick={handleDelete}>
+                    <Button
+                        className="bg-red-600 text-white hover:bg-red-700 cursor-pointer"
+                        onClick={handleDelete}
+                        disabled={isLoading}
+                    >
                         {isLoading ? <span className="loader"></span> : 'Hapus Berita'}
                     </Button>
                 </DialogFooter>

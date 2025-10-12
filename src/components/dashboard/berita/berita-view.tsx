@@ -11,71 +11,67 @@ import {
 } from 'lucide-react';
 import { tabBerita } from '@/lib/items';
 import TableBerita from './table-berita';
+import { useQuery } from '@tanstack/react-query';
+import { GetAllBerita } from '@/service/berita';
+import Loader from '@/components/ui/loader';
+import dayjs from 'dayjs';
+
 
 export default function BeritaView() {
     const [activeTab, setActiveTab] = useState('dashboard');
 
-    // Sample data
-    const beritaData = [
-        {
-            id: 1,
-            title: "Peluncuran Teknologi AI Terbaru di Indonesia",
-            category: "Teknologi",
-            writer: "Ahmad Rizki",
-            date: "2025-10-04",
-            status: "published",
-            image: "tech-ai.jpg"
-        },
-        {
-            id: 2,
-            title: "Pertumbuhan Ekonomi Digital Meningkat 25%",
-            category: "Ekonomi",
-            writer: "Siti Nurhaliza",
-            date: "2025-10-03",
-            status: "published",
-            image: "ekonomi.jpg"
-        },
-        {
-            id: 3,
-            title: "Festival Budaya Nusantara 2025",
-            category: "Budaya",
-            writer: "Budi Santoso",
-            date: "2025-10-02",
-            status: "draft",
-            image: "budaya.jpg"
-        },
-        {
-            id: 4,
-            title: "Inovasi Pendidikan Era Digital",
-            category: "Pendidikan",
-            writer: "Dewi Lestari",
-            date: "2025-10-01",
-            status: "published",
-            image: "pendidikan.jpg"
-        },
-        {
-            id: 5,
-            title: "Perkembangan Startup Indonesia 2025",
-            category: "Bisnis",
-            writer: "Andi Wijaya",
-            date: "2025-09-30",
-            status: "draft",
-            image: "startup.jpg"
-        }
-    ];
+    const { data: dataAllBerita, isLoading: isLoadingAllBerita } = useQuery({
+        queryFn: () => GetAllBerita(),
+        queryKey: ['berita']
+    })
+
+    const totalBerita = dataAllBerita?.data.length || 0;
+    const totalPublished = dataAllBerita?.data.filter((item: any) => item.status === 'published').length || 0;
+    const totalDraft = dataAllBerita?.data.filter((item: any) => item.status === 'draft').length || 0;
+
+    const berita = dataAllBerita?.data || [];
+    const beritaPublished = dataAllBerita?.data.filter((item: any) => item.status === 'published') || [];
+    const beritaDraft = dataAllBerita?.data.filter((item: any) => item.status === 'draft') || [];
+    // 🕒 Tentukan range waktu
+    const now = dayjs();
+    const lastWeek = now.subtract(7, "day");
+
+    // Hitung total berita minggu ini & minggu lalu
+    function calcTotalNow(berita: any[]) {
+        const totalNow = berita.filter((b: any) =>
+            dayjs(b.createdAt).isAfter(lastWeek)
+        ).length;
+        return totalNow;
+    }
+
+    function calcTotalLast(berita: any[]) {
+        const totalLast = berita.filter((b: any) =>
+            dayjs(b.createdAt).isBefore(lastWeek) &&
+            dayjs(b.createdAt).isAfter(lastWeek.subtract(7, "day"))
+        ).length;
+        return totalLast;
+    }
+
+    // Fungsi helper untuk growth
+    const calcGrowth = (nowVal: number, lastVal: number) => {
+        if (lastVal === 0) return "+100%";
+        const diff = ((nowVal - lastVal) / lastVal) * 100;
+        const sign = diff >= 0 ? "+" : "";
+        return `${sign}${diff.toFixed(1)}%`;
+    };
 
     const stats = [
         {
             label: "Total Berita",
-            value: "1,284",
-            change: "+12%",
+            value: totalBerita,
+            change: calcGrowth(calcTotalNow(berita), calcTotalLast(berita)),
             icon: FileText,
             color: "bg-gradient-to-br from-blue-500 to-blue-600"
         },
         {
             label: "Artikel Published",
-            value: "956",
-            change: "+8%",
+            value: totalPublished,
+            change: calcGrowth(calcTotalNow(beritaPublished), calcTotalLast(beritaPublished)),
             icon: CheckCircle,
             color: "bg-gradient-to-br from-green-500 to-green-600"
         },
@@ -88,12 +84,15 @@ export default function BeritaView() {
         },
         {
             label: "Draft Articles",
-            value: "328",
-            change: "-5%",
+            value: totalDraft,
+            change: calcGrowth(calcTotalNow(beritaDraft), calcTotalLast(beritaDraft)),
             icon: Clock,
             color: "bg-gradient-to-br from-orange-500 to-orange-600"
         }
     ];
+
+
+    if (isLoadingAllBerita) return <Loader />
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -148,12 +147,12 @@ export default function BeritaView() {
                         <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                             <div className="flex items-center justify-between mb-6">
                                 <h3 className="text-xl font-bold text-gray-800">Aktivitas Terbaru</h3>
-                                <button className="text-blue-600 hover:text-blue-700 font-semibold text-sm">
+                                <button onClick={() => setActiveTab("kelola-berita")} className="text-blue-600 hover:underline hover:text-blue-700 font-semibold text-sm">
                                     Lihat Semua
                                 </button>
                             </div>
                             <div className="space-y-3">
-                                {beritaData.slice(0, 5).map(item => (
+                                {dataAllBerita?.data.slice(0, 5).map((item: any) => (
                                     <div key={item.id} className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl hover:shadow-md transition-all">
                                         <div className="flex items-center gap-4">
                                             <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
