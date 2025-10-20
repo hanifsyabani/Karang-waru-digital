@@ -7,9 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { uploadToCloudinary } from "@/lib/cloudinary";
-import { kategoriumkm, selectKategori } from "@/lib/items";
+import { kategoriumkm } from "@/lib/items";
 import { generateSlug } from "@/lib/utils";
-import { GetBeritaByID, PostBerita, PutBerita } from "@/service/berita";
 import { GetUmkmByID, PostUmkm, PutUmkm } from "@/service/umkm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -18,7 +17,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import z, { set } from "zod";
+import z from "zod";
 
 interface ModalProps {
     refetch: () => void
