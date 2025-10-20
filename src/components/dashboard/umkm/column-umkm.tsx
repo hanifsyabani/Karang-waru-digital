@@ -25,9 +25,9 @@ export const getColumns = (
                 return image ? (
                     <Image
                         src={image}
-                        width={50}
-                        height={50}
-                        alt={row.original.nama_usaha || "No title"}
+                        width={100}
+                        height={100}
+                        alt={row.original.gambar || "No title"}
                     />
                 ) : (
                     <span className="text-gray-400 italic">No Image</span>
@@ -51,13 +51,13 @@ export const getColumns = (
             header: "Status",
             cell: ({ row }) => (
                 <>
-                    {row.original.status === "published" ? (
+                    {row.original.status === "verified" ? (
                         <Badge className="text-white bg-green-600">
-                            Publish
+                            Terverifikasi
                         </Badge>
-                    ) : row.original.status === "draft" ? (
+                    ) : row.original.status === "unverified" ? (
                         <Badge className="text-white bg-red-600">
-                            Draft
+                            Tidak Terverifikasi
                         </Badge>
                     ) : (
                         <Badge className="text-white bg-yellow-600">

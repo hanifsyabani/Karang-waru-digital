@@ -324,7 +324,7 @@ export const adminNavLinks = [
   },
   {
     title: "Layanan Desa",
-    href: "/admin/layanan",
+    href: "/admin/layanan-desa",
     icon: FileText,
   },
   {

@@ -19,10 +19,11 @@ export default function UmkmView() {
     id: item.id,
     nama_usaha: item.nama_usaha,
     kategori: item.kategori,
-    gambar: item.image,
+    gambar: item.gambar,
     pemilik: item.pemilik,
     deskripsi: item.deskripsi,
-    status: item.status
+    status: item.status,
+    date: item.created_at
   })) : []
 
   if (isLoadingUmkm) return <Loader />

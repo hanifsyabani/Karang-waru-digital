@@ -64,8 +64,8 @@ export default function ModalUmkm({ refetch, task, id }: ModalProps) {
             setValue('pemilik', data.pemilik || '');
             setValue('status', data.status || '');
             setValue('slug', data.slug || '');
-            setValue('gambar', data.image || '');
-            setPreviewImage(data.image || '');
+            setValue('gambar', data.gambar || '');
+            setPreviewImage(data.gambar || '');
         }
     }, [dataUmkm, setValue])
 
@@ -100,7 +100,7 @@ export default function ModalUmkm({ refetch, task, id }: ModalProps) {
     async function onSubmit(data: FormFields) {
         setIsLoading(true);
 
-        let imageUrl = dataUmkm?.data?.gambar || ""; // Simpan URL lama sebagai default
+        let imageUrl = dataUmkm?.data?.gambar || ""; 
 
         // Cek apakah ada file BARU yang diunggah.
         // data.image akan berupa FileList jika user memilih file baru.
@@ -110,7 +110,7 @@ export default function ModalUmkm({ refetch, task, id }: ModalProps) {
 
         const rawData = {
             ...data,
-            gambar: imageUrl, // Gunakan imageUrl yang sudah diproses
+            gambar: imageUrl, 
             slug: generateSlug(data.nama_usaha),
         };
 
@@ -261,6 +261,7 @@ export default function ModalUmkm({ refetch, task, id }: ModalProps) {
                         </Button>
                         <Button
                             className="flex-1 cursor-pointer"
+                            disabled={isLoading}
                         >
                             {isLoading ? <span className="loader" /> : "Simpan"}
                         </Button>
