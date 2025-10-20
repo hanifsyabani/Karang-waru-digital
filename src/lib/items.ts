@@ -295,7 +295,6 @@ export const tabsLayanan = [
   },
 ];
 
-import {} from "lucide-react";
 
 export const adminNavLinks = [
   {
@@ -406,5 +405,32 @@ export const selectKategori = [
   {
     value : "pendidikan",
     label : "Pendidikan"
+  }
+]
+
+export const kategoriumkm = [
+  {
+    value : "kerajinan",
+    label : "Kerajinan"
+  },
+  {
+    value : "kuliner",
+    label : "Kuliner"
+  },
+  {
+    value : "fashion",
+    label : "Fashion"
+  },
+  {
+    value : "jasa",
+    label : "Jasa"
+  },
+  {
+    value : "pertanian",
+    label : "Pertanian"
+  },
+  {
+    value : "lainnya",
+    label : "Lainnya"
   }
 ]
