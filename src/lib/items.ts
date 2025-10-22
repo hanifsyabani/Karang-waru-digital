@@ -434,3 +434,52 @@ export const kategoriumkm = [
     label : "Lainnya"
   }
 ]
+
+
+export const kategoriLayanan = [
+  {
+    value: "kependudukan",
+    label: "Administrasi Kependudukan",
+    deskripsi: "Layanan terkait dokumen kependudukan seperti KTP, KK, dan surat domisili.",
+  },
+  {
+    value: "pernikahan",
+    label: "Administrasi Pernikahan dan Perceraian",
+    deskripsi: "Layanan surat pengantar nikah, cerai, dan status pernikahan.",
+  },
+  {
+    value: "pemerintahan",
+    label: "Administrasi Pemerintahan & Umum",
+    deskripsi: "Layanan surat usaha, SKTM, SKCK, dan administrasi umum desa.",
+  },
+  {
+    value: "pertanian",
+    label: "Pertanian, Peternakan, dan Perikanan",
+    deskripsi: "Layanan kelompok tani, pupuk subsidi, dan bantuan pertanian.",
+  },
+  {
+    value: "pembangunan",
+    label: "Pembangunan & Infrastruktur Desa",
+    deskripsi: "Pengajuan pembangunan jalan, rumah layak huni, atau sarana publik.",
+  },
+  {
+    value: "keuangan",
+    label: "Keuangan & Bantuan Sosial",
+    deskripsi: "Pengajuan bantuan sosial, BLT, dan verifikasi penerima bantuan.",
+  },
+  {
+    value: "pendidikan",
+    label: "Pendidikan & Kesehatan",
+    deskripsi: "Layanan beasiswa, surat keterangan sehat, dan kegiatan posyandu.",
+  },
+  {
+    value: "hukum",
+    label: "Hukum & Keamanan",
+    deskripsi: "Layanan laporan polisi, sengketa tanah, dan rekomendasi keamanan.",
+  },
+  {
+    value: "digital",
+    label: "Layanan Digital & Inovasi Desa",
+    deskripsi: "Layanan data statistik, informasi publik, dan inovasi digital desa.",
+  },
+];
