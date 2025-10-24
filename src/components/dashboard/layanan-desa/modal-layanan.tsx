@@ -59,7 +59,11 @@ export default function ModalLayanan({ refetch, task, id }: ModalProps) {
     useEffect(() => {
         if (dataLayanan?.data) {
             const data = dataLayanan.data;
-
+            setValue('service_name', data.service_name || '');
+            setValue('description', data.description || '');
+            setValue('category', data.category || '');
+            setValue('estimated_time', data.estimated_time || '');
+            setValue('cost', data.cost || '');
             setValue('status', data.status || '');
             setValue('slug', data.slug || '');
             setValue('image', data.image || '');
@@ -86,7 +90,7 @@ export default function ModalLayanan({ refetch, task, id }: ModalProps) {
         onSuccess: () => {
             setIsOpen(false);
             setIsLoading(false);
-            toast.success("Berita berhasil diubah");
+            toast.success("Layanan berhasil diubah");
             refetch();
         },
         onError: () => {
@@ -116,7 +120,6 @@ export default function ModalLayanan({ refetch, task, id }: ModalProps) {
         }
     }
 
-
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
@@ -133,7 +136,7 @@ export default function ModalLayanan({ refetch, task, id }: ModalProps) {
             <DialogContent className="max-w-5xl overflow-y-auto max-h-[90vh] ">
                 <DialogHeader>
                     <DialogTitle>
-                        {task === "add" ? "Tambah Berita" : "Ubah Berita"}
+                        {task === "add" ? "Tambah Layanan" : "Ubah Layanan"}
                     </DialogTitle>
                     <DialogDescription>
                         This action cannot be undone. This will permanently delete your account
@@ -153,7 +156,7 @@ export default function ModalLayanan({ refetch, task, id }: ModalProps) {
                     <div className="grid grid-cols-2 gap-4">
                         <div >
                             <Label className="block text-sm font-medium text-gray-700 mb-1">Kategori</Label>
-                            <Select onValueChange={(value) => setValue("category", value)}>
+                            <Select onValueChange={(value) => setValue("category", value)} value={watch("category")}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Pilih Kategori" />
                                 </SelectTrigger>
@@ -170,6 +173,7 @@ export default function ModalLayanan({ refetch, task, id }: ModalProps) {
                             <Label className="block text-sm font-medium text-gray-700 mb-1">Status</Label>
                             <Select
                                 onValueChange={(value) => setValue("status", value)}
+                                value={watch("status")}
                             >
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Pilih status" />
@@ -183,7 +187,7 @@ export default function ModalLayanan({ refetch, task, id }: ModalProps) {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <Label className="block text-sm font-medium text-gray-700 mb-1">Estimasi Waktu</Label>
+                            <Label className="block text-sm font-medium text-gray-700 mb-1" >Estimasi Waktu</Label>
                             <Input type="number" {...register('estimated_time')} placeholder="1-3 hari kerja" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                         </div>
                         <div>

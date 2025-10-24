@@ -43,7 +43,7 @@ export default function ActionsBerita({ refetch, id }: { refetch: () => void, id
                 </div>
             </div>
 
-            <ModalDelete isOpen={isOpen} setIsOpen={setIsOpen} isLoading={isLoading} setIsLoading={setISLoading} onDelete={() => deleteBerita()} />
+            <ModalDelete title="Berita" isOpen={isOpen} setIsOpen={setIsOpen} isLoading={isLoading} setIsLoading={setISLoading} onDelete={() => deleteBerita()} />
         </>
     )
 }

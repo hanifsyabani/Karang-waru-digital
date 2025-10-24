@@ -7,15 +7,33 @@ import { FileText, Settings } from 'lucide-react';
 import ModalLayanan from './modal-layanan';
 import { GetAllLayanan } from '@/service/layanan';
 import { useQuery } from '@tanstack/react-query';
+import { ColumnLayanan, getColumns } from './column-layanan';
+import Loader from '@/components/ui/loader';
+import { DataTable } from '@/components/ui/data-tabe';
 
 export default function LayananView() {
+  const [activeTab, setActiveTab] = useState('konten');
 
   const { data: dataLayanan, isLoading: isLoadingLayanan, refetch } = useQuery({
     queryFn: () => GetAllLayanan(),
     queryKey: ['layanan'],
   })
-  const [activeTab, setActiveTab] = useState('konten'); 
 
+  const formattedLayanan: ColumnLayanan[] = Array.isArray(dataLayanan?.data) ? dataLayanan.data.map((item: any) => ({
+    id : item.id,
+    service_name : item.service_name,
+    description : item.description,
+    category : item.category,
+    status : item.status,
+    image : item.image,
+    estimated_time : item.estimated_time,
+    cost : item.cost,
+    created_at : item.created_at,
+  })) : [];
+
+
+
+  if (isLoadingLayanan) return <Loader />
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -50,11 +68,13 @@ export default function LayananView() {
         </div>
 
         <div className="flex justify-end items-center mb-6">
-          <ModalLayanan  refetch={refetch} task='add'  />
-        </div> 
+          <ModalLayanan refetch={refetch} task='add' />
+        </div>
 
         {activeTab === 'konten' && (
-          <></>
+          <>  
+            <DataTable data={formattedLayanan} columns={getColumns(refetch)} filterKey="service_name"/>
+          </>
         )}
 
 

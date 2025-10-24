@@ -6,18 +6,18 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import ModalDelete from "../modal-delete";
-import ModalUmkm from "./modal-umkm";
-import { DeleteUmkm } from "@/service/umkm";
+import ModalLayanan from "./modal-layanan";
+import { DeleteLayanan } from "@/service/layanan";
 
-export default function ActionsUmkm({ refetch, id }: { refetch: () => void, id: string }) {
+export default function ActionsLayanan({ refetch, id }: { refetch: () => void, id: string }) {
     const [isLoading, setISLoading] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
-    const { mutate: deleteUmkm } = useMutation({
-        mutationFn: () => DeleteUmkm(id),
+    const { mutate: deleteLayanan } = useMutation({
+        mutationFn: () => DeleteLayanan(id),
         onSuccess: () => {
             setISLoading(false)
-            toast.success('Umkm Berhasil Dihapus', {
+            toast.success('Layanan Berhasil Dihapus', {
                 theme: "colored"
             })
             setIsOpen(false)
@@ -25,7 +25,7 @@ export default function ActionsUmkm({ refetch, id }: { refetch: () => void, id: 
         },
         onError: () => {
             setISLoading(false)
-            toast.error('Umkm Gagal Dihapus', {
+            toast.error('Layanan Gagal Dihapus', {
                 theme: "colored"
             })
         }
@@ -34,7 +34,7 @@ export default function ActionsUmkm({ refetch, id }: { refetch: () => void, id: 
         <>
             <div className="flex items-center gap-2">
                 <div>
-                    <ModalUmkm task="edit" id={id} refetch={refetch} />
+                    <ModalLayanan task="edit" id={id} refetch={refetch} />
                 </div>
                 <div>
                     <Button className="bg-red-500 text-white hover:bg-red-800 cursor-pointer" onClick={() => setIsOpen(true)}>
@@ -43,7 +43,7 @@ export default function ActionsUmkm({ refetch, id }: { refetch: () => void, id: 
                 </div>
             </div>
 
-            <ModalDelete title="UMKM" isOpen={isOpen} setIsOpen={setIsOpen} isLoading={isLoading} setIsLoading={setISLoading} onDelete={() => deleteUmkm()} />
+            <ModalDelete title="Layanan" isOpen={isOpen} setIsOpen={setIsOpen} isLoading={isLoading} setIsLoading={setISLoading} onDelete={() => deleteLayanan()} />
         </>
     )
 }
