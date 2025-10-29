@@ -349,7 +349,7 @@ export const adminNavLinks = [
   },
   {
     title: "APBDes",
-    href: "/admin/apbdes",
+    href: "/admin/apbd-desa",
     icon: BarChart3,
   },
   {

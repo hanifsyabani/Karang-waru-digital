@@ -43,9 +43,9 @@ export default function FormRegister() {
             router.push('/login')
 
 
-        }, onError: () => {
+        }, onError: (error) => {
             setISLoading(false)
-            toast.error('Periksa Kembali data anda', {
+            toast.error(error.message, {
                 theme: "colored"
             })
         }
@@ -103,14 +103,14 @@ export default function FormRegister() {
                     {isLoading ? <span className="loader" /> : (
                         <>
                             <LogIn />
-                            <p>Masuk</p>
+                            <p>Daftar</p>
                         </>
                     )}
                 </Button>
 
                 <p className="text-center">
-                    Belum punya akun?{" "}
-                    <Link href={'/register'} className="text-primary cursor-pointer">Daftar</Link>
+                Sudah punya akun?{" "}
+                    <Link href={'/login'} className="text-primary cursor-pointer">Masuk</Link>
                 </p>
             </form>
         </div>
