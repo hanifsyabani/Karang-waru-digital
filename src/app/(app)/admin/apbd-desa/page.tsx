@@ -4,9 +4,9 @@ import { Download, } from 'lucide-react';
 export default function page() {
 
     return (
-        <div className="min-h-screen ">
-            <header className="bg-white  shadow-sm">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <>
+            <header className="bg-white shadow-sm">
+                <div className=" px-4 lg:px-8 py-4">
                     <div className="flex justify-between items-center">
                         <div>
                             <h1 className="text-2xl font-bold text-green-800">APBD Desa Karang Waru</h1>
@@ -28,9 +28,9 @@ export default function page() {
                 </div>
             </header>
 
-            <main>
+            <main >
                 <ApbdView />
             </main>
-        </div>
+        </>
     );
 }

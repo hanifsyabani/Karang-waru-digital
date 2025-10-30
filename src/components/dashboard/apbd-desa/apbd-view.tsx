@@ -34,7 +34,7 @@ export default function ApbdView() {
     return (
         <div>
             <div className="bg-white ">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className=" mx-auto px-4 lg:px-8">
                     <nav className="flex gap-8">
                         <button
                             onClick={() => setActiveTab('dashboard')}
@@ -58,7 +58,7 @@ export default function ApbdView() {
                 </div>
             </div>
 
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className=" px-4  py-8">
                 {activeTab === 'dashboard' && (
                     <>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -111,12 +111,15 @@ export default function ApbdView() {
                 )}
 
                 {activeTab === 'data' && (
-                    <>
-                        <div className="flex justify-end">
+                    <div className="bg-white p-4 w-full rounded-lg shadow-sm">
+                        <div className="flex justify-end mb-4 ">
                             <ModalApbd refetch={refetch} task="add" />
                         </div>
-                        <TableApbd refetch={refetch} data={dataApbd?.data} />
-                    </>
+
+                        <div className="  rounded-xl shadow-sm mx-auto max-w-6xl">
+                            <TableApbd refetch={refetch} data={dataApbd?.data} />
+                        </div>
+                    </div>
                 )}
             </main>
         </div>

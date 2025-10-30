@@ -6,7 +6,6 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import ModalDelete from "../modal-delete";
-import { DeleteLayanan } from "@/service/layanan";
 import { DeleteApbd } from "@/service/apbd";
 import ModalApbd from "./modal-apbd";
 

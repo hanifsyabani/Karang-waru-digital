@@ -37,7 +37,7 @@ export default function ModalDelete({ isOpen, title, setIsOpen, isLoading, onDel
                         onClick={handleDelete}
                         disabled={isLoading}
                     >
-                        {isLoading ? <span className="loader"></span> : 'Hapus Berita'}
+                        {isLoading ? <span className="loader"></span> : `Hapus ${title}`}
                     </Button>
                 </DialogFooter>
 

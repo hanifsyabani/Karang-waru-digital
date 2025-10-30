@@ -4,7 +4,7 @@ import { DataTable } from "@/components/ui/data-tabe"
 
 interface DataApbdProps {
   data?: ApbdDesaType[]
-  refetch : () => void 
+  refetch: () => void
 }
 
 export default function TableApbd({ data, refetch }: DataApbdProps) {
@@ -34,9 +34,9 @@ export default function TableApbd({ data, refetch }: DataApbdProps) {
 
 
   return (
-    <div>
+    // <div className="overflow-x-auto">
 
-      <DataTable data={formattedApbd} columns={getColumns(refetch)} filterKey="tahun"/>
-    </div>
+      <DataTable data={formattedApbd} columns={getColumns(refetch)} filterKey="tahun" />
+    // </div>
   )
 }
