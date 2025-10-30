@@ -5,6 +5,10 @@ import { useState } from "react";
 import { Plus, TrendingUp, TrendingDown, DollarSign, } from 'lucide-react';
 import { formatCurrency } from "@/lib/utils";
 import TableApbd from "./table-apbd";
+import ModalApbd from "./modal-apbd";
+import { useQuery } from "@tanstack/react-query";
+import { GetAllApbd } from "@/service/apbd";
+import Loader from "@/components/ui/loader";
 
 
 export default function ApbdView() {
@@ -18,6 +22,13 @@ export default function ApbdView() {
         surplus: 200000000,
         tahun: 2024
     };
+
+    const { data: dataApbd, isLoading: isLoadingApbd, refetch } = useQuery({
+        queryFn: () => GetAllApbd(),
+        queryKey: ['allApbd'],
+    })
+
+    if (isLoadingApbd) return <Loader />
 
 
     return (
@@ -90,7 +101,6 @@ export default function ApbdView() {
                                 <p className="text-2xl font-bold text-emerald-600">{formatCurrency(summaryData.surplus)}</p>
                             </div>
                         </div>
-                        {/* Chart Placeholder */}
                         <div className="bg-white rounded-xl shadow-sm  p-6 mb-8">
                             <h3 className="text-lg font-semibold text-gray-800 mb-4">Grafik Pendapatan & Belanja</h3>
                             <div className="h-64 flex items-center justify-center  rounded-lg">
@@ -102,17 +112,10 @@ export default function ApbdView() {
 
                 {activeTab === 'data' && (
                     <>
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold text-gray-800">Data APBD Desa</h2>
-                            <button
-                                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center gap-2"
-                            >
-                                <Plus size={18} />
-                                Tambah Data
-                            </button>
+                        <div className="flex justify-end">
+                            <ModalApbd refetch={refetch} task="add" />
                         </div>
-
-                        <TableApbd />
+                        <TableApbd refetch={refetch} data={dataApbd?.data} />
                     </>
                 )}
             </main>
