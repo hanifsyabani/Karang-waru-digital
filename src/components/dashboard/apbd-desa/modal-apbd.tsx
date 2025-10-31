@@ -144,11 +144,11 @@ export default function ModalApbd({ refetch, task, id }: ModalProps) {
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
                 {task === "add" ? (
-                    <Button className="bg-primary">
+                    <Button className="bg-primary cursor-pointer">
                         <Plus /> Tambah APBD
                     </Button>
                 ) : (
-                    <Button className="bg-green-500 text-white hover:bg-green-800">
+                    <Button className="bg-green-500 text-white hover:bg-green-800 cursor-pointer">
                         <Pen />
                     </Button>
                 )}
@@ -241,7 +241,7 @@ export default function ModalApbd({ refetch, task, id }: ModalProps) {
                         <div className="grid grid-cols-2 gap-3 mt-2">
                             <div>
                                 <Input type="number" placeholder="Penerimaan Pembiayaan" {...register("penerimaan_pembiayaan")} />
-                            {errors.penerimaan_pembiayaan && <p className="text-red-500 text-sm mt-1">{errors.penerimaan_pembiayaan.message}</p>}
+                                {errors.penerimaan_pembiayaan && <p className="text-red-500 text-sm mt-1">{errors.penerimaan_pembiayaan.message}</p>}
                             </div>
                             <div>
                                 <Input type="number" placeholder="Pengeluaran Pembiayaan" {...register("pengeluaran_pembiayaan")} />
@@ -281,8 +281,8 @@ export default function ModalApbd({ refetch, task, id }: ModalProps) {
                         <Button variant="outline" className="flex-1" onClick={() => setIsOpen(false)}>
                             Batal
                         </Button>
-                        <Button className="flex-1" disabled={isLoading}>
-                            {isLoading ? <span className="loader"/> : "Simpan"}
+                        <Button className="flex-1 cursor-pointer" disabled={isLoading}>
+                            {isLoading ? <span className="loader" /> : (task === "add" ? "Tambah" : "Simpan")}
                         </Button>
                     </div>
                 </form>

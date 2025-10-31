@@ -116,7 +116,7 @@ export default function ApbdView() {
                             <ModalApbd refetch={refetch} task="add" />
                         </div>
 
-                        <div className="  rounded-xl shadow-sm mx-auto max-w-6xl">
+                        <div className="  rounded-xl shadow-sm max-w-[95rem] mx-auto">
                             <TableApbd refetch={refetch} data={dataApbd?.data} />
                         </div>
                     </div>

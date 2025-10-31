@@ -17,6 +17,7 @@ export default function ModalDelete({ isOpen, title, setIsOpen, isLoading, onDel
         setIsLoading(true);
         onDelete();
     }
+    
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
 
