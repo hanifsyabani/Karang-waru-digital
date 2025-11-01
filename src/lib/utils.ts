@@ -15,6 +15,7 @@ export function generateSlug(title: string): string {
     .replace(/-+/g, "-");         // hindari double "-"
 }
 
+
 export const formatCurrency = (value: number) => {
   return new Intl.NumberFormat('id-ID', {
     style: 'currency',

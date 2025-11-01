@@ -7,19 +7,19 @@ import ActionsApbd from "./actions-apbd";
 export type ColumnApbd = {
     id: string;
     tahun: number,
-    pendapatan_asli_desa: number;
-    transfer: number;
-    pendapatan_lain: number;
-    belanja_pemerintahan: number;
-    belanja_pembangunan: number;
-    belanja_pembinaan: number;
-    belanja_pemberdayaan: number;
-    belanja_takterduga: number;
-    penerimaan_pembiayaan: number;
-    pengeluaran_pembiayaan: number;
-    total_pendapatan: number;
-    total_belanja: number;
-    surplus_defisit: number;
+    pendapatan_asli_desa: string;
+    transfer: string;
+    pendapatan_lain: string;
+    belanja_pemerintahan: string;
+    belanja_pembangunan: string;
+    belanja_pembinaan: string;
+    belanja_pemberdayaan: string;
+    belanja_takterduga: string;
+    penerimaan_pembiayaan: string;
+    pengeluaran_pembiayaan: string;
+    total_pendapatan: string;
+    total_belanja: string;
+    surplus_defisit: string;
     status: string;
     keterangan?: string;
     file_lampiran?: string;
@@ -37,34 +37,6 @@ export const getColumns = (
         {
             accessorKey: "pendapatan_asli_desa",
             header: "Pendapatan Asli Desa",
-        },
-        {
-            accessorKey: "transfer",
-            header: "Transfer",
-        },
-        {
-            accessorKey: "pendapatan_lain",
-            header: "Pendapatan Lain",
-        },
-        {
-            accessorKey: "belanja_pemerintahan",
-            header: "Belanja Pemerintahan",
-        },
-        {
-            accessorKey: "belanja_pembangunan",
-            header: "Belanja Pembangunan",
-        },
-        {
-            accessorKey: "belanja_pembinaan",
-            header: "Belanja Pembinaan",
-        },
-        {
-            accessorKey: "belanja_pemberdayaan",
-            header: "Belanja Pemberdayaan",
-        },
-        {
-            accessorKey: "belanja_takterduga",
-            header: "Belanja Takterduga",
         },
         {
             accessorKey: "total_pendapatan",
@@ -96,7 +68,7 @@ export const getColumns = (
                             Publish
                         </Badge>
                     ) : row.original.status === "draft" ? (
-                        <Badge className="text-white bg-red-600">
+                        <Badge className="text-white bg-neutral-400">
                             Draft
                         </Badge>
                     ) : (
