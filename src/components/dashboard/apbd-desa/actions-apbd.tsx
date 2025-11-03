@@ -32,8 +32,6 @@ export default function ActionsApbd({ refetch, id }: { refetch: () => void, id: 
     })
     return (
         <>
-
-
             <div className="flex items-center gap-2">
                 <div>
                     <ModalApbd task="detail" id={id} refetch={refetch} />

@@ -15,27 +15,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 export default function ApbdView() {
 
     const [activeTab, setActiveTab] = useState('dashboard');
-    const [yearChoosen, setYearChosen] = useState('2024');
-
     const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => currentYear - i);
 
-    // Data dummy
-    const summaryData = {
-        totalPendapatan: 2500000000,
-        totalBelanja: 2300000000,
-        surplus: 200000000,
-        tahun: 2024
-    };
+    const [yearChoosen, setYearChosen] = useState(currentYear.toString());
+
+    const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => currentYear - i);
 
     const { data: dataApbd, isLoading: isLoadingApbd, refetch } = useQuery({
         queryFn: () => GetAllApbd(),
         queryKey: ['allApbd'],
     })
 
+    const apbdList = dataApbd?.data || [];
+    const filterByYear = apbdList.find((item: any) => item.tahun.toString() === yearChoosen);
+
     if (isLoadingApbd) return <Loader />
-
-
     return (
         <div>
             <div className="flex items-center justify-end gap-3 py-4">
@@ -90,11 +84,11 @@ export default function ApbdView() {
                                     <TrendingUp className="text-green-600" size={24} />
                                 </div>
                                 <span className="text-xs font-medium text-green-600 bg-green-50 px-3 py-1 rounded-full">
-                                    Tahun {summaryData.tahun}
+                                    Tahun {filterByYear?.tahun || yearChoosen}
                                 </span>
                             </div>
                             <h3 className="text-sm font-medium text-gray-500 mb-2">Total Pendapatan</h3>
-                            <p className="text-2xl font-bold text-gray-800">{formatCurrency(summaryData.totalPendapatan)}</p>
+                            <p className="text-2xl font-bold text-gray-800">{formatCurrency(filterByYear?.total_pendapatan || 0)}</p>
                         </div>
 
                         <div className="bg-white rounded-xl shadow-sm  p-6 hover:shadow-md transition">
@@ -107,7 +101,7 @@ export default function ApbdView() {
                                 </span>
                             </div>
                             <h3 className="text-sm font-medium text-gray-500 mb-2">Total Belanja</h3>
-                            <p className="text-2xl font-bold text-gray-800">{formatCurrency(summaryData.totalBelanja)}</p>
+                            <p className="text-2xl font-bold text-gray-800">{formatCurrency(filterByYear?.total_belanja || 0)}</p>
                         </div>
 
                         <div className="bg-white rounded-xl shadow-sm  p-6 hover:shadow-md transition">
@@ -120,7 +114,7 @@ export default function ApbdView() {
                                 </span>
                             </div>
                             <h3 className="text-sm font-medium text-gray-500 mb-2">Surplus / Defisit</h3>
-                            <p className="text-2xl font-bold text-emerald-600">{formatCurrency(summaryData.surplus)}</p>
+                            <p className="text-2xl font-bold text-emerald-600">{formatCurrency(filterByYear?.surplus_defisit || 0)}</p>
                         </div>
                     </div>
                     <div className="bg-white rounded-xl shadow-sm  p-6 mb-8">
