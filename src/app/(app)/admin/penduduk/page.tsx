@@ -1,7 +1,6 @@
 
-import { Users,  Download,  Home} from 'lucide-react';
+import { Users, Home} from 'lucide-react';
 import TablePenduduk from '@/components/dashboard/penduduk/table-penduduk';
-import ModalPenduduk from '@/components/dashboard/penduduk/modal-penduduk';
 import ButtonPenduduk from '@/components/dashboard/penduduk/button-penduduk';
 
 export default function page() {

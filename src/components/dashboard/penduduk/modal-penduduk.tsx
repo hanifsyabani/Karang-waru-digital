@@ -130,8 +130,8 @@ export default function ModalPenduduk({ refetch, task, id }: ModalProps) {
             reset()
             refetch()
         },
-        onError: () => {
-            toast.error("Gagal menambahkan data")
+        onError: (error :any) => {
+            toast.error(error.message)
             setIsLoading(false)
         }
     })
@@ -144,8 +144,8 @@ export default function ModalPenduduk({ refetch, task, id }: ModalProps) {
             setIsLoading(false)
             refetch()
         },
-        onError: () => {
-            toast.error("Gagal memperbarui data")
+        onError: (error :any) => {
+            toast.error(error.message)
             setIsLoading(false)
         }
     })

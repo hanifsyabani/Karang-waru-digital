@@ -11,6 +11,8 @@ export default function ButtonPenduduk() {
         queryKey: ['penduduk'],
     })
 
+    void dataPenduduk; 
+
     if (isLoadingPenduduk) return <div className="loader" />
 
     return (

@@ -1,6 +1,5 @@
 import Footer from "@/components/landing_page/footer";
 import Navbar from "@/components/navbar";
-import type { Metadata } from "next";
 
 
 
