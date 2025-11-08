@@ -32,7 +32,6 @@ export default function TableBerita() {
             <div className="flex items-center justify-between mb-8">
                 <div>
                     <h2 className="text-3xl font-bold text-gray-800">Kelola Berita</h2>
-                    <p className="text-gray-600 mt-2">Manage and organize your news articles</p>
                 </div>
                 <ModalBerita refetch={refetch} task="add" />
             </div>

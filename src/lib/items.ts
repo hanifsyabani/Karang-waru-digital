@@ -353,16 +353,6 @@ export const adminNavLinks = [
     icon: BarChart3,
   },
   {
-    title: "Galeri",
-    href: "/admin/galeri",
-    icon: Image,
-  },
-  {
-    title: "Manajemen Pengguna",
-    href: "/admin/users",
-    icon: Shield,
-  },
-  {
     title: "Pengaturan Website",
     href: "/admin/settings",
     icon: Settings,

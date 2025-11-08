@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Karang Waru",
-    default: "Karang Waru",
+    template: "%s | Desa Karang Waru",
+    default: "Desa Karang Waru",
   },
   description: "Desa Karang Waru",
 };

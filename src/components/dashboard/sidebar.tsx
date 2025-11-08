@@ -4,26 +4,29 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,  SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar";
 import { adminNavLinks } from "@/lib/items";
+import Copyright from "../copyright";
 
 
 export default function SidebarDashboard() {
     const pathname = usePathname();
     return (
         <Sidebar side="left" collapsible="icon">
-            <SidebarContent className="py-5 px-2 h-full bg-white ">
-                <Link href={`/admin`} className="flex items-center gap-2">
+            <SidebarContent>
+                <Link href={`/admin`} className="flex items-center gap-2 bg-gradient-to-r from-primary to-green-900 p-4 ">
                     <Image
                         src={"/logo.png"}
-                        width={100}
-                        height={100}
+                        width={35}
+                        height={35}
                         alt={"logo"}
-                        className="w-14"
                     />
-                    <h1 className="text-xl font-bold">Desa Karang Waru</h1>
+                    <div>
+                        <h1 className="text-lg text-white font-bold">Desa Karang Waru</h1>
+                        <p className="text-sm text-white">Muba Maju Berjaya</p>
+                    </div>
                 </Link>
-                <SidebarGroup>
+                <SidebarGroup className="px-3 py-2">
                     <SidebarGroupContent>
                         <SidebarMenu className="space-y-2">
                             {adminNavLinks.map((item) => {
@@ -43,7 +46,9 @@ export default function SidebarDashboard() {
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
-
+                <SidebarFooter className="px-5 mt-4">
+                    <Copyright variant="dashboard" />
+                </SidebarFooter>
             </SidebarContent>
         </Sidebar>
     );

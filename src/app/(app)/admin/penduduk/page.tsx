@@ -2,6 +2,11 @@
 import { Users, Home} from 'lucide-react';
 import TablePenduduk from '@/components/dashboard/penduduk/table-penduduk';
 import ButtonPenduduk from '@/components/dashboard/penduduk/button-penduduk';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Pend uduk",
+};
 
 export default function page() {
 
@@ -13,7 +18,7 @@ export default function page() {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-green-50">
+        <div className="min-h-screen ">
             <div className="bg-gradient-to-r from-emerald-600 to-green-700 text-white shadow-xl">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="flex items-center justify-between">

@@ -1,0 +1,412 @@
+'use client'
+
+import React, { useState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Badge } from '@/components/ui/badge';
+import {  BookOpen, FileText, Calendar, Plus, Edit, Trash2, Eye } from 'lucide-react';
+import OverviewStats from './overview-stats';
+
+export default function PendidikanView() {
+    const [activeTab, setActiveTab] = useState('overview');
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    // Data dummy untuk lembaga pendidikan
+    const lembagaData = [
+        { id: 1, namaSekolah: 'SDN Karang Waru 1', jenjang: 'SD', jumlahSiswa: 245, jumlahGuru: 12, alamat: 'Jl. Raya Karang Waru No. 1' },
+        { id: 2, namaSekolah: 'SMPN 1 Karang Waru', jenjang: 'SMP', jumlahSiswa: 320, jumlahGuru: 18, alamat: 'Jl. Pendidikan No. 45' },
+        { id: 3, namaSekolah: 'TK Harapan Bangsa', jenjang: 'TK', jumlahSiswa: 85, jumlahGuru: 6, alamat: 'Jl. Anggrek No. 12' },
+    ];
+
+    // Data statistik pendidikan
+    const statistikData = [
+        { tahun: '2024', tidakSekolah: 45, sd: 1200, smp: 850, sma: 620, perguruanTinggi: 340 },
+        { tahun: '2023', tidakSekolah: 52, sd: 1180, smp: 830, sma: 590, perguruanTinggi: 310 },
+    ];
+
+    // Data program pendidikan
+    const programData = [
+        { id: 1, nama: 'Beasiswa Pendidikan Desa', status: 'Aktif', tanggalMulai: '2024-01-15', tanggalSelesai: '2024-12-31' },
+        { id: 2, nama: 'Pelatihan Literasi Digital', status: 'Aktif', tanggalMulai: '2024-03-01', tanggalSelesai: '2024-11-30' },
+        { id: 3, nama: 'Pembangunan Perpustakaan Desa', status: 'Selesai', tanggalMulai: '2023-06-01', tanggalSelesai: '2024-02-28' },
+    ];
+
+
+    return (
+        <>
+            <OverviewStats />
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6 mt-4">
+                <TabsList className="bg-white shadow-md rounded-xl p-1 grid grid-cols-5 w-full max-w-3xl">
+                    <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg">
+                        Overview
+                    </TabsTrigger>
+                    <TabsTrigger value="lembaga" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg">
+                        Lembaga
+                    </TabsTrigger>
+                    <TabsTrigger value="statistik" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg">
+                        Statistik
+                    </TabsTrigger>
+                    <TabsTrigger value="program" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg">
+                        Program
+                    </TabsTrigger>
+                    <TabsTrigger value="dokumentasi" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg">
+                        Dokumentasi
+                    </TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="overview" className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <Card className="shadow-lg border-0">
+                            <CardHeader className="bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-t-xl">
+                                <CardTitle>Distribusi Pendidikan</CardTitle>
+                                <CardDescription className="text-emerald-50">Data tahun 2024</CardDescription>
+                            </CardHeader>
+                            <CardContent className="p-6">
+                                <div className="space-y-4">
+                                    {[
+                                        { label: 'Perguruan Tinggi', value: 340, percentage: 11 },
+                                        { label: 'SMA/SMK', value: 620, percentage: 20 },
+                                        { label: 'SMP', value: 850, percentage: 28 },
+                                        { label: 'SD', value: 1200, percentage: 39 },
+                                        { label: 'Tidak Sekolah', value: 45, percentage: 2 },
+                                    ].map((item, idx) => (
+                                        <div key={idx} className="space-y-2">
+                                            <div className="flex justify-between text-sm">
+                                                <span className="font-medium text-gray-700">{item.label}</span>
+                                                <span className="text-gray-500">{item.value} orang ({item.percentage}%)</span>
+                                            </div>
+                                            <div className="w-full bg-gray-200 rounded-full h-2">
+                                                <div
+                                                    className="bg-gradient-to-r from-emerald-500 to-green-500 h-2 rounded-full transition-all duration-500"
+                                                    style={{ width: `${item.percentage * 2.5}%` }}
+                                                />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="shadow-lg border-0">
+                            <CardHeader className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-t-xl">
+                                <CardTitle>Program Pendidikan Aktif</CardTitle>
+                                <CardDescription className="text-teal-50">Sedang berjalan</CardDescription>
+                            </CardHeader>
+                            <CardContent className="p-6">
+                                <div className="space-y-4">
+                                    {programData.filter(p => p.status === 'Aktif').map((program) => (
+                                        <div key={program.id} className="p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl border border-emerald-200">
+                                            <div className="flex items-start justify-between">
+                                                <div className="flex-1">
+                                                    <h4 className="font-semibold text-gray-800">{program.nama}</h4>
+                                                    <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
+                                                        <Calendar className="w-4 h-4" />
+                                                        <span>{program.tanggalMulai} - {program.tanggalSelesai}</span>
+                                                    </div>
+                                                </div>
+                                                <Badge className="bg-emerald-500 text-white">{program.status}</Badge>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    <Card className="shadow-lg border-0">
+                        <CardHeader className="bg-gradient-to-r from-green-500 to-lime-500 text-white rounded-t-xl">
+                            <CardTitle>Capaian Pendidikan</CardTitle>
+                            <CardDescription className="text-green-50">Indikator kualitas pendidikan desa</CardDescription>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div className="text-center p-6 bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl border-2 border-emerald-200">
+                                    <p className="text-sm text-gray-500 mb-2">Tingkat Partisipasi</p>
+                                    <p className="text-4xl font-bold text-emerald-600">96.8%</p>
+                                    <p className="text-xs text-gray-500 mt-2">APS 2024</p>
+                                </div>
+                                <div className="text-center p-6 bg-gradient-to-br from-green-50 to-teal-50 rounded-xl border-2 border-green-200">
+                                    <p className="text-sm text-gray-500 mb-2">Angka Melek Huruf</p>
+                                    <p className="text-4xl font-bold text-green-600">94.5%</p>
+                                    <p className="text-xs text-gray-500 mt-2">Usia 15+ tahun</p>
+                                </div>
+                                <div className="text-center p-6 bg-gradient-to-br from-teal-50 to-lime-50 rounded-xl border-2 border-teal-200">
+                                    <p className="text-sm text-gray-500 mb-2">Jumlah Lulusan</p>
+                                    <p className="text-4xl font-bold text-teal-600">892</p>
+                                    <p className="text-xs text-gray-500 mt-2">Tahun 2024</p>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                <TabsContent value="lembaga">
+                    <Card className="shadow-lg border-0">
+                        <CardHeader className="bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-t-xl">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <CardTitle>Lembaga Pendidikan</CardTitle>
+                                    <CardDescription className="text-emerald-50">Daftar sekolah dan lembaga pendidikan di Desa Karang Waru</CardDescription>
+                                </div>
+                                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                                    <DialogTrigger asChild>
+                                        <Button className="bg-white text-emerald-600 hover:bg-emerald-50">
+                                            <Plus className="w-4 h-4 mr-2" />
+                                            Tambah Lembaga
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent className="max-w-2xl">
+                                        <DialogHeader>
+                                            <DialogTitle>Tambah Lembaga Pendidikan</DialogTitle>
+                                            <DialogDescription>Masukkan data lembaga pendidikan baru</DialogDescription>
+                                        </DialogHeader>
+                                        <div className="grid grid-cols-2 gap-4 py-4">
+                                            <div className="space-y-2">
+                                                <Label htmlFor="nama">Nama Sekolah</Label>
+                                                <Input id="nama" placeholder="Contoh: SDN Karang Waru 1" />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label htmlFor="jenjang">Jenjang Pendidikan</Label>
+                                                <Select>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Pilih jenjang" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        <SelectItem value="paud">PAUD</SelectItem>
+                                                        <SelectItem value="tk">TK</SelectItem>
+                                                        <SelectItem value="sd">SD</SelectItem>
+                                                        <SelectItem value="smp">SMP</SelectItem>
+                                                        <SelectItem value="sma">SMA/SMK</SelectItem>
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            <div className="col-span-2 space-y-2">
+                                                <Label htmlFor="alamat">Alamat</Label>
+                                                <Textarea id="alamat" placeholder="Alamat lengkap lembaga" />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label htmlFor="siswa">Jumlah Siswa</Label>
+                                                <Input id="siswa" type="number" placeholder="0" />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label htmlFor="guru">Jumlah Guru</Label>
+                                                <Input id="guru" type="number" placeholder="0" />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label htmlFor="kontak">Kontak</Label>
+                                                <Input id="kontak" placeholder="Telepon / Email" />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <Label htmlFor="staf">Jumlah Staf</Label>
+                                                <Input id="staf" type="number" placeholder="0" />
+                                            </div>
+                                        </div>
+                                        <DialogFooter>
+                                            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Batal</Button>
+                                            <Button className="bg-emerald-500 hover:bg-emerald-600" onClick={() => setIsDialogOpen(false)}>Simpan</Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
+                            </div>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="overflow-x-auto">
+                                <table className="w-full">
+                                    <thead>
+                                        <tr className="bg-emerald-50 border-b-2 border-emerald-200">
+                                            <th className="font-semibold text-left p-3">Nama Sekolah</th>
+                                            <th className="font-semibold text-left p-3">Jenjang</th>
+                                            <th className="font-semibold text-left p-3">Jumlah Siswa</th>
+                                            <th className="font-semibold text-left p-3">Jumlah Guru</th>
+                                            <th className="font-semibold text-left p-3">Alamat</th>
+                                            <th className="font-semibold text-center p-3">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {lembagaData.map((lembaga) => (
+                                            <tr key={lembaga.id} className="border-b hover:bg-emerald-50 transition-colors">
+                                                <td className="p-3 font-medium">{lembaga.namaSekolah}</td>
+                                                <td className="p-3">
+                                                    <Badge variant="outline" className="border-emerald-500 text-emerald-700">
+                                                        {lembaga.jenjang}
+                                                    </Badge>
+                                                </td>
+                                                <td className="p-3">{lembaga.jumlahSiswa}</td>
+                                                <td className="p-3">{lembaga.jumlahGuru}</td>
+                                                <td className="p-3 max-w-xs truncate">{lembaga.alamat}</td>
+                                                <td className="p-3">
+                                                    <div className="flex items-center justify-center gap-2">
+                                                        <Button size="sm" variant="ghost" className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50">
+                                                            <Eye className="w-4 h-4" />
+                                                        </Button>
+                                                        <Button size="sm" variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
+                                                            <Edit className="w-4 h-4" />
+                                                        </Button>
+                                                        <Button size="sm" variant="ghost" className="text-red-600 hover:text-red-700 hover:bg-red-50">
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </Button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* Statistik Tab */}
+                <TabsContent value="statistik">
+                    <Card className="shadow-lg border-0">
+                        <CardHeader className="bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-t-xl">
+                            <CardTitle>Statistik Pendidikan Penduduk</CardTitle>
+                            <CardDescription className="text-green-50">Distribusi tingkat pendidikan per tahun</CardDescription>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="overflow-x-auto">
+                                <table className="w-full">
+                                    <thead>
+                                        <tr className="bg-green-50 border-b-2 border-green-200">
+                                            <th className="font-semibold text-left p-3">Tahun</th>
+                                            <th className="font-semibold text-left p-3">Tidak Sekolah</th>
+                                            <th className="font-semibold text-left p-3">SD</th>
+                                            <th className="font-semibold text-left p-3">SMP</th>
+                                            <th className="font-semibold text-left p-3">SMA</th>
+                                            <th className="font-semibold text-left p-3">Perguruan Tinggi</th>
+                                            <th className="font-semibold text-left p-3">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {statistikData.map((stat, idx) => (
+                                            <tr key={idx} className="border-b hover:bg-green-50 transition-colors">
+                                                <td className="p-3 font-bold text-emerald-600">{stat.tahun}</td>
+                                                <td className="p-3">{stat.tidakSekolah}</td>
+                                                <td className="p-3">{stat.sd}</td>
+                                                <td className="p-3">{stat.smp}</td>
+                                                <td className="p-3">{stat.sma}</td>
+                                                <td className="p-3">{stat.perguruanTinggi}</td>
+                                                <td className="p-3 font-semibold">
+                                                    {stat.tidakSekolah + stat.sd + stat.smp + stat.sma + stat.perguruanTinggi}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* Program Tab */}
+                <TabsContent value="program">
+                    <Card className="shadow-lg border-0">
+                        <CardHeader className="bg-gradient-to-r from-teal-500 to-lime-500 text-white rounded-t-xl">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <CardTitle>Program Pendidikan Desa</CardTitle>
+                                    <CardDescription className="text-teal-50">Daftar program dan kegiatan pendidikan</CardDescription>
+                                </div>
+                                <Button className="bg-white text-teal-600 hover:bg-teal-50">
+                                    <Plus className="w-4 h-4 mr-2" />
+                                    Tambah Program
+                                </Button>
+                            </div>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="space-y-4">
+                                {programData.map((program) => (
+                                    <div key={program.id} className="p-4 border-2 border-gray-200 rounded-xl hover:border-emerald-300 hover:shadow-md transition-all">
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex-1">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="p-2 bg-emerald-100 rounded-lg">
+                                                        <BookOpen className="w-5 h-5 text-emerald-600" />
+                                                    </div>
+                                                    <div>
+                                                        <h3 className="font-semibold text-lg text-gray-800">{program.nama}</h3>
+                                                        <div className="flex items-center gap-2 mt-1 text-sm text-gray-500">
+                                                            <Calendar className="w-4 h-4" />
+                                                            <span>{program.tanggalMulai} s/d {program.tanggalSelesai}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <Badge className={program.status === 'Aktif' ? 'bg-emerald-500' : 'bg-gray-500'}>
+                                                    {program.status}
+                                                </Badge>
+                                                <Button size="sm" variant="ghost" className="text-emerald-600 hover:bg-emerald-50">
+                                                    <Edit className="w-4 h-4" />
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* Dokumentasi Tab */}
+                <TabsContent value="dokumentasi">
+                    <Card className="shadow-lg border-0">
+                        <CardHeader className="bg-gradient-to-r from-lime-500 to-emerald-500 text-white rounded-t-xl">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <CardTitle>Dokumentasi & Laporan</CardTitle>
+                                    <CardDescription className="text-lime-50">Arsip dokumen dan foto kegiatan pendidikan</CardDescription>
+                                </div>
+                                <Button className="bg-white text-lime-600 hover:bg-lime-50">
+                                    <Plus className="w-4 h-4 mr-2" />
+                                    Upload Dokumen
+                                </Button>
+                            </div>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {[
+                                    { judul: 'Laporan Tahunan 2024', tahun: '2024', type: 'PDF' },
+                                    { judul: 'Dokumentasi Beasiswa', tahun: '2024', type: 'Foto' },
+                                    { judul: 'Data Siswa Semester 1', tahun: '2024', type: 'Excel' },
+                                    { judul: 'Kegiatan Literasi Digital', tahun: '2024', type: 'Foto' },
+                                ].map((doc, idx) => (
+                                    <div key={idx} className="p-4 border-2 border-gray-200 rounded-xl hover:border-emerald-300 hover:shadow-md transition-all">
+                                        <div className="flex items-start gap-3">
+                                            <div className="p-3 bg-emerald-100 rounded-lg">
+                                                <FileText className="w-6 h-6 text-emerald-600" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <h4 className="font-semibold text-gray-800">{doc.judul}</h4>
+                                                <p className="text-sm text-gray-500 mt-1">Tahun: {doc.tahun}</p>
+                                                <Badge variant="outline" className="mt-2 border-emerald-500 text-emerald-700">
+                                                    {doc.type}
+                                                </Badge>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-2 mt-4">
+                                            <Button size="sm" className="flex-1 bg-emerald-500 hover:bg-emerald-600">
+                                                <Eye className="w-4 h-4 mr-1" />
+                                                Lihat
+                                            </Button>
+                                            <Button size="sm" variant="outline" className="text-red-600 hover:bg-red-50">
+                                                <Trash2 className="w-4 h-4" />
+                                            </Button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+            </Tabs>
+        </>
+    )
+}

@@ -82,7 +82,7 @@ export default function UmkmView() {
           </div>
         </div>
 
-        <div>
+        <div className='bg-white p-4'>
           <DataTable data={formattedUmkm} columns={getColumns(refetch)} filterKey='nama_usaha' />
         </div>
       </div>

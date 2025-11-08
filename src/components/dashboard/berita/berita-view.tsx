@@ -32,7 +32,6 @@ export default function BeritaView() {
     const berita = dataAllBerita?.data || [];
     const beritaPublished = dataAllBerita?.data.filter((item: any) => item.status === 'published') || [];
     const beritaDraft = dataAllBerita?.data.filter((item: any) => item.status === 'draft') || [];
-    // 🕒 Tentukan range waktu
     const now = dayjs();
     const lastWeek = now.subtract(7, "day");
 

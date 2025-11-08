@@ -3,7 +3,7 @@
 import { navLinks } from "@/lib/items";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
@@ -18,7 +18,10 @@ export default function Navbar() {
           height={100}
           className="w-10"
         />
-        <h1 className="font-semibold text-lg text-primary">Desa Karang Waru</h1>
+        <div >
+          <h1 className="font-semibold text-lg text-primary">Desa Karang Waru</h1>
+          <p className="text-sm ">Lawang Wetan, Musi Banyuasin, Sumatera Selatan</p>
+        </div>
       </div>
       <div>
         <ul className="flex items-center gap-8">

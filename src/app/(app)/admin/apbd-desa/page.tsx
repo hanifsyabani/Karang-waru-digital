@@ -1,8 +1,10 @@
 import ApbdView from '@/components/dashboard/apbd-desa/apbd-view';
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: "APBD",
+};
 
 export default function page() {
-
-
     return (
         <>
             <header className="bg-white shadow-sm">
