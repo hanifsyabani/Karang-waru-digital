@@ -45,7 +45,7 @@ export async function PostLembagaPendidikan(data :any) {
     throw new Error(error.response.data.message);
   }
 }
-export async function PutLembagaPendidikan(data :any) {
+export async function PutLembagaPendidikan(data :any, id :string) {
   try {
     const res = await axios.put(`${API_URL}/pendidikan/lembaga`, data, {
       withCredentials: true,
@@ -120,9 +120,9 @@ export async function PostStatistikPendidikan(data :any) {
     throw new Error(error.response.data.message);
   }
 }
-export async function PutStatistikPendidikan(data :any) {
+export async function PutStatistikPendidikan(data :any, id :string) {
   try {
-    const res = await axios.put(`${API_URL}/pendidikan/statistik`, data, {
+    const res = await axios.put(`${API_URL}/pendidikan/statistik/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",

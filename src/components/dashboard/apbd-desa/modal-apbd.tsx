@@ -17,6 +17,7 @@ import { uploadToCloudinary } from "@/lib/cloudinary";
 import { GetApbdByID, PostApbd, PutApbd } from "@/service/apbd";
 import SectionTitle from "../section-title";
 import DetailItem from "../detail-item";
+import { getYears } from "@/lib/utils";
 
 interface ModalProps {
     refetch: () => void
@@ -53,8 +54,6 @@ export default function ModalApbd({ refetch, task, id }: ModalProps) {
 
     const buttonMessage = task === "add" ? "Tambah APBD" : task === "detail" ? "Lihat Detail" : "Ubah APBD";
     const titleMessage = task === "add" ? "Tambah Data APBD Desa" : task === "detail" ? "Detail Data APBD Desa" : "Ubah Data APBD Desa";
-    const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => currentYear - i);
 
     const { data: dataApbd } = useQuery({
         queryFn: () => GetApbdByID(id || ""),
@@ -168,7 +167,7 @@ export default function ModalApbd({ refetch, task, id }: ModalProps) {
                                         <SelectValue placeholder="Pilih Tahun" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {years.map((year) => (
+                                        {getYears().map((year) => (
                                             <SelectItem value={year.toString()} key={year} className="hover:bg-primary cursor-pointer hover:text-white" >
                                                 {year}
                                             </SelectItem>

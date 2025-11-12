@@ -23,3 +23,9 @@ export const formatCurrency = (value: number) => {
     minimumFractionDigits: 0
   }).format(value);
 };
+
+export const getYears =() => {
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: currentYear - 2000 + 1 }, (_, i) => currentYear - i);
+    return years
+} 

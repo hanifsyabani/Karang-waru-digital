@@ -2,7 +2,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, School, TrendingUp, Users } from "lucide-react";
 
 export default function OverviewStats() {
-      // Statistik overview
   const overviewStats = [
     { title: 'Total Lembaga', value: '12', icon: School, color: 'text-emerald-600', bg: 'bg-emerald-50' },
     { title: 'Total Siswa', value: '3,055', icon: Users, color: 'text-green-600', bg: 'bg-green-50' },
