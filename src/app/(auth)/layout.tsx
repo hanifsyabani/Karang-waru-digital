@@ -27,7 +27,7 @@ export default function AuthLayout({
                     <Image src={"/desa-main.png"} alt="logo" width={500} height={500} className="w-full h-[500px] rounded-lg " />
                 </div>
 
-                <Copyright />
+                <Copyright variant="" />
             </div>
             <div className="w-1/2 bg-white p-8">
                 {children}

@@ -5,20 +5,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { BookOpen, FileText, Calendar, Plus, Edit, Trash2, Eye } from 'lucide-react';
+import { FileText, Calendar, Plus, Trash2, Eye } from 'lucide-react';
 import OverviewStats from './overview-stats';
 import TableLembagaPendidikan from './table-lembaga-pendidikan';
 import TableStatistikPendidikan from './table-statistik-pendidikan';
+import TableProgramPendidikan from './table-program-pendidikan';
 
 export default function PendidikanView() {
     const [activeTab, setActiveTab] = useState('overview');
 
 
-
-    const statistikData = [
-        { tahun: '2024', tidakSekolah: 45, sd: 1200, smp: 850, sma: 620, perguruanTinggi: 340 },
-        { tahun: '2023', tidakSekolah: 52, sd: 1180, smp: 830, sma: 590, perguruanTinggi: 310 },
-    ];
 
     const programData = [
         { id: 1, nama: 'Beasiswa Pendidikan Desa', status: 'Aktif', tanggalMulai: '2024-01-15', tanggalSelesai: '2024-12-31' },
@@ -140,56 +136,11 @@ export default function PendidikanView() {
                 </TabsContent>
 
                 <TabsContent value="statistik">
-                    <TableStatistikPendidikan/>
+                    <TableStatistikPendidikan />
                 </TabsContent>
 
                 <TabsContent value="program">
-                    <Card className="shadow-lg border-0">
-                        <CardHeader className="bg-gradient-to-r from-teal-500 to-lime-500 text-white rounded-t-xl">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <CardTitle>Program Pendidikan Desa</CardTitle>
-                                    <CardDescription className="text-teal-50">Daftar program dan kegiatan pendidikan</CardDescription>
-                                </div>
-                                <Button className="bg-white text-teal-600 hover:bg-teal-50">
-                                    <Plus className="w-4 h-4 mr-2" />
-                                    Tambah Program
-                                </Button>
-                            </div>
-                        </CardHeader>
-                        <CardContent className="p-6">
-                            <div className="space-y-4">
-                                {programData.map((program) => (
-                                    <div key={program.id} className="p-4 border-2 border-gray-200 rounded-xl hover:border-emerald-300 hover:shadow-md transition-all">
-                                        <div className="flex items-start justify-between">
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="p-2 bg-emerald-100 rounded-lg">
-                                                        <BookOpen className="w-5 h-5 text-emerald-600" />
-                                                    </div>
-                                                    <div>
-                                                        <h3 className="font-semibold text-lg text-gray-800">{program.nama}</h3>
-                                                        <div className="flex items-center gap-2 mt-1 text-sm text-gray-500">
-                                                            <Calendar className="w-4 h-4" />
-                                                            <span>{program.tanggalMulai} s/d {program.tanggalSelesai}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-center gap-2">
-                                                <Badge className={program.status === 'Aktif' ? 'bg-emerald-500' : 'bg-gray-500'}>
-                                                    {program.status}
-                                                </Badge>
-                                                <Button size="sm" variant="ghost" className="text-emerald-600 hover:bg-emerald-50">
-                                                    <Edit className="w-4 h-4" />
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </CardContent>
-                    </Card>
+                    <TableProgramPendidikan />
                 </TabsContent>
 
                 {/* Dokumentasi Tab */}

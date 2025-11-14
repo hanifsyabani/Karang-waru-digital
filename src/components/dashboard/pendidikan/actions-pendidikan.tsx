@@ -7,8 +7,9 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import ModalDelete from "../modal-delete";
 import ModalLembagaPendidikan from "./modal-lembaga-pendidikan";
-import { DeleteLembagaPendidikan, DeleteStatistikPendidikan } from "@/service/pendidikan";
+import { DeleteLembagaPendidikan, DeleteProgramPendidikan, DeleteStatistikPendidikan } from "@/service/pendidikan";
 import ModalStatistikPendidikan from "./modal-statistik-pendidikan";
+import ModalProgramPendidikan from "./modal-program-pendidikan";
 
 interface ActionsPendidikanProps {
     refetch: () => void,
@@ -55,13 +56,32 @@ export default function ActionsPendidikan({ refetch, id, tab }: ActionsPendidika
             })
         }
     })
+     const { mutate: deleteProgramPendidikan } = useMutation({
+        mutationFn: () => DeleteProgramPendidikan(id),
+        onSuccess: () => {
+            setISLoading(false)
+            toast.success('Program Pendidikan Berhasil Dihapus', {
+                theme: "colored"
+            })
+            setIsOpen(false)
+            refetch()
+        },
+        onError: () => {
+            setISLoading(false)
+            toast.error('Data Gagal Dihapus', {
+                theme: "colored"
+            })
+        }
+    })
 
     function onDelete() {
         if (tab === "lembaga") {
             deleteLembagaPendidikan()
         } else if (tab === "statistik") {
             deleteStatistikPendidikan()
-        } else null
+        } else if (tab === "program") {
+            deleteProgramPendidikan()
+        }
     }
     return (
         <>
@@ -70,6 +90,8 @@ export default function ActionsPendidikan({ refetch, id, tab }: ActionsPendidika
                     <ModalLembagaPendidikan task="edit" id={id} refetch={refetch} />
                 ) : tab === "statistik" ? (
                     <ModalStatistikPendidikan task="edit" id={id} refetch={refetch} />
+                ) : tab === "program" ? (
+                    <ModalProgramPendidikan task="edit" id={id} refetch={refetch} />
                 ) : null}
                 <div>
                     <Button className="bg-red-500 text-white hover:bg-red-800 cursor-pointer" onClick={() => setIsOpen(true)}>

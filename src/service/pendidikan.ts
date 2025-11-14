@@ -47,7 +47,7 @@ export async function PostLembagaPendidikan(data :any) {
 }
 export async function PutLembagaPendidikan(data :any, id :string) {
   try {
-    const res = await axios.put(`${API_URL}/pendidikan/lembaga`, data, {
+    const res = await axios.put(`${API_URL}/pendidikan/lembaga/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -196,9 +196,9 @@ export async function PostProgramPendidikan(data :any) {
     throw new Error(error.response.data.message);
   }
 }
-export async function PutProgramPendidikan(data :any) {
+export async function PutProgramPendidikan(data :any, id :string) {
   try {
-    const res = await axios.put(`${API_URL}/pendidikan/program`, data, {
+    const res = await axios.put(`${API_URL}/pendidikan/program/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -273,9 +273,9 @@ export async function PostCapaianPendidikan(data :any) {
     throw new Error(error.response.data.message);
   }
 }
-export async function PutCapaianPendidikan(data :any) {
+export async function PutCapaianPendidikan(data :any, id :string) {
   try {
-    const res = await axios.put(`${API_URL}/pendidikan/capaian`, data, {
+    const res = await axios.put(`${API_URL}/pendidikan/capaian/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -350,9 +350,9 @@ export async function PostDokumentasiPendidikan(data :any) {
     throw new Error(error.response.data.message);
   }
 }
-export async function PutDokumentasiPendidikan(data :any) {
+export async function PutDokumentasiPendidikan(data :any, id :string) {
   try {
-    const res = await axios.put(`${API_URL}/pendidikan/dokumentasi`, data, {
+    const res = await axios.put(`${API_URL}/pendidikan/dokumentasi/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
