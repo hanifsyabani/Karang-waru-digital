@@ -14,8 +14,6 @@ import ListDokumentasi from './list-dokumentasi';
 export default function PendidikanView() {
     const [activeTab, setActiveTab] = useState('overview');
 
-
-
     const programData = [
         { id: 1, nama: 'Beasiswa Pendidikan Desa', status: 'Aktif', tanggalMulai: '2024-01-15', tanggalSelesai: '2024-12-31' },
         { id: 2, nama: 'Pelatihan Literasi Digital', status: 'Aktif', tanggalMulai: '2024-03-01', tanggalSelesai: '2024-11-30' },
