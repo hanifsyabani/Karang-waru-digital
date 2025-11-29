@@ -1,12 +1,12 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Plus, Edit2, Trash2, MapPin, Phone, Clock, Calendar, Building2, Heart, Search, Filter, X } from 'lucide-react';
+import { Plus, Edit2, Trash2, MapPin, Phone, Clock, Calendar, Building2, Heart, Search, Filter, } from 'lucide-react';
+import StatsCardKesehatan from './stats-card-kesehatan';
 
-export default function Kesehatan () {
+export default function Kesehatan() {
   const [activeTab, setActiveTab] = useState('layanan');
-  const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState('');
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filterJenis, setFilterJenis] = useState('all');
 
@@ -71,115 +71,32 @@ export default function Kesehatan () {
     }
   ]);
 
-  const [formData, setFormData] = useState({});
 
-  const openModal = (type, data = null) => {
-    setModalType(type);
-    setShowModal(true);
-    if (data) {
-      setFormData(data);
-    } else {
-      setFormData({});
-    }
-  };
 
-  const closeModal = () => {
-    setShowModal(false);
-    setFormData({});
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-    closeModal();
-  };
-
-  const handleDelete = (id, type) => {
-    if (window.confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-      if (type === 'layanan') {
-        setLayananList(layananList.filter(item => item.id !== id));
-      } else {
-        setFasilitasList(fasilitasList.filter(item => item.id !== id));
-      }
-    }
-  };
 
   const filteredLayanan = layananList.filter(item => {
     const matchSearch = item.namaProgram.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                       item.deskripsi.toLowerCase().includes(searchTerm.toLowerCase());
+      item.deskripsi.toLowerCase().includes(searchTerm.toLowerCase());
     const matchFilter = filterJenis === 'all' || item.jenisProgram === filterJenis;
     return matchSearch && matchFilter;
   });
 
   const filteredFasilitas = fasilitasList.filter(item => {
     const matchSearch = item.namaFasilitas.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                       item.alamat.toLowerCase().includes(searchTerm.toLowerCase());
+      item.alamat.toLowerCase().includes(searchTerm.toLowerCase());
     const matchFilter = filterJenis === 'all' || item.jenis === filterJenis;
     return matchSearch && matchFilter;
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg">
-        <div className="container mx-auto px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="bg-white/20 p-3 rounded-xl backdrop-blur-sm">
-                <Heart className="w-8 h-8" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold">Desa Karang Waru</h1>
-                <p className="text-green-100 text-sm">Sistem Manajemen Kesehatan</p>
-              </div>
-            </div>
-            <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-xl">
-              <p className="text-sm">Admin Dashboard</p>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
+    <div className="min-h-screen ">
       <div className="container mx-auto px-6 py-8">
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-green-500 hover:shadow-xl transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-500 text-sm font-medium">Total Layanan</p>
-                <p className="text-3xl font-bold text-gray-800 mt-2">{layananList.length}</p>
-              </div>
-              <div className="bg-green-100 p-4 rounded-xl">
-                <Calendar className="w-8 h-8 text-green-600" />
-              </div>
-            </div>
-          </div>
+          <StatsCardKesehatan title='Layanan' value={fasilitasList} icon={Calendar} />
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-emerald-500 hover:shadow-xl transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-500 text-sm font-medium">Total Fasilitas</p>
-                <p className="text-3xl font-bold text-gray-800 mt-2">{fasilitasList.length}</p>
-              </div>
-              <div className="bg-emerald-100 p-4 rounded-xl">
-                <Building2 className="w-8 h-8 text-emerald-600" />
-              </div>
-            </div>
-          </div>
+          <StatsCardKesehatan title='Fasilitas' value={layananList} icon={Building2} />
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-teal-500 hover:shadow-xl transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-500 text-sm font-medium">Program Aktif</p>
-                <p className="text-3xl font-bold text-gray-800 mt-2">{layananList.length}</p>
-              </div>
-              <div className="bg-teal-100 p-4 rounded-xl">
-                <Heart className="w-8 h-8 text-teal-600" />
-              </div>
-            </div>
-          </div>
+          <StatsCardKesehatan title='Program Kesehatan' value={layananList} icon={Heart} />
         </div>
 
         {/* Tabs */}
@@ -187,11 +104,10 @@ export default function Kesehatan () {
           <div className="flex border-b border-gray-200">
             <button
               onClick={() => setActiveTab('layanan')}
-              className={`flex-1 px-6 py-4 font-semibold transition-all ${
-                activeTab === 'layanan'
-                  ? 'bg-green-600 text-white'
-                  : 'text-gray-600 hover:bg-gray-50'
-              }`}
+              className={`flex-1 px-6 py-4 font-semibold transition-all ${activeTab === 'layanan'
+                ? 'bg-green-600 text-white'
+                : 'text-gray-600 hover:bg-gray-50'
+                }`}
             >
               <div className="flex items-center justify-center space-x-2">
                 <Calendar className="w-5 h-5" />
@@ -200,11 +116,10 @@ export default function Kesehatan () {
             </button>
             <button
               onClick={() => setActiveTab('fasilitas')}
-              className={`flex-1 px-6 py-4 font-semibold transition-all ${
-                activeTab === 'fasilitas'
-                  ? 'bg-green-600 text-white'
-                  : 'text-gray-600 hover:bg-gray-50'
-              }`}
+              className={`flex-1 px-6 py-4 font-semibold transition-all ${activeTab === 'fasilitas'
+                ? 'bg-green-600 text-white'
+                : 'text-gray-600 hover:bg-gray-50'
+                }`}
             >
               <div className="flex items-center justify-center space-x-2">
                 <Building2 className="w-5 h-5" />
@@ -253,7 +168,6 @@ export default function Kesehatan () {
                   </select>
                 </div>
                 <button
-                  onClick={() => openModal(activeTab === 'layanan' ? 'addLayanan' : 'addFasilitas')}
                   className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all flex items-center space-x-2 font-semibold shadow-lg hover:shadow-xl"
                 >
                   <Plus className="w-5 h-5" />
@@ -292,13 +206,11 @@ export default function Kesehatan () {
                       </div>
                       <div className="flex space-x-2 ml-4">
                         <button
-                          onClick={() => openModal('editLayanan', layanan)}
                           className="p-3 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
                         >
                           <Edit2 className="w-5 h-5" />
                         </button>
                         <button
-                          onClick={() => handleDelete(layanan.id, 'layanan')}
                           className="p-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors"
                         >
                           <Trash2 className="w-5 h-5" />
@@ -324,13 +236,11 @@ export default function Kesehatan () {
                       </div>
                       <div className="flex space-x-2">
                         <button
-                          onClick={() => openModal('editFasilitas', fasilitas)}
                           className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
                         <button
-                          onClick={() => handleDelete(fasilitas.id, 'fasilitas')}
                           className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -362,141 +272,6 @@ export default function Kesehatan () {
           </div>
         </div>
       </div>
-
-      {/* Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white p-6 flex justify-between items-center">
-              <h2 className="text-2xl font-bold">
-                {modalType.includes('add') ? 'Tambah' : 'Edit'}{' '}
-                {modalType.includes('Layanan') ? 'Layanan' : 'Fasilitas'}
-              </h2>
-              <button onClick={closeModal} className="p-2 hover:bg-white/20 rounded-lg transition-colors">
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <div className="p-6 space-y-4">
-              {modalType.includes('Layanan') ? (
-                <>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Nama Program</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                      placeholder="Masukkan nama program"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Jenis Program</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
-                      <option>Pilih Jenis</option>
-                      <option>Imunisasi</option>
-                      <option>Posyandu</option>
-                      <option>Posbindu</option>
-                      <option>Cek Kesehatan</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Deskripsi</label>
-                    <textarea
-                      rows="3"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                      placeholder="Masukkan deskripsi program"
-                    ></textarea>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Fasilitas</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
-                      <option>Pilih Fasilitas</option>
-                      {fasilitasList.map(f => (
-                        <option key={f.id} value={f.id}>{f.namaFasilitas}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Jadwal</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                      placeholder="Contoh: Setiap Selasa, 08:00-11:00"
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Nama Fasilitas</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                      placeholder="Masukkan nama fasilitas"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Jenis Fasilitas</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
-                      <option>Pilih Jenis</option>
-                      <option>Puskesmas</option>
-                      <option>Posyandu</option>
-                      <option>Klinik</option>
-                      <option>Apotek</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Alamat</label>
-                    <textarea
-                      rows="2"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                      placeholder="Masukkan alamat lengkap"
-                    ></textarea>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Penanggung Jawab</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                      placeholder="Nama penanggung jawab"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">No. Telepon</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                      placeholder="Contoh: 081234567890"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Jam Operasional</label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
-                      placeholder="Contoh: Senin-Jumat, 08:00-16:00"
-                    />
-                  </div>
-                </>
-              )}
-              <div className="flex space-x-3 pt-4">
-                <button
-                  type="button"
-                  onClick={closeModal}
-                  className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors font-semibold"
-                >
-                  Batal
-                </button>
-                <button
-                  type="button"
-                  onClick={handleSubmit}
-                  className="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all font-semibold shadow-lg"
-                >
-                  Simpan
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
