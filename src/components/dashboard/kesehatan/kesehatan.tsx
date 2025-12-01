@@ -24,7 +24,7 @@ export default function Kesehatan() {
           <div className="flex border-b border-gray-200">
             <button
               onClick={() => setActiveTab('layanan')}
-              className={`flex-1 px-6 py-4 font-semibold transition-all ${activeTab === 'layanan'
+              className={`flex-1 px-6 py-4 font-semibold cursor-pointer transition-all ${activeTab === 'layanan'
                 ? 'bg-green-600 text-white'
                 : 'text-gray-600 hover:bg-gray-50'
                 }`}
@@ -36,7 +36,7 @@ export default function Kesehatan() {
             </button>
             <button
               onClick={() => setActiveTab('fasilitas')}
-              className={`flex-1 px-6 py-4 font-semibold transition-all ${activeTab === 'fasilitas'
+              className={`flex-1 px-6 py-4 font-semibold cursor-pointer transition-all ${activeTab === 'fasilitas'
                 ? 'bg-green-600 text-white'
                 : 'text-gray-600 hover:bg-gray-50'
                 }`}

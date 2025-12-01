@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Loader from "@/components/ui/loader";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { GetAllFasilitasKesehatan, GetLayananKesehatanByID, PostLayananKesehatan, PutLayananKesehatan } from "@/service/kesehatan";
@@ -37,11 +36,11 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const { data: dataFasilitas, isLoading: isLoadingFasilitas } = useQuery({
+    const { data: dataFasilitas } = useQuery({
         queryKey: ['fasilitas-kesehatan'],
         queryFn: () => GetAllFasilitasKesehatan(),
     })
-    const { data: dataLayananKesehatanByID, isLoading: isLoadingLayananKesehatanByID } = useQuery({
+    const { data: dataLayananKesehatanByID } = useQuery({
         queryKey: ['data-layanan-kesehatan', id],
         queryFn: () => GetLayananKesehatanByID(id || ""),
         enabled: task === "edit" && !!id,
@@ -55,8 +54,8 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
     useEffect(() => {
         if (dataLayananKesehatanByID?.data) {
             const data = dataLayananKesehatanByID.data;
-            setValue("nama_program", data.namaProgram);
-            setValue("jenis_program", data.jenisProgram);
+            setValue("nama_program", data.nama_program);
+            setValue("jenis_program", data.jenis_program);
             setValue("deskripsi", data.deskripsi);
             setValue("fasilitas_id", String(data.fasilitas_id));
             setValue("jadwal", data.jadwal);
@@ -93,8 +92,6 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
 
     function onSubmit(data: FormFields) {
         setIsLoading(true);
-
-
         if (task === "edit" && id) {
             editLayananKesehatan(data);
         } else {
@@ -102,7 +99,6 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
         }
     }
 
-    if (isLoadingFasilitas || isLoadingLayananKesehatanByID) return <Loader />
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -166,14 +162,14 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
                         <div>
                             <Label className="block text-sm font-semibold text-gray-700 mb-2">Fasilitas</Label>
                             <Select onValueChange={(value) => setValue("fasilitas_id", value)}>
-                                <SelectTrigger>
+                                <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Pilih Fasilitas Kesehatan" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {dataFasilitas?.data && (
                                         dataFasilitas?.data.map((fasilitas: any) => (
                                             <SelectItem key={fasilitas.id} value={String(fasilitas.id)} className="hover:bg-primary hover:text-white cursor-pointer">
-                                                {fasilitas.namaFasilitas}
+                                                {fasilitas.nama_fasilitas}
                                             </SelectItem>
                                         ))
                                     )}

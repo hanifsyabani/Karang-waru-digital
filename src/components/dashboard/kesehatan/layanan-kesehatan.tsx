@@ -17,7 +17,7 @@ export default function LayananKesehatan() {
 
     return (
         <div className="px-4">
-            <div className="flex justify-end">
+            <div className="flex justify-end my-4">
                 <ModalLayananKesehatan refetch={refetch} task="add" />
             </div>
 

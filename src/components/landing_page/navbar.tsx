@@ -47,14 +47,6 @@ export default function Navbar() {
         <Link href={"/login"}>
           <Button className="bg-primary cursor-pointer ">Masuk</Button>
         </Link>
-        <Link href={"/register"}>
-          <Button
-            className="border border-primary cursor-pointer hover:bg-white"
-            variant={"outline"}
-          >
-            Daftar
-          </Button>
-        </Link>
       </div>
     </nav>
   );
