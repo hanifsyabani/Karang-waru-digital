@@ -1,13 +1,29 @@
+'use client'
+
 import { Card, CardContent } from "@/components/ui/card";
+import Loader from "@/components/ui/loader";
+import { GetLembagaPendidikan, GetProgramPendidikan, GetStatistikPendidikan } from "@/service/pendidikan";
+import { useQuery } from "@tanstack/react-query";
 import { BookOpen, School, TrendingUp, Users } from "lucide-react";
 
-export default function OverviewStats() {
-  const overviewStats = [
-    { title: 'Total Lembaga', value: '12', icon: School, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-    { title: 'Total Siswa', value: '3,055', icon: Users, color: 'text-green-600', bg: 'bg-green-50' },
-    { title: 'Program Aktif', value: '8', icon: BookOpen, color: 'text-teal-600', bg: 'bg-teal-50' },
-    { title: 'Tingkat Literasi', value: '94.5%', icon: TrendingUp, color: 'text-lime-600', bg: 'bg-lime-50' },
-  ];
+
+
+
+export default function OverviewStats({ dataLembagaPendidikan, dataStatistikPendidikan, dataProgramPendidikan }: any) {
+
+
+
+
+    const totalStudents = dataStatistikPendidikan?.data ? dataStatistikPendidikan.data.reduce((acc: number, curr: any) => acc + curr.sd + curr.smp + curr.sma, 0) : 0;
+
+    const overviewStats = [
+        { title: 'Total Lembaga', value: dataLembagaPendidikan?.data.length, icon: School, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+        { title: 'Total Siswa', value: totalStudents, icon: Users, color: 'text-green-600', bg: 'bg-green-50' },
+        { title: 'Program Aktif', value: dataProgramPendidikan?.data.length, icon: BookOpen, color: 'text-teal-600', bg: 'bg-teal-50' },
+        { title: 'Tingkat Literasi', value: '94.5%', icon: TrendingUp, color: 'text-lime-600', bg: 'bg-lime-50' },
+    ];
+
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {overviewStats.map((stat, index) => (

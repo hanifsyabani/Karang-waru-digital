@@ -223,6 +223,7 @@ export default function ModalFasilitasKesehatan({ refetch, task, id }: ModalProp
                             </Button>
                             <Button
                                 className="flex-1 cursor-pointer"
+                                disabled={isLoading}
                             >
                                 {isLoading ? <span className="loader" /> : "Simpan"}
                             </Button>

@@ -16,7 +16,7 @@ export default function FasilitasKesehatan() {
     if (isLoadingFasilitasKesehatan) return <Loader />
 
     return (
-        <div className='px-4 py-3'>
+        <div className='px-4 py-6'>
             <div className="flex justify-end my-4">
                 <ModalFasilitasKesehatan refetch={refetch} task="add" />
             </div>

@@ -4,15 +4,37 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import {  Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import OverviewStats from './overview-stats';
 import TableLembagaPendidikan from './table-lembaga-pendidikan';
 import TableStatistikPendidikan from './table-statistik-pendidikan';
 import TableProgramPendidikan from './table-program-pendidikan';
 import ListDokumentasi from './list-dokumentasi';
+import { useQuery } from '@tanstack/react-query';
+import { GetLembagaPendidikan, GetProgramPendidikan, GetStatistikPendidikan } from '@/service/pendidikan';
+import Loader from '@/components/ui/loader';
 
 export default function PendidikanView() {
     const [activeTab, setActiveTab] = useState('overview');
+
+    const { data: dataLembagaPendidikan, isLoading: isLoadingLembagaPendidikan } = useQuery({
+        queryKey: ['dataLembagaPendidikan'],
+        queryFn: () => GetLembagaPendidikan()
+    })
+    const { data: dataStatistikPendidikan, isLoading: isLoadingStatistikPendidikan } = useQuery({
+        queryKey: ['dataStatistikPendidikan'],
+        queryFn: () => GetStatistikPendidikan()
+    })
+    const { data: dataProgramPendidikan, isLoading: isLoadingProgramPendidikan } = useQuery({
+        queryKey: ['dataProgramPendidikan'],
+        queryFn: () => GetProgramPendidikan()
+    })
+
+    const sdStudents = dataStatistikPendidikan?.data ? dataStatistikPendidikan.data.reduce((acc: number, curr: any) => acc + curr.sd, 0) : 0;
+    const smpStudents = dataStatistikPendidikan?.data ? dataStatistikPendidikan.data.reduce((acc: number, curr: any) => acc + curr.smp, 0) : 0;
+    const smaStudents = dataStatistikPendidikan?.data ? dataStatistikPendidikan.data.reduce((acc: number, curr: any) => acc + curr.sma, 0) : 0;
+    const perguruanTinggiStudents = dataStatistikPendidikan?.data ? dataStatistikPendidikan.data.reduce((acc: number, curr: any) => acc + curr.perguruan_tinggi, 0) : 0;
+    const tidakSekolahStudents = dataStatistikPendidikan?.data ? dataStatistikPendidikan.data.reduce((acc: number, curr: any) => acc + curr.tidak_sekolah, 0) : 0;
 
     const programData = [
         { id: 1, nama: 'Beasiswa Pendidikan Desa', status: 'Aktif', tanggalMulai: '2024-01-15', tanggalSelesai: '2024-12-31' },
@@ -20,10 +42,11 @@ export default function PendidikanView() {
         { id: 3, nama: 'Pembangunan Perpustakaan Desa', status: 'Selesai', tanggalMulai: '2023-06-01', tanggalSelesai: '2024-02-28' },
     ];
 
+    if (isLoadingLembagaPendidikan || isLoadingStatistikPendidikan || isLoadingProgramPendidikan) return <Loader />
 
     return (
         <>
-            <OverviewStats />
+            <OverviewStats dataLembagaPendidikan={dataLembagaPendidikan} dataStatistikPendidikan={dataStatistikPendidikan} dataProgramPendidikan={dataProgramPendidikan} />
             <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6 mt-4">
                 <TabsList className="bg-white shadow-md rounded-xl p-1 grid grid-cols-5 w-full max-w-3xl">
                     <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-white rounded-lg">
@@ -53,11 +76,11 @@ export default function PendidikanView() {
                             <CardContent className="p-6">
                                 <div className="space-y-4">
                                     {[
-                                        { label: 'Perguruan Tinggi', value: 340, percentage: 11 },
-                                        { label: 'SMA/SMK', value: 620, percentage: 20 },
-                                        { label: 'SMP', value: 850, percentage: 28 },
-                                        { label: 'SD', value: 1200, percentage: 39 },
-                                        { label: 'Tidak Sekolah', value: 45, percentage: 2 },
+                                        { label: 'Perguruan Tinggi', value: perguruanTinggiStudents, percentage: 11 },
+                                        { label: 'SMA/SMK', value: smaStudents, percentage: 20 },
+                                        { label: 'SMP', value: smpStudents, percentage: 28 },
+                                        { label: 'SD', value: sdStudents, percentage: 39 },
+                                        { label: 'Tidak Sekolah', value: tidakSekolahStudents, percentage: 2 },
                                     ].map((item, idx) => (
                                         <div key={idx} className="space-y-2">
                                             <div className="flex justify-between text-sm">
@@ -142,7 +165,7 @@ export default function PendidikanView() {
                 </TabsContent>
 
                 <TabsContent value="dokumentasi">
-                   <ListDokumentasi/>
+                    <ListDokumentasi />
                 </TabsContent>
             </Tabs>
         </>

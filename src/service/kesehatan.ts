@@ -59,7 +59,7 @@ export async function PostLayananKesehatan(data: any) {
   }
 }
 export async function PutLayananKesehatan(data: any, id: string) {
-    const cookieStore = await cookies()
+  const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
     const res = await axios.put(`${API_URL}/kesehatan/layanan/${id}`, data, {

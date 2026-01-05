@@ -5,19 +5,38 @@ import {  Calendar, Building2, Heart } from 'lucide-react';
 import StatsCardKesehatan from './stats-card-kesehatan';
 import LayananKesehatan from './layanan-kesehatan';
 import FasilitasKesehatan from './fasilitas-kesehatan';
+import { useQuery } from '@tanstack/react-query';
+import { GetAllFasilitasKesehatan, GetAllLayananKesehatan } from '@/service/kesehatan';
+import Loader from '@/components/ui/loader';
 
 export default function Kesehatan() {
   const [activeTab, setActiveTab] = useState('layanan');
+
+  const {data: dataLayananKesehatan, isLoading: isLoadingLayananKesehatan} = useQuery({
+    queryKey: ['dataLayananKesehatan'],
+    queryFn: () => GetAllLayananKesehatan(),
+  })
+  const {data: dataFasilitasKesehatan, isLoading: isLoadingFasilitasKesehatan} = useQuery({
+    queryKey: ['dataFasilitasKesehatan'],
+    queryFn: () => GetAllFasilitasKesehatan(),
+  })
+
+
+  const totalLayananKesehatan = dataLayananKesehatan?.data ? dataLayananKesehatan.data.length : 0;
+  const totalFasilitasKesehatan = dataFasilitasKesehatan?.data ? dataFasilitasKesehatan.data.length : 0;
+  const totalProgramKesehatan = 0; // Ganti dengan logika perhitungan yang sesuai
+
+  if (isLoadingLayananKesehatan || isLoadingFasilitasKesehatan) return <Loader />
 
   return (
     <div className="min-h-screen ">
       <div className="container mx-auto px-6 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <StatsCardKesehatan title='Layanan' value={0} icon={Calendar} />
+          <StatsCardKesehatan title='Layanan' value={totalLayananKesehatan} icon={Calendar} />
 
-          <StatsCardKesehatan title='Fasilitas' value={0} icon={Building2} />
+          <StatsCardKesehatan title='Fasilitas' value={totalFasilitasKesehatan} icon={Building2} />
 
-          <StatsCardKesehatan title='Program Kesehatan' value={0} icon={Heart} />
+          <StatsCardKesehatan title='Program Kesehatan' value={totalProgramKesehatan} icon={Heart} />
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden">

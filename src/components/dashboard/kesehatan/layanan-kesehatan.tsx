@@ -1,22 +1,47 @@
 'use client';
 
-import { Building2, Clock, Edit2, Trash2 } from "lucide-react";
+import { Building2, Clock, Trash } from "lucide-react";
 import ModalLayananKesehatan from "./modal-layanan-kesehatan";
-import { useQuery } from "@tanstack/react-query";
-import { GetAllLayananKesehatan } from "@/service/kesehatan";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { DeleteLayananKesehatan, GetAllLayananKesehatan } from "@/service/kesehatan";
 import Loader from "@/components/ui/loader";
+import ModalDelete from "../modal-delete";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function LayananKesehatan() {
+    const [isLoading, setIsLoading] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
     const { data: dataLayananKesehatan, isLoading: isLoadingLayananKesehatan, refetch } = useQuery({
         queryKey: ['layanan-kesehatan'],
         queryFn: () => GetAllLayananKesehatan(),
     })
 
+    const { mutate: deleteLayananKesehatan } = useMutation({
+        mutationFn: (id: string) => DeleteLayananKesehatan(id),
+        onSuccess: () => {
+            setIsLoading(false)
+            setIsOpen(false)
+            toast.success('Layanan Kesehatan Berhasil Dihapus', {
+                theme: "colored"
+            })
+            setIsOpen(false)
+            refetch()
+        },
+        onError: () => {
+            setIsLoading(false)
+            toast.error("Hapus Layanan Kesehatan Gagal", {
+                theme: "colored"
+            })
+        }
+    })
+
     if (isLoadingLayananKesehatan) return <Loader />
 
     return (
-        <div className="px-4">
+        <div className="px-4 py-6">
             <div className="flex justify-end my-4">
                 <ModalLayananKesehatan refetch={refetch} task="add" />
             </div>
@@ -32,15 +57,15 @@ export default function LayananKesehatan() {
                                 <div className="flex-1">
                                     <div className="flex items-center space-x-3 mb-3">
                                         <span className="bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                                            {layanan.jenisProgram}
+                                            {layanan.jenis_program}
                                         </span>
-                                        <h3 className="text-xl font-bold text-gray-800">{layanan.namaProgram}</h3>
+                                        <h3 className="text-xl font-bold text-gray-800">{layanan.nama_program}</h3>
                                     </div>
                                     <p className="text-gray-600 mb-4">{layanan.deskripsi}</p>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         <div className="flex items-center text-gray-700">
                                             <Building2 className="w-5 h-5 text-green-600 mr-2" />
-                                            <span className="text-sm">{layanan.namaFasilitas}</span>
+                                            <span className="text-sm">{layanan.fasilitas}</span>
                                         </div>
                                         <div className="flex items-center text-gray-700">
                                             <Clock className="w-5 h-5 text-green-600 mr-2" />
@@ -49,16 +74,18 @@ export default function LayananKesehatan() {
                                     </div>
                                 </div>
                                 <div className="flex space-x-2 ml-4">
-                                    <button
-                                        className="p-3 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
-                                    >
-                                        <Edit2 className="w-5 h-5" />
-                                    </button>
-                                    <button
-                                        className="p-3 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors"
-                                    >
-                                        <Trash2 className="w-5 h-5" />
-                                    </button>
+                                    <ModalLayananKesehatan refetch={refetch} task="edit" id={layanan.id} />
+                                    <Button className="bg-red-500 text-white hover:bg-red-800 cursor-pointer" onClick={() => setIsOpen(true)}>
+                                        <Trash />
+                                    </Button>
+                                    <ModalDelete
+                                        title="Layanan Kesehatan"
+                                        onDelete={() => deleteLayananKesehatan(layanan.id)}
+                                        isLoading={isLoading}
+                                        isOpen={isOpen}
+                                        setIsOpen={setIsOpen}
+                                        setIsLoading={setIsLoading}
+                                    />
                                 </div>
                             </div>
                         </div>

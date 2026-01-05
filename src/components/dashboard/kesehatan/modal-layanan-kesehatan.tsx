@@ -40,14 +40,14 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
         queryKey: ['fasilitas-kesehatan'],
         queryFn: () => GetAllFasilitasKesehatan(),
     })
-    const { data: dataLayananKesehatanByID } = useQuery({
+    const { data: dataLayananKesehatanByID, isLoading: isLoadingLayananKesehatanByID } = useQuery({
         queryKey: ['data-layanan-kesehatan', id],
         queryFn: () => GetLayananKesehatanByID(id || ""),
         enabled: task === "edit" && !!id,
     })
 
 
-    const { handleSubmit, register, formState: { errors }, setValue } = useForm<FormFields>({
+    const { handleSubmit, register, formState: { errors }, setValue, watch } = useForm<FormFields>({
         resolver: zodResolver(schema),
     })
 
@@ -99,6 +99,7 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
         }
     }
 
+    if(isLoadingLayananKesehatanByID) return <></>
 
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -137,7 +138,8 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
                         </div>
                         <div>
                             <Label className="block text-sm font-semibold text-gray-700 mb-2">Jenis Program</Label>
-                            <Select onValueChange={(value) => setValue("jenis_program", value)}>
+                            <Select onValueChange={(value) => setValue("jenis_program", value)} 
+                                value={watch("jenis_program") || undefined}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Pilih Jenis Program" />
                                 </SelectTrigger>
@@ -161,7 +163,8 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
                         </div>
                         <div>
                             <Label className="block text-sm font-semibold text-gray-700 mb-2">Fasilitas</Label>
-                            <Select onValueChange={(value) => setValue("fasilitas_id", value)}>
+                            <Select onValueChange={(value) => setValue("fasilitas_id", value)}
+                                value={watch("fasilitas_id") || undefined}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Pilih Fasilitas Kesehatan" />
                                 </SelectTrigger>
@@ -200,6 +203,7 @@ export default function ModalLayananKesehatan({ refetch, task, id }: ModalProps)
                             </Button>
                             <Button
                                 className="flex-1 cursor-pointer"
+                                disabled={isLoading}
                             >
                                 {isLoading ? <span className="loader" /> : "Simpan"}
                             </Button>
