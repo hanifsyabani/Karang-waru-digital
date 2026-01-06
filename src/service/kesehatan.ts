@@ -76,7 +76,7 @@ export async function PutLayananKesehatan(data: any, id: string) {
   }
 }
 export async function DeleteLayananKesehatan(id: string) {
-    const cookieStore = await cookies()
+  const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/kesehatan/layanan/${id}`, {
@@ -134,6 +134,7 @@ export async function GetFasilitasKesehatanByID(id: string) {
 export async function PostFasilitasKesehatan(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
+  
   try {
     const res = await axios.post(`${API_URL}/kesehatan/fasilitas`, data, {
       withCredentials: true,
@@ -149,7 +150,7 @@ export async function PostFasilitasKesehatan(data: any) {
   }
 }
 export async function PutFasilitasKesehatan(data: any, id: string) {
-    const cookieStore = await cookies()
+  const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
     const res = await axios.put(`${API_URL}/kesehatan/fasilitas/${id}`, data, {
@@ -166,7 +167,7 @@ export async function PutFasilitasKesehatan(data: any, id: string) {
   }
 }
 export async function DeleteFasilitasKesehatan(id: string) {
-    const cookieStore = await cookies()
+  const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/kesehatan/fasilitas/${id}`, {

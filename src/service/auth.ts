@@ -62,7 +62,7 @@ export async function Register(data: RegisterData) {
 
 export async function GetProfile() {
   try {
-    const res = await axios.get(`${API_URL}/profile`, {
+    const res = await axios.get(`${API_URL}/me`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",

@@ -2,15 +2,39 @@
 
 import { Clock, Edit2, MapPin, Phone, Trash2 } from 'lucide-react'
 import ModalFasilitasKesehatan from './modal-fasilitas-kesehatan';
-import { useQuery } from '@tanstack/react-query';
-import { GetAllFasilitasKesehatan } from '@/service/kesehatan';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { DeleteFasilitasKesehatan, GetAllFasilitasKesehatan } from '@/service/kesehatan';
 import Loader from '@/components/ui/loader';
+import ModalDelete from '../modal-delete';
+import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function FasilitasKesehatan() {
+    const [isOpen, setIsOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const { data: dataFasilitasKesehatan, isLoading: isLoadingFasilitasKesehatan, refetch } = useQuery({
         queryKey: ['fasilitas-kesehatan'],
         queryFn: () => GetAllFasilitasKesehatan(),
+    })
+
+    const { mutate: deleteFasilitasKesehatan } = useMutation({
+        mutationFn: (id: string) => DeleteFasilitasKesehatan(id),
+        onSuccess: () => {
+            setIsLoading(false)
+            setIsOpen(false)
+            refetch()
+            toast.success('Fasilitas Kesehatan Berhasil Dihapus', {
+                theme: "colored"
+            })
+        },
+        onError: () => {
+            setIsLoading(false)
+            toast.error("Hapus Fasilitas Kesehatan Gagal", {
+                theme: "colored"
+            })
+        }
     })
 
     if (isLoadingFasilitasKesehatan) return <Loader />
@@ -23,7 +47,7 @@ export default function FasilitasKesehatan() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {dataFasilitasKesehatan?.data ? (
-                    dataFasilitasKesehatan?.data.map((fasilitas : any) => (
+                    dataFasilitasKesehatan?.data.map((fasilitas: any) => (
                         <div
                             key={fasilitas.id}
                             className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all"
@@ -33,19 +57,28 @@ export default function FasilitasKesehatan() {
                                     <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-semibold">
                                         {fasilitas.jenis}
                                     </span>
-                                    <h3 className="text-xl font-bold text-gray-800 mt-2">{fasilitas.namaFasilitas}</h3>
+                                    <h3 className="text-xl font-bold text-gray-800 mt-2">{fasilitas.nama_fasilitas}</h3>
                                 </div>
                                 <div className="flex space-x-2">
-                                    <button
-                                        className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
-                                    >
-                                        <Edit2 className="w-4 h-4" />
-                                    </button>
-                                    <button
-                                        className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors"
+                                    <ModalFasilitasKesehatan
+                                        refetch={refetch}
+                                        task='edit'
+                                        id={fasilitas.id}
+                                    />
+                                    <Button
+                                        onClick={() => setIsOpen(true)}
+                                        className="p-2 bg-red-100 cursor-pointer text-red-600 rounded-lg hover:bg-red-200 transition-colors"
                                     >
                                         <Trash2 className="w-4 h-4" />
-                                    </button>
+                                    </Button>
+                                    <ModalDelete
+                                        isOpen={isOpen}
+                                        setIsOpen={setIsOpen}
+                                        title="Fasilitas Kesehatan"
+                                        onDelete={() => deleteFasilitasKesehatan(fasilitas.id)}
+                                        isLoading={isLoading}
+                                        setIsLoading={setIsLoading}
+                                    />
                                 </div>
                             </div>
                             <div className="space-y-3">
