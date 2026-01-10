@@ -1,18 +1,10 @@
 'use client'
 
 import { Card, CardContent } from "@/components/ui/card";
-import Loader from "@/components/ui/loader";
-import { GetLembagaPendidikan, GetProgramPendidikan, GetStatistikPendidikan } from "@/service/pendidikan";
-import { useQuery } from "@tanstack/react-query";
+
 import { BookOpen, School, TrendingUp, Users } from "lucide-react";
 
-
-
-
 export default function OverviewStats({ dataLembagaPendidikan, dataStatistikPendidikan, dataProgramPendidikan }: any) {
-
-
-
 
     const totalStudents = dataStatistikPendidikan?.data ? dataStatistikPendidikan.data.reduce((acc: number, curr: any) => acc + curr.sd + curr.smp + curr.sma, 0) : 0;
 

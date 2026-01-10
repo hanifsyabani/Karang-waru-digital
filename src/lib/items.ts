@@ -341,11 +341,6 @@ export const adminNavLinks = [
     icon: Stethoscope,
   },
   {
-    title: "Infrastruktur",
-    href: "/admin/infrastruktur",
-    icon: Hammer,
-  },
-  {
     title: "APBD Desa",
     href: "/admin/apbd-desa",
     icon: BarChart3,

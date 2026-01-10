@@ -99,7 +99,7 @@ export default function FormRegister() {
                     <p>Lupa Password?</p>
                 </div>
 
-                <Button className="w-full cursor-pointer mt-4">
+                <Button className="w-full cursor-pointer mt-4" disabled={isLoading}>
                     {isLoading ? <span className="loader" /> : (
                         <>
                             <LogIn />

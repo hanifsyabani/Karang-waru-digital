@@ -1,7 +1,10 @@
+import ProtectedUserLayout from '@/components/layout/protected-user-layout'
 import React from 'react'
 
-export default function UserLayout({children} : {children: React.ReactNode}) {
+export default function UserLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>{children}</div>
+    <ProtectedUserLayout>
+      {children}
+    </ProtectedUserLayout>
   )
 }

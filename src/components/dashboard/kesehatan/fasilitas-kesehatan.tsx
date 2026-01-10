@@ -1,6 +1,6 @@
 'use client'
 
-import { Clock, Edit2, MapPin, Phone, Trash2 } from 'lucide-react'
+import { Clock, MapPin, Phone, Trash2 } from 'lucide-react'
 import ModalFasilitasKesehatan from './modal-fasilitas-kesehatan';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { DeleteFasilitasKesehatan, GetAllFasilitasKesehatan } from '@/service/kesehatan';
