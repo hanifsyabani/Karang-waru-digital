@@ -1,6 +1,6 @@
 'use client'
 
-import { CircleDot, Home, LogIn } from "lucide-react";
+import { CircleDot, Eye, EyeOff, Home, LogIn } from "lucide-react";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -22,6 +22,7 @@ type FormFields = z.infer<typeof schema>
 
 export default function FormLogin() {
   const [isLoading, setISLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(true)
   const router = useRouter()
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormFields>({
@@ -79,7 +80,12 @@ export default function FormLogin() {
         </div>
         <div className="space-y-3">
           <Label htmlFor="password">Password</Label>
-          <Input type="password" {...register("password")} placeholder="Masukan password" id="password" className="py-6" />
+          <div className="relative">
+            <Input type={showPassword ? "password" : "text"} {...register("password")} placeholder="Masukan password" id="password" className="py-6" />
+            <Button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute -translate-y-1/2 right-4 top-1/2">
+              {showPassword ? <Eye /> : <EyeOff />}
+            </Button>
+          </div>
           {errors.password && <p className="text-red-500">{errors.password.message}</p>}
         </div>
 

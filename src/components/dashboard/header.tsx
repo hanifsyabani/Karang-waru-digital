@@ -1,7 +1,7 @@
-import { Plus } from 'lucide-react'
 import React from 'react'
+import ModalAccount from './akun/modal-account'
 
-export default function HeaderDashboard() {
+export default function HeaderDashboard({ refetch, refetchAll }: { refetch: () => void, refetchAll: () => void }) {
     return (
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-3">
             <h1 className="text-xl font-semibold text-gray-800">
@@ -9,10 +9,7 @@ export default function HeaderDashboard() {
             </h1>
 
             <div className="flex items-center gap-3 w-full sm:w-auto">
-                <button className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-700 cursor-pointer transition text-sm font-medium">
-                    <Plus className="h-4 w-4" />
-                    Tambah Akun
-                </button>
+               <ModalAccount task='add' refetch={refetch} refetchAll={refetchAll}/>
             </div>
         </div>
     )

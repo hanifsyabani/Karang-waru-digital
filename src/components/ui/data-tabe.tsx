@@ -18,18 +18,15 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import React from "react"
-import { Input } from "./input"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
-    filterKey: string
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
-    filterKey
 }: DataTableProps<TData, TValue>) {
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
@@ -47,16 +44,6 @@ export function DataTable<TData, TValue>({
 
     return (
         <div className="overflow-hidden rounded-md border">
-            <div className="flex items-center  px-2 py-4">
-                <Input
-                    placeholder={`Filter ${filterKey}...`}
-                    value={(table.getColumn(filterKey)?.getFilterValue() as string) ?? ""}
-                    onChange={(event) =>
-                        table.getColumn(filterKey)?.setFilterValue(event.target.value)
-                    }
-                    className="max-w-sm"
-                />
-            </div>
             <Table>
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (

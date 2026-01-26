@@ -32,7 +32,7 @@ export default function ModalDelete({ isOpen, title, setIsOpen, isLoading, onDel
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <Button variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
+                    <Button variant="outline" onClick={() => setIsOpen(false)} className="hover:bg-gray-100 cursor-pointer">Cancel</Button>
                     <Button
                         className="bg-red-600 text-white hover:bg-red-700 cursor-pointer"
                         onClick={handleDelete}

@@ -70,3 +70,34 @@ export async function DeleteAccount(userId: string) {
 }
 
 
+export async function PostAccount(data: any) {
+    const cookieStore = await cookies()
+  const token = cookieStore.get("access_token")?.value;
+  try {
+    const res = await axios.post(`${API_URL}/users`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `access_token=${token}`,
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
+export async function PutAccount(data: any, userId: string) {
+  try {
+    const res = await axios.put(`${API_URL}/users/${userId}`, data, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}

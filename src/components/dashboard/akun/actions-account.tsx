@@ -6,18 +6,20 @@ import { Trash } from "lucide-react";
 import ModalDelete from "../modal-delete";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { DeleteAccount } from "@/service/akun";
+import { DeleteAccount } from "@/service/account";
 import { toast } from "react-toastify";
 
 
 interface ActionsAccountProps {
     userId: string;
     refetch: () => void;
+    refetchAll: () => void;
 }
 
 export default function ActionsAccount({
     userId,
-    refetch
+    refetch,
+    refetchAll
 }: ActionsAccountProps) {
     const [isLoading, setIsLoading] =useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +33,7 @@ export default function ActionsAccount({
         setIsLoading(false);
         setIsOpen(false);
         refetch();
+        refetchAll();
         toast.success("Akun berhasil dihapus", {
             theme: "colored"
         });
@@ -46,10 +49,10 @@ export default function ActionsAccount({
         <>
             <div className="flex items-center gap-2">
                 <div>
-                    <ModalAccount task="detail" id={userId} refetch={refetch} />
+                    <ModalAccount task="detail" id={userId} refetch={refetch} refetchAll={refetchAll} />
                 </div>
                 <div>
-                    <ModalAccount task="edit" id={userId} refetch={refetch} />
+                    <ModalAccount task="edit" id={userId} refetch={refetch} refetchAll={refetchAll} />
                 </div>
                 <div>
                     <Button className="bg-red-500 text-white hover:bg-red-800 cursor-pointer" onClick={() => setIsOpen(true)}>

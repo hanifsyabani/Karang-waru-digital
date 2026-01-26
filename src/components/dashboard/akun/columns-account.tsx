@@ -12,7 +12,7 @@ export type ColumnAccount = {
   //   isVerified: boolean;
 };
 
-export const getColumns = ({ refetch }: { refetch: () => void }): ColumnDef<ColumnAccount>[] => [
+export const getColumns = ({ refetch, refetchAll }: { refetch: () => void, refetchAll: () => void }): ColumnDef<ColumnAccount>[] => [
   {
     accessorKey: "name",
     header: "Nama",
@@ -49,6 +49,7 @@ export const getColumns = ({ refetch }: { refetch: () => void }): ColumnDef<Colu
         <ActionsAccount
           userId={row.original.id}
           refetch={refetch}
+          refetchAll={refetchAll}
         />
       </>
     ),
