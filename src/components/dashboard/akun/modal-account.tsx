@@ -54,6 +54,7 @@ export default function ModalAccount({ refetch, task, id }: ModalProps) {
     useEffect(() => {
         if (dataAccount?.data) {
             const d = dataAccount.data
+            console.log(d)
 
         }
     }, [dataAccount, setValue])
