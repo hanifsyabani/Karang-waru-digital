@@ -7,13 +7,13 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import z from 'zod';
-import { GetInfoUmum, PostInfoUmum, PutInfoUmum } from '@/service/profil';
 import { toast } from 'react-toastify';
 import { useForm, } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { Save } from 'lucide-react';
 import Loader from '@/components/ui/loader';
+import { GetInfoUmum, PostInfoUmum, PutInfoUmum } from '@/service/profil';
 
 
 const schema = z.object({

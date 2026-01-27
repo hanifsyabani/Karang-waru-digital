@@ -13,7 +13,7 @@ export async function GetLembagaPendidikan() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -31,7 +31,7 @@ export async function GetLembagaPendidikanByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -49,7 +49,7 @@ export async function PostLembagaPendidikan(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -66,7 +66,7 @@ export async function PutLembagaPendidikan(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -84,7 +84,7 @@ export async function DeleteLembagaPendidikan(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -102,7 +102,7 @@ export async function GetStatistikPendidikan() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -120,7 +120,7 @@ export async function GetStatistikPendidikanByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -140,7 +140,7 @@ export async function PostStatistikPendidikan(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -157,7 +157,7 @@ export async function PutStatistikPendidikan(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -176,7 +176,7 @@ export async function DeleteStatistikPendidikan(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -194,7 +194,7 @@ export async function GetProgramPendidikan() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -212,7 +212,7 @@ export async function GetProgramPendidikanByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -231,7 +231,7 @@ export async function PostProgramPendidikan(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -248,7 +248,7 @@ export async function PutProgramPendidikan(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -267,7 +267,7 @@ export async function DeleteProgramPendidikan(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -286,7 +286,7 @@ export async function GetCapaianPendidikan() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -304,7 +304,7 @@ export async function GetCapaianPendidikanByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -323,7 +323,7 @@ export async function PostCapaianPendidikan(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -340,7 +340,7 @@ export async function PutCapaianPendidikan(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -359,7 +359,7 @@ export async function DeleteCapaianPendidikan(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -378,7 +378,7 @@ export async function GetDokumentasiPendidikan() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -396,7 +396,7 @@ export async function GetDokumentasiPendidikanByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -415,7 +415,7 @@ export async function PostDokumentasiPendidikan(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -432,7 +432,7 @@ export async function PutDokumentasiPendidikan(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -451,7 +451,7 @@ export async function DeleteDokumentasiPendidikan(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 

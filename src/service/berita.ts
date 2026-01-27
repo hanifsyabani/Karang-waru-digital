@@ -5,15 +5,28 @@ import { cookies } from "next/headers";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function GetAllBerita() {
+export async function GetAllBerita(params?: {
+  query?: string
+  page?: number
+  limit?: number 
+  sortBy?: string
+  sortOrder?: "asc" | "desc"
+}) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
     const res = await axios.get(`${API_URL}/berita`, {
+      params: {
+        query: params?.query,
+        page: params?.page,
+        limit: params?.limit,
+        sortBy: params?.sortBy,
+        sortOrder: params?.sortOrder
+      },
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `access_token=${token}`
       },
     });
 
@@ -32,7 +45,7 @@ export async function GetBeritaByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `access_token=${token}`
       },
     });
 
@@ -50,7 +63,7 @@ export async function PostBerita(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `access_token=${token}`
       },
     });
 
@@ -67,7 +80,7 @@ export async function PutBerita(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`
+        Authorization: `access_token=${token}`
       },
     });
 
@@ -84,7 +97,7 @@ export async function DeleteBerita(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `access_token=${token}`,
       },
     });
 

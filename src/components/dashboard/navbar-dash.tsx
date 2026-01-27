@@ -14,10 +14,11 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query"
-import { GetProfile, Logout } from "@/service/auth"
+import {Logout } from "@/service/auth"
 import { useState } from "react"
 import { toast } from "react-toastify"
 import Loader from "../ui/loader"
+import { GetProfile } from "@/service/account"
 
 export default function NavbarDash() {
     const [isLoading, setIsLoading] = useState(false)
@@ -81,8 +82,8 @@ export default function NavbarDash() {
                     </DropdownMenuContent>
                 </DropdownMenu>
                 <div>
-                    <h1 className="font-semibold text-primary text-sm">{dataProfile.data.name}</h1>
-                    <p className="text-xs text-gray-500">{dataProfile.data.role}</p>
+                    <h1 className="font-semibold text-primary text-sm">{dataProfile?.data?.name}</h1>
+                    <p className="text-xs text-gray-500">{dataProfile?.data?.role}</p>
                 </div>
             </div>
         </div>

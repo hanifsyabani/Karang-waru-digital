@@ -12,7 +12,7 @@ export async function GetInfoUmum() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -30,7 +30,7 @@ export async function PostInfoUmum(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -47,7 +47,7 @@ export async function PutInfoUmum(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -58,7 +58,6 @@ export async function PutInfoUmum(data: any) {
 }
 
 
-
 export async function GetDemografis() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
@@ -67,7 +66,7 @@ export async function GetDemografis() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -85,7 +84,7 @@ export async function PostDemografis(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -102,7 +101,7 @@ export async function PutDemografis(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -121,7 +120,7 @@ export async function GetSejarah() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -139,7 +138,7 @@ export async function PostSejarah(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -156,7 +155,7 @@ export async function PutSejarah(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -175,7 +174,7 @@ export async function GetVisiMisi() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -193,7 +192,7 @@ export async function PostVisiMisi(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -210,7 +209,7 @@ export async function PutVisiMisi(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 

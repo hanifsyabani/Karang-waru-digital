@@ -72,10 +72,10 @@ export default function ModalAccount({ refetch, task, id }: ModalProps) {
         }
     })
 
-    const { mutate: editApbd } = useMutation({
+    const { mutate: editAccount } = useMutation({
         mutationFn: (data: FormFields) => PutAccount(data, id || ""),
         onSuccess: () => {
-            toast.success("Data Account erhasil diperbarui")
+            toast.success("Data Account berhasil diperbarui")
             setIsOpen(false)
             setIsLoading(false)
             refetch()
@@ -94,7 +94,7 @@ export default function ModalAccount({ refetch, task, id }: ModalProps) {
             email: data.email,
             password: data.password,
         }
-        if (task === "edit" && id) editApbd(payload as any)
+        if (task === "edit" && id) editAccount(payload as any)
         else addAccount(payload as any)
     }
 

@@ -13,7 +13,7 @@ export async function GetAllPenduduk() {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-                Cookie: `access_token=${token}`,
+                Authorization: `Bearer ${token}`,
             },
         });
 
@@ -32,7 +32,7 @@ export async function GetPendudukByID(id: string) {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-                Cookie: `access_token=${token}`,
+                Authorization: `Bearer ${token}`,
             },
         });
 
@@ -50,7 +50,7 @@ export async function PostPenduduk(data: any) {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-                Cookie: `access_token=${token}`,
+                Authorization: `Bearer ${token}`,
             },
         });
 
@@ -67,7 +67,7 @@ export async function PutPenduduk(data: any, id: string) {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-                Cookie: `access_token=${token}`,
+                Authorization: `Bearer ${token}`,
             },
         });
 
@@ -84,7 +84,7 @@ export async function DeletePenduduk(id: string) {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-                Cookie: `access_token=${token}`,
+                Authorization: `Bearer ${token}`,
             },
         });
 

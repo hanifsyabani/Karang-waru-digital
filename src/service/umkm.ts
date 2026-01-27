@@ -13,7 +13,7 @@ export async function GetAllUmkm() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -32,7 +32,7 @@ export async function GetUmkmByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -50,7 +50,7 @@ export async function PostUmkm(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -67,7 +67,7 @@ export async function PutUmkm(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -84,7 +84,7 @@ export async function DeleteUmkm(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 

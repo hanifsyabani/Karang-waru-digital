@@ -12,7 +12,7 @@ export async function GetAllLayananKesehatan() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -31,7 +31,7 @@ export async function GetLayananKesehatanByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -49,7 +49,7 @@ export async function PostLayananKesehatan(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -66,7 +66,7 @@ export async function PutLayananKesehatan(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -83,7 +83,7 @@ export async function DeleteLayananKesehatan(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -102,7 +102,7 @@ export async function GetAllFasilitasKesehatan() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -121,7 +121,7 @@ export async function GetFasilitasKesehatanByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -140,7 +140,7 @@ export async function PostFasilitasKesehatan(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -157,7 +157,7 @@ export async function PutFasilitasKesehatan(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -174,7 +174,7 @@ export async function DeleteFasilitasKesehatan(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 

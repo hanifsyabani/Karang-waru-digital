@@ -12,7 +12,7 @@ export async function GetAllApbd() {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -31,7 +31,7 @@ export async function GetApbdByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -49,7 +49,7 @@ export async function PostApbd(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -66,7 +66,7 @@ export async function PutApbd(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
@@ -83,7 +83,7 @@ export async function DeleteApbd(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Cookie: `access_token=${token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 

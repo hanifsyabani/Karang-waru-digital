@@ -1,6 +1,6 @@
 'use client'
 
-import { GetProfile } from "@/service/auth"
+import { GetProfile } from "@/service/account"
 import { useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
