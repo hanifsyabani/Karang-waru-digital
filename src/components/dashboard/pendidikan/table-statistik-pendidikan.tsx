@@ -39,7 +39,7 @@ export default function TableStatistikPendidikan() {
         </div>
       </CardHeader>
       <CardContent className="p-6">
-        <DataTable data={formattedStatistikPendidikan} columns={getColumns(refetch)} filterKey='tahun'/>
+        <DataTable data={formattedStatistikPendidikan} columns={getColumns(refetch)} />
       </CardContent>
     </Card>
   )

@@ -42,7 +42,7 @@ export default function TableLembagaPendidikan() {
         </div>
       </CardHeader>
       <CardContent className="p-6">
-        <DataTable data={formattedLembagaPendidikan} columns={getColumns(refetch)} filterKey='nama_sekolah'/>
+        <DataTable data={formattedLembagaPendidikan} columns={getColumns(refetch)}/>
       </CardContent>
     </Card>
   )

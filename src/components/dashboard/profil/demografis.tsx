@@ -151,7 +151,6 @@ export default function Demografis() {
 
     if (isLoadingDemografis || isLoadingInfoUmum) return <Loader />
 
-
     return (
         <div className="space-y-6">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Data Demografis</h3>
