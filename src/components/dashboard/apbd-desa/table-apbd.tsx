@@ -37,7 +37,7 @@ export default function TableApbd({ data, refetch }: DataApbdProps) {
   return (
     // <div className="overflow-x-auto">
 
-      <DataTable data={formattedApbd} columns={getColumns(refetch)} filterKey="tahun" />
+      <DataTable data={formattedApbd} columns={getColumns(refetch)} />
     // </div>
   )
 }

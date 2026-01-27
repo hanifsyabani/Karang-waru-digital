@@ -7,12 +7,8 @@ import Sejarah from './sejarah';
 import VisiMisi from './visi-misi';
 import InfoUmum from './info-umum';
 
-
-
-
 export default function ProfilDashboard() {
   const [activeTab, setActiveTab] = useState('informasi-umum');
-
 
   const tabs = [
     { id: 'informasi-umum', label: 'Informasi Umum', icon: Building },
@@ -20,7 +16,6 @@ export default function ProfilDashboard() {
     { id: 'sejarah', label: 'Sejarah', icon: Edit },
     { id: 'visi-misi', label: 'Visi & Misi', icon: Edit },
   ];
-
 
   const renderTabContent = () => {
     switch (activeTab) {

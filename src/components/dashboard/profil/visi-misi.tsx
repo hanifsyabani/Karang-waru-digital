@@ -12,7 +12,6 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import z from 'zod';
 
-
 const schema = z.object({
     profil_desa_id: z.number().min(1, { message: "ID Profil Desa harus diisi" }),
     visi: z.string().min(10, { message: "Visi harus diisi minimal 10 karakter" }),
@@ -23,7 +22,6 @@ type FormFields = z.infer<typeof schema>;
 export default function VisiMisi() {
     const [isLoading, setIsLoading] = useState(false);
     const [mode, setMode] = useState<'create' | 'edit'>('create');
-
 
     const { data: dataInfoUmum, isLoading: isLoadingInfoUmum } = useQuery({
         queryFn: () => GetInfoUmum(),
@@ -76,7 +74,6 @@ export default function VisiMisi() {
         }
     })
 
-
     function onSubmit(data: FormFields) {
         setIsLoading(true);
         if (mode === "edit") {
@@ -86,7 +83,6 @@ export default function VisiMisi() {
             postVisiMisi(data)
         }
     }
-
 
     if (isLoadingInfoUmum || isLoadingVisiMisi) return <Loader />
 

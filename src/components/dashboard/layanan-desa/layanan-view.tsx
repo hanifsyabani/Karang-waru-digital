@@ -73,7 +73,7 @@ export default function LayananView() {
 
         {activeTab === 'konten' && (
           <div className='bg-white p-4'>  
-            <DataTable data={formattedLayanan} columns={getColumns(refetch)} filterKey="service_name"/>
+            <DataTable data={formattedLayanan} columns={getColumns(refetch)}/>
           </div>
         )}
 

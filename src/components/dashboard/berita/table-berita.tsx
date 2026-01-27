@@ -40,7 +40,7 @@ export default function TableBerita() {
 
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 p-4">
                 <div className="overflow-x-auto">
-                    <DataTable data={formattedBerita} columns={getColumns(refetch)} filterKey="title" />
+                    <DataTable data={formattedBerita} columns={getColumns(refetch)} />
                 </div>
             </div>
         </div>

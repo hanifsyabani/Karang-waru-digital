@@ -1,20 +1,18 @@
 'use client'
 
-
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import z from 'zod';
-import { GetInfoUmum, PostInfoUmum, PutInfoUmum } from '@/service/profil';
 import { toast } from 'react-toastify';
 import { useForm, } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { Save } from 'lucide-react';
 import Loader from '@/components/ui/loader';
-
+import { GetInfoUmum, PostInfoUmum, PutInfoUmum } from '@/service/profil';
 
 const schema = z.object({
   alamat: z.string(),
@@ -31,7 +29,6 @@ const schema = z.object({
   email: z.email(),
 })
 type FormFields = z.infer<typeof schema>
-
 
 export default function InfoUmum() {
 

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Loader from '@/components/ui/loader';
-import { GetDemografis, GetInfoUmum, PostDemografis ,PutDemografis } from '@/service/profil';
+import { GetDemografis, GetInfoUmum, PostDemografis, PutDemografis } from '@/service/profil';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react'
@@ -150,7 +150,6 @@ export default function Demografis() {
     }
 
     if (isLoadingDemografis || isLoadingInfoUmum) return <Loader />
-
 
     return (
         <div className="space-y-6">

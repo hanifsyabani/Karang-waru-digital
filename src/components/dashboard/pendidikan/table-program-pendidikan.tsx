@@ -38,7 +38,7 @@ export default function TableProgramPendidikan() {
         </div>
       </CardHeader>
       <CardContent className="p-6">
-        <DataTable data={formattedProgramPendidikan} columns={getColumns(refetch)} filterKey='nama_program'/>
+        <DataTable data={formattedProgramPendidikan} columns={getColumns(refetch)}/>
       </CardContent>
     </Card>
   )
