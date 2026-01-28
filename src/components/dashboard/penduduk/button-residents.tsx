@@ -1,13 +1,13 @@
 'use client'
 
 import { Download } from "lucide-react";
-import ModalPenduduk from "./modal-penduduk";
-import { GetAllPenduduk } from "@/service/penduduk";
+import ModalPenduduk from "./modal-residents";
 import { useQuery } from "@tanstack/react-query";
+import { GetResidents } from "@/service/resident";
 
-export default function ButtonPenduduk() {
+export default function ButtonResidents() {
     const { data: dataPenduduk, isLoading: isLoadingPenduduk, refetch } = useQuery({
-        queryFn: () => GetAllPenduduk(),
+        queryFn: () => GetResidents(),
         queryKey: ['penduduk'],
     })
 
