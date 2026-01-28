@@ -82,7 +82,7 @@ export default function FormLogin() {
           <Label htmlFor="password">Password</Label>
           <div className="relative">
             <Input type={showPassword ? "password" : "text"} {...register("password")} placeholder="Masukan password" id="password" className="py-6" />
-            <Button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute -translate-y-1/2 right-4 top-1/2">
+            <Button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute cursor-pointer -translate-y-1/2 right-4 top-1/2">
               {showPassword ? <Eye /> : <EyeOff />}
             </Button>
           </div>

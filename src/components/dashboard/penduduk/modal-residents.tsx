@@ -15,7 +15,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Eye, Pen, Plus } from "lucide-react";
 import SectionTitle from "../section-title";
 import DetailItem from "../detail-item";
-import { GetPendudukByID, PostPenduduk, PutPenduduk } from "@/service/penduduk";
+import { GetResidentByID, PostResident, PutResident } from "@/service/resident";
 
 interface ModalProps {
     refetch: () => void
@@ -54,7 +54,7 @@ export const schema = z.object({
 
 type FormFields = z.infer<typeof schema>
 
-export default function ModalPenduduk({ refetch, task, id }: ModalProps) {
+export default function ModalResidents({ refetch, task, id }: ModalProps) {
     const [isOpen, setIsOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -62,7 +62,7 @@ export default function ModalPenduduk({ refetch, task, id }: ModalProps) {
     const titleMessage = task === "add" ? "Tambah Data Penduduk" : task === "detail" ? "Detail Data Penduduk" : "Ubah Data Penduduk";
 
     const { data: dataPendudukByID } = useQuery({
-        queryFn: () => GetPendudukByID(id || ""),
+        queryFn: () => GetResidentByID(id || ""),
         queryKey: ["pendudukByID", id],
         enabled: (task === "edit" || task === "detail") && !!id,
     })
@@ -122,7 +122,7 @@ export default function ModalPenduduk({ refetch, task, id }: ModalProps) {
     }, [dataPendudukByID, setValue])
 
     const { mutate: addPenduduk } = useMutation({
-        mutationFn: (data: FormFields) => PostPenduduk(data),
+        mutationFn: (data: FormFields) => PostResident(data),
         onSuccess: () => {
             toast.success("Data Penduduk berhasil ditambahkan")
             setIsOpen(false)
@@ -137,7 +137,7 @@ export default function ModalPenduduk({ refetch, task, id }: ModalProps) {
     })
 
     const { mutate: editPenduduk } = useMutation({
-        mutationFn: (data: FormFields) => PutPenduduk(data, id || ""),
+        mutationFn: (data: FormFields) => PutResident(data, id || ""),
         onSuccess: () => {
             toast.success("Data Penduduk berhasil diperbarui")
             setIsOpen(false)
