@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Eye, Pen, Plus } from "lucide-react";
-import { GetStatistikPendidikanByID, PostStatistikPendidikan, PutStatistikPendidikan } from "@/service/pendidikan";
+import { GetStatistikPendidikanByID, PostStatistikPendidikan, PutStatistikPendidikan } from "@/service/education";
 import SectionTitle from "../section-title";
 import DetailItem from "../detail-item";
 import { getYears } from "@/lib/utils";

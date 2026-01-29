@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useQuery } from '@tanstack/react-query';
-import { GetLembagaPendidikan } from '@/service/pendidikan';
+import { GetLembagaPendidikan } from '@/service/education';
 import ModalLembagaPendidikan from './modal-lembaga-pendidikan';
 import Loader from '@/components/ui/loader';
 import { ColumnLembagaPendidikan, getColumns } from './column-lembaga-pendidikan';

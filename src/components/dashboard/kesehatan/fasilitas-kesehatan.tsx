@@ -3,7 +3,7 @@
 import { Clock, MapPin, Phone, Trash2 } from 'lucide-react'
 import ModalFasilitasKesehatan from './modal-fasilitas-kesehatan';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { DeleteFasilitasKesehatan, GetAllFasilitasKesehatan } from '@/service/kesehatan';
+import { DeleteFasilitasKesehatan, GetAllFasilitasKesehatan } from '@/service/health';
 import Loader from '@/components/ui/loader';
 import ModalDelete from '../modal-delete';
 import { Button } from '@/components/ui/button';

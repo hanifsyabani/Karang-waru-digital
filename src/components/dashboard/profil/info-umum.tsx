@@ -12,7 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { Save } from 'lucide-react';
 import Loader from '@/components/ui/loader';
-import { GetInfoUmum, PostInfoUmum, PutInfoUmum } from '@/service/profil';
+import { GetInfoUmum, PostInfoUmum, PutInfoUmum } from '@/service/profile';
 
 const schema = z.object({
   alamat: z.string(),

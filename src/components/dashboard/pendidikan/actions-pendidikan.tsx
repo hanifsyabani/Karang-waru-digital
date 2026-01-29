@@ -7,7 +7,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import ModalDelete from "../modal-delete";
 import ModalLembagaPendidikan from "./modal-lembaga-pendidikan";
-import { DeleteLembagaPendidikan, DeleteProgramPendidikan, DeleteStatistikPendidikan } from "@/service/pendidikan";
+import { DeleteLembagaPendidikan, DeleteProgramPendidikan, DeleteStatistikPendidikan } from "@/service/education";
 import ModalStatistikPendidikan from "./modal-statistik-pendidikan";
 import ModalProgramPendidikan from "./modal-program-pendidikan";
 

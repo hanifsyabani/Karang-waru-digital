@@ -127,8 +127,8 @@ export default function ModalResidents({ refetch, task, id }: ModalProps) {
             toast.success("Data Penduduk berhasil ditambahkan")
             setIsOpen(false)
             setIsLoading(false)
-            reset()
             refetch()
+            reset()
         },
         onError: (error :any) => {
             toast.error(error.message)
@@ -195,12 +195,12 @@ export default function ModalResidents({ refetch, task, id }: ModalProps) {
                             <div className="grid grid-cols-2 gap-4 mt-3">
                                 <div>
                                     <Label>NIK <span className="text-red-500">*</span></Label>
-                                    <Input type="text" placeholder="16 digit NIK" maxLength={16} {...register("nik")} />
+                                    <Input type="number" placeholder="16 digit NIK" maxLength={16} {...register("nik")} />
                                     {errors.nik && <p className="text-red-500 text-sm mt-1">{errors.nik.message}</p>}
                                 </div>
                                 <div>
                                     <Label>No. KK</Label>
-                                    <Input type="text" placeholder="Nomor Kartu Keluarga" maxLength={16} {...register("no_kk")} />
+                                    <Input type="number" placeholder="Nomor Kartu Keluarga" maxLength={16} {...register("no_kk")} />
                                     {errors.no_kk && <p className="text-red-500 text-sm mt-1">{errors.no_kk.message}</p>}
                                 </div>
                                 <div className="col-span-2">
@@ -215,8 +215,8 @@ export default function ModalResidents({ refetch, task, id }: ModalProps) {
                                             <SelectValue placeholder="Pilih Jenis Kelamin" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="Laki-laki" className="hover:bg-primary cursor-pointer hover:text-white">Laki-laki</SelectItem>
-                                            <SelectItem value="Perempuan" className="hover:bg-primary cursor-pointer hover:text-white">Perempuan</SelectItem>
+                                            <SelectItem value="L" className="hover:bg-primary cursor-pointer hover:text-white">Laki-laki</SelectItem>
+                                            <SelectItem value="P" className="hover:bg-primary cursor-pointer hover:text-white">Perempuan</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     {errors.jenis_kelamin && <p className="text-red-500 text-sm mt-1">{errors.jenis_kelamin.message}</p>}
@@ -244,17 +244,17 @@ export default function ModalResidents({ refetch, task, id }: ModalProps) {
                                 </div>
                                 <div>
                                     <Label>RT</Label>
-                                    <Input type="text" placeholder="001" {...register("rt")} />
+                                    <Input type="number" placeholder="001" {...register("rt")} />
                                     {errors.rt && <p className="text-red-500 text-sm mt-1">{errors.rt.message}</p>}
                                 </div>
                                 <div>
                                     <Label>RW</Label>
-                                    <Input type="text" placeholder="001" {...register("rw")} />
+                                    <Input type="number" placeholder="001" {...register("rw")} />
                                     {errors.rw && <p className="text-red-500 text-sm mt-1">{errors.rw.message}</p>}
                                 </div>
                                 <div>
                                     <Label>Dusun</Label>
-                                    <Input type="text" placeholder="Nama dusun" {...register("dusun")} />
+                                    <Input type="number" placeholder="Nama dusun" {...register("dusun")} />
                                     {errors.dusun && <p className="text-red-500 text-sm mt-1">{errors.dusun.message}</p>}
                                 </div>
                                 <div>

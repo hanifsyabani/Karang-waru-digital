@@ -12,7 +12,7 @@ import {
 import { tabBerita } from '@/lib/items';
 import TableBerita from './table-berita';
 import { useQuery } from '@tanstack/react-query';
-import { GetAllBerita } from '@/service/berita';
+import { GetAllBerita } from '@/service/news';
 import Loader from '@/components/ui/loader';
 import dayjs from 'dayjs';
 

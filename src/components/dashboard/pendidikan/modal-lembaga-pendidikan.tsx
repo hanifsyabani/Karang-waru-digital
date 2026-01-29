@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Eye, Pen, Plus } from "lucide-react";
-import { GetLembagaPendidikanByID, PostLembagaPendidikan, PutLembagaPendidikan } from "@/service/pendidikan";
+import { GetLembagaPendidikanByID, PostLembagaPendidikan, PutLembagaPendidikan } from "@/service/education";
 import SectionTitle from "../section-title";
 import DetailItem from "../detail-item";
 

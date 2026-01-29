@@ -17,7 +17,7 @@ export async function GetResidents(params? : {
     try {
         const res = await axios.get(`${API_URL}/penduduk`, {
             params: {
-                search: params?.search,
+                query: params?.search,
                 page: params?.page,
                 limit: params?.limit,
                 sortBy: params?.sortBy,

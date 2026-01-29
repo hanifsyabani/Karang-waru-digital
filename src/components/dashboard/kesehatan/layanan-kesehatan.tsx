@@ -3,7 +3,7 @@
 import { Building2, Clock, Trash } from "lucide-react";
 import ModalLayananKesehatan from "./modal-layanan-kesehatan";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { DeleteLayananKesehatan, GetAllLayananKesehatan } from "@/service/kesehatan";
+import { DeleteLayananKesehatan, GetAllLayananKesehatan } from "@/service/health";
 import Loader from "@/components/ui/loader";
 import ModalDelete from "../modal-delete";
 import { toast } from "react-toastify";

@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 // Daftar halaman yang perlu proteksi login
 const protectedRoutes = ['/admin', '/user'];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const token = request.cookies.get('access_token')?.value;
 
   // Cek apakah user mengakses halaman yang diproteksi

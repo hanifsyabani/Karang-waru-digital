@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import ModalBerita from "./modal-berita";
 import { useMutation } from "@tanstack/react-query";
-import { DeleteBerita } from "@/service/berita";
+import { DeleteBerita } from "@/service/news";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import ModalDelete from "../modal-delete";

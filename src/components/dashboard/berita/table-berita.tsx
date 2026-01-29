@@ -1,4 +1,4 @@
-import { GetAllBerita } from "@/service/berita";
+import { GetAllBerita } from "@/service/news";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "@/components/ui/loader";
 import { ColumnBerita, getColumns } from "./column-berita";
