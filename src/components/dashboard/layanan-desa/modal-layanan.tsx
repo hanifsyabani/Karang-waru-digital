@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 import { kategoriLayanan } from "@/lib/items";
 import { generateSlug } from "@/lib/utils";
-import { GetLayananByID, PostLayanan, PutLayanan } from "@/service/layanan";
+import { GetLayananByID, PostLayanan, PutLayanan } from "@/service/service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FileText, Pen, Plus } from "lucide-react";

@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useQuery } from '@tanstack/react-query';
-import {  GetStatistikPendidikan } from '@/service/pendidikan';
+import {  GetStatistikPendidikan } from '@/service/education';
 import Loader from '@/components/ui/loader';
 import { DataTable } from '@/components/ui/data-tabe';
 import ModalStatistikPendidikan from './modal-statistik-pendidikan';

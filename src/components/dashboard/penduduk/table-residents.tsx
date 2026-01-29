@@ -2,7 +2,7 @@
 
 import Loader from '@/components/ui/loader';
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
-import { ChevronLeft, ChevronRight, MapPin, Trash } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpDown,  Trash } from 'lucide-react'
 import ModalPenduduk from './modal-residents';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
@@ -12,8 +12,12 @@ import { useDebounce } from '@/hooks/use-debounced';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { DeleteResident, GetCountResidents, GetResidents } from '@/service/resident';
+import { Input } from '@/components/ui/input';
 
 const LIMIT = 10
+const SORT_OPTIONS = [
+    { value: "created_at", label: "Tanggal" },
+]
 
 export default function TableResidents() {
     const [isLoading, setIsLoading] = useState(false)
@@ -24,6 +28,17 @@ export default function TableResidents() {
     const [searchQuery, setSearchQuery] = useState('')
     const debouncedSearch = useDebounce(searchQuery, 500)
 
+    const handleSortChange = (newSortBy: string) => {
+        setPage(1)
+        // klo klik lagi ubah sortOrder aja
+        if (sortBy === newSortBy) {
+            setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+            // klo ga sama baru default desc 
+        } else {
+            setSortBy(newSortBy)
+            setSortOrder("desc")
+        }
+    }
 
     const { data: dataPenduduk, isLoading: isLoadingPenduduk, refetch } = useQuery({
         queryFn: () => GetResidents({
@@ -33,7 +48,7 @@ export default function TableResidents() {
             sortBy: sortBy,
             sortOrder: sortOrder,
         }),
-        queryKey: ['penduduk', page, debouncedSearch, sortBy, sortOrder],
+        queryKey: ['penduduk', page, debouncedSearch, sortBy, sortOrder, LIMIT],
         placeholderData: keepPreviousData
     })
     const { data: dataCountPenduduk, isLoading: isLoadingCountPenduduk, } = useQuery({
@@ -41,7 +56,7 @@ export default function TableResidents() {
         queryKey: ['countPenduduk'],
     })
 
-    const totalPage = dataCountPenduduk ? Math.ceil(dataCountPenduduk.data / LIMIT) : 1
+    const totalPage = dataCountPenduduk ? Math.ceil(dataCountPenduduk.data.total / LIMIT) : 1
 
     const { mutate: deletePenduduk } = useMutation({
         mutationFn: (id: string) => DeleteResident(id),
@@ -64,8 +79,43 @@ export default function TableResidents() {
     if (isLoadingPenduduk || isLoadingCountPenduduk) return <Loader />
 
     return (
-        <div className="bg-white  shadow-lg border border-gray-100">
-            <div className="relative w-full overflow-x-auto">
+        <>
+            <div className='flex justify-between'>
+                <div className='w-1/2'>
+                    <Input
+                        placeholder="Cari berdasarkan nama dan NIK ..."
+                        className='bg-white'
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                </div>
+                <div className="flex items-center gap-1 px-4 py-2">
+                    {SORT_OPTIONS.map((option) => {
+                        const isActive = sortBy === option.value
+                        const Icon = isActive
+                            ? (sortOrder === "asc" ? ArrowUp : ArrowDown)
+                            : ArrowUpDown
+
+                        return (
+                            <Button
+                                key={option.value}
+                                size="sm"
+                                variant={isActive ? "default" : "ghost"}
+                                className={`flex items-center cursor-pointer gap-1.5 transition-all
+                                    ${isActive
+                                        ? "bg-green-700 hover:bg-green-800 text-white"
+                                        : "hover:bg-green-50 text-muted-foreground hover:text-green-600"
+                                    }`}
+                                onClick={() => handleSortChange(option.value)}
+                            >
+                                {option.label}
+                                <Icon className="w-3.5 h-3.5" />
+                            </Button>
+                        )
+                    })}
+                </div>
+            </div>
+            <div className="relative w-full overflow-x-auto mt-4 bg-white">
                 <Table  >
                     <TableHeader className="bg-gradient-to-r from-emerald-600 to-green-700 text-white">
                         <TableRow>
@@ -146,36 +196,36 @@ export default function TableResidents() {
                         )}
                     </TableBody>
                 </Table>
+                {dataPenduduk && dataPenduduk.data.length > 0 && (
+                    <Pagination className="my-4">
+                        <PaginationContent >
+                            {page > 1 && (
+                                <PaginationItem>
+                                    <PaginationPrevious
+                                        className='text-primary cursor-pointer'
+                                        onClick={() => setPage((p) => Math.max(p - 1, 1))}
+                                    />
+                                </PaginationItem>
+                            )}
+                            {Array.from({ length: totalPage }, (_, i) => i + 1).map((p) => (
+                                <PaginationItem key={p} onClick={() => setPage(p)} className='cursor-pointer'>
+                                    <PaginationLink isActive={p === page} className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all duration-200">{p}</PaginationLink>
+                                </PaginationItem>
+                            ))}
+                            {page !== totalPage && (
+                                <PaginationItem>
+                                    <PaginationNext
+                                        className='text-primary cursor-pointer'
+                                        onClick={() => setPage((p) => Math.min(p + 1, totalPage))}
+                                    />
+                                </PaginationItem>
+                            )}
+                        </PaginationContent>
+                    </Pagination>
+                )
+                }
             </div>
 
-            {dataPenduduk && dataPenduduk.data.length > 0 && (
-                <Pagination className="my-4">
-                    <PaginationContent >
-                        {page > 1 && (
-                            <PaginationItem>
-                                <PaginationPrevious
-                                    className='text-primary cursor-pointer'
-                                    onClick={() => setPage((p) => Math.max(p - 1, 1))}
-                                />
-                            </PaginationItem>
-                        )}
-                        {Array.from({ length: totalPage }, (_, i) => i + 1).map((p) => (
-                            <PaginationItem key={p} onClick={() => setPage(p)} className='cursor-pointer'>
-                                <PaginationLink isActive={p === page} className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all duration-200">{p}</PaginationLink>
-                            </PaginationItem>
-                        ))}
-                        {page !== totalPage && (
-                            <PaginationItem>
-                                <PaginationNext
-                                    className='text-primary cursor-pointer'
-                                    onClick={() => setPage((p) => Math.min(p + 1, totalPage))}
-                                />
-                            </PaginationItem>
-                        )}
-                    </PaginationContent>
-                </Pagination>
-            )
-            }
-        </div >
+        </ >
     )
 }

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { FileText, Settings } from 'lucide-react';
 
 import ModalLayanan from './modal-layanan';
-import { GetAllLayanan } from '@/service/layanan';
+import { GetAllLayanan } from '@/service/service';
 import { useQuery } from '@tanstack/react-query';
 import { ColumnLayanan, getColumns } from './column-layanan';
 import Loader from '@/components/ui/loader';

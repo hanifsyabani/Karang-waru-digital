@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { GetAllFasilitasKesehatan, GetLayananKesehatanByID, PostLayananKesehatan, PutLayananKesehatan } from "@/service/kesehatan";
+import { GetAllFasilitasKesehatan, GetLayananKesehatanByID, PostLayananKesehatan, PutLayananKesehatan } from "@/service/health";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Pen, Plus } from "lucide-react";

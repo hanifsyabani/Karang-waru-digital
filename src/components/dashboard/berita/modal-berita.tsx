@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 import { selectKategori } from "@/lib/items";
 import { generateSlug } from "@/lib/utils";
-import { GetBeritaByID, PostBerita, PutBerita } from "@/service/berita";
+import { GetBeritaByID, PostBerita, PutBerita } from "@/service/news";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FileText, Pen, Plus } from "lucide-react";

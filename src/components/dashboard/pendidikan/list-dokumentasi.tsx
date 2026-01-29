@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Eye, FileText, Trash2 } from 'lucide-react'
 import React from 'react'
 import ModalDokumentasiPendidikan from './modal-dokumentasi-pendidikan'
-import { GetDokumentasiPendidikan } from '@/service/pendidikan'
+import { GetDokumentasiPendidikan } from '@/service/education'
 import { useQuery } from '@tanstack/react-query'
 import Loader from '@/components/ui/loader'
 

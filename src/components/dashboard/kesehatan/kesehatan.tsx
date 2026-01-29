@@ -6,7 +6,7 @@ import StatsCardKesehatan from './stats-card-kesehatan';
 import LayananKesehatan from './layanan-kesehatan';
 import FasilitasKesehatan from './fasilitas-kesehatan';
 import { useQuery } from '@tanstack/react-query';
-import { GetAllFasilitasKesehatan, GetAllLayananKesehatan } from '@/service/kesehatan';
+import { GetAllFasilitasKesehatan, GetAllLayananKesehatan } from '@/service/health';
 import Loader from '@/components/ui/loader';
 
 export default function Kesehatan() {

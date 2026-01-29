@@ -12,10 +12,10 @@ export default function StatResidents() {
         queryKey: ['countPenduduk'],
     })
     const stats = [
-        { label: 'Total Penduduk', value: dataCountResidents?.data, icon: Users, color: 'bg-emerald-500', change: '+12' },
-        { label: 'Laki-laki', value: '620', icon: Users, color: 'bg-blue-500', change: '+5' },
-        { label: 'Perempuan', value: '614', icon: Users, color: 'bg-pink-500', change: '+7' },
-        { label: 'Kartu Keluarga', value: '345', icon: Home, color: 'bg-amber-500', change: '+3' }
+        { label: 'Total Penduduk', value: dataCountResidents?.data.total, icon: Users, color: 'bg-emerald-500', change: '+12' },
+        { label: 'Laki-laki', value: dataCountResidents?.data.male, icon: Users, color: 'bg-blue-500', change: '+5' },
+        { label: 'Perempuan', value: dataCountResidents?.data.female, icon: Users, color: 'bg-pink-500', change: '+7' },
+        { label: 'Kartu Keluarga', value: dataCountResidents?.data.family_card_count, icon: Home, color: 'bg-amber-500', change: '+3' }
     ];
 
     if (isLoadingCountResidents) return <Loader />

@@ -11,7 +11,7 @@ import TableStatistikPendidikan from './table-statistik-pendidikan';
 import TableProgramPendidikan from './table-program-pendidikan';
 import ListDokumentasi from './list-dokumentasi';
 import { useQuery } from '@tanstack/react-query';
-import { GetLembagaPendidikan, GetProgramPendidikan, GetStatistikPendidikan } from '@/service/pendidikan';
+import { GetLembagaPendidikan, GetProgramPendidikan, GetStatistikPendidikan } from '@/service/education';
 import Loader from '@/components/ui/loader';
 
 export default function PendidikanView() {
