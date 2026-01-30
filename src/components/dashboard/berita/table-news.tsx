@@ -1,3 +1,5 @@
+'use client'
+
 import { GetAllBerita } from "@/service/news";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "@/components/ui/loader";
@@ -5,7 +7,7 @@ import { ColumnBerita, getColumns } from "./column-berita";
 import { DataTable } from "@/components/ui/data-tabe";
 import ModalBerita from "./modal-berita";
 
-export default function TableBerita() {
+export default function TableNews() {
     const { data: dataAllBerita, isLoading: isLoadingAllBerita, refetch } = useQuery({
         queryFn: () => GetAllBerita(),
         queryKey: ["berita"],
@@ -35,7 +37,6 @@ export default function TableBerita() {
                 </div>
                 <ModalBerita refetch={refetch} task="add" />
             </div>
-
 
 
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 p-4">
