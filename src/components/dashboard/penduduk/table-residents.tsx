@@ -2,7 +2,7 @@
 
 import Loader from '@/components/ui/loader';
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
-import { ArrowDown, ArrowUp, ArrowUpDown,  Trash } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpDown, Trash } from 'lucide-react'
 import ModalPenduduk from './modal-residents';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
@@ -26,6 +26,7 @@ export default function TableResidents() {
     const [sortBy, setSortBy] = useState('created_at')
     const [sortOrder, setSortOrder] = useState('desc')
     const [searchQuery, setSearchQuery] = useState('')
+    const [selectedId, setSelectedId] = useState<string | null>(null)
     const debouncedSearch = useDebounce(searchQuery, 500)
 
     const handleSortChange = (newSortBy: string) => {
@@ -62,7 +63,7 @@ export default function TableResidents() {
         mutationFn: (id: string) => DeleteResident(id),
         onSuccess: () => {
             setIsLoading(false)
-            toast.success('Apbd Berhasil Dihapus', {
+            toast.success('Penduduk Berhasil Dihapus', {
                 theme: "colored"
             })
             setIsOpen(false)
@@ -70,7 +71,7 @@ export default function TableResidents() {
         },
         onError: () => {
             setIsLoading(false)
-            toast.error('Apbd Gagal Dihapus', {
+            toast.error('Penduduk Gagal Dihapus', {
                 theme: "colored"
             })
         }
@@ -128,7 +129,7 @@ export default function TableResidents() {
                         </TableRow>
                     </TableHeader >
                     <TableBody>
-                        {dataPenduduk?.data && dataPenduduk.data.length > 0 ? (
+                        {(dataPenduduk?.data ?? []).length > 0 ? (
                             dataPenduduk.data.map((penduduk: any) => (
                                 <TableRow
                                     key={penduduk.id}
@@ -167,19 +168,15 @@ export default function TableResidents() {
 
                                             <Button
                                                 className="bg-red-500 text-white hover:bg-red-800 cursor-pointer"
-                                                onClick={() => setIsOpen(true)}
+                                                onClick={() => {
+                                                    setSelectedId(penduduk.id)
+                                                    setIsOpen(true)
+                                                }}
                                             >
                                                 <Trash />
                                             </Button>
 
-                                            <ModalDelete
-                                                isLoading={isLoading}
-                                                setIsLoading={setIsLoading}
-                                                onDelete={() => deletePenduduk(penduduk.id)}
-                                                title="Penduduk"
-                                                isOpen={isOpen}
-                                                setIsOpen={setIsOpen}
-                                            />
+
                                         </div>
                                     </TableCell>
                                 </TableRow>
@@ -196,7 +193,7 @@ export default function TableResidents() {
                         )}
                     </TableBody>
                 </Table>
-                {dataPenduduk && dataPenduduk.data.length > 0 && (
+                {(dataPenduduk?.data ?? []).length > 0 && (
                     <Pagination className="my-4">
                         <PaginationContent >
                             {page > 1 && (
@@ -226,6 +223,17 @@ export default function TableResidents() {
                 }
             </div>
 
+
+            {selectedId && (
+                <ModalDelete
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                    onDelete={() => deletePenduduk(selectedId)}
+                    title="Penduduk"
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                />
+            )}
         </ >
     )
 }

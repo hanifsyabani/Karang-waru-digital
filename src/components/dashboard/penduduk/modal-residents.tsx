@@ -80,16 +80,16 @@ export default function ModalResidents({ refetch, task, id }: ModalProps) {
             rt: "",
             rw: "",
             dusun: "",
-            desa: "",
-            kecamatan: "",
-            kabupaten: "",
-            provinsi: "",
-            agama: "",
+            desa: "Karang Waru",
+            kecamatan: "Lawang Wetan",
+            kabupaten: "Musi Banyuasin",
+            provinsi: "Sumatera Selatan",
+            agama: "islam",
             status_perkawinan: "",
             pekerjaan: "",
             pendidikan_terakhir: "",
             kewarganegaraan: "WNI",
-            status_kependudukan: "",
+            status_kependudukan: "tetap",
             keterangan: "",
         }
     })
@@ -291,12 +291,12 @@ export default function ModalResidents({ refetch, task, id }: ModalProps) {
                                             <SelectValue placeholder="Pilih Agama" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="Islam" className="hover:bg-primary cursor-pointer hover:text-white">Islam</SelectItem>
-                                            <SelectItem value="Kristen" className="hover:bg-primary cursor-pointer hover:text-white">Kristen</SelectItem>
-                                            <SelectItem value="Katolik" className="hover:bg-primary cursor-pointer hover:text-white">Katolik</SelectItem>
-                                            <SelectItem value="Hindu" className="hover:bg-primary cursor-pointer hover:text-white">Hindu</SelectItem>
-                                            <SelectItem value="Buddha" className="hover:bg-primary cursor-pointer hover:text-white">Buddha</SelectItem>
-                                            <SelectItem value="Konghucu" className="hover:bg-primary cursor-pointer hover:text-white">Konghucu</SelectItem>
+                                            <SelectItem value="islam" className="hover:bg-primary cursor-pointer hover:text-white">Islam</SelectItem>
+                                            <SelectItem value="kristen" className="hover:bg-primary cursor-pointer hover:text-white">Kristen</SelectItem>
+                                            <SelectItem value="katolik" className="hover:bg-primary cursor-pointer hover:text-white">Katolik</SelectItem>
+                                            <SelectItem value="hindu" className="hover:bg-primary cursor-pointer hover:text-white">Hindu</SelectItem>
+                                            <SelectItem value="buddha" className="hover:bg-primary cursor-pointer hover:text-white">Buddha</SelectItem>
+                                            <SelectItem value="konghucu" className="hover:bg-primary cursor-pointer hover:text-white">Konghucu</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     {errors.agama && <p className="text-red-500 text-sm mt-1">{errors.agama.message}</p>}
@@ -360,8 +360,8 @@ export default function ModalResidents({ refetch, task, id }: ModalProps) {
                                             <SelectValue placeholder="Pilih Status" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="Tetap" className="hover:bg-primary cursor-pointer hover:text-white">Tetap</SelectItem>
-                                            <SelectItem value="Tidak Tetap" className="hover:bg-primary cursor-pointer hover:text-white">Tidak Tetap</SelectItem>
+                                            <SelectItem value="tetap" className="hover:bg-primary cursor-pointer hover:text-white">Tetap</SelectItem>
+                                            <SelectItem value="tidak_tetap" className="hover:bg-primary cursor-pointer hover:text-white">Tidak Tetap</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     {errors.status_kependudukan && <p className="text-red-500 text-sm mt-1">{errors.status_kependudukan.message}</p>}

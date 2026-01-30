@@ -26,7 +26,7 @@ export async function GetAllBerita(params?: {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -45,7 +45,7 @@ export async function GetBeritaByID(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -63,7 +63,7 @@ export async function PostBerita(data: any) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -80,7 +80,7 @@ export async function PutBerita(data: any, id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `access_token=${token}`
+        Authorization: `Bearer ${token}`
       },
     });
 
@@ -97,7 +97,7 @@ export async function DeleteBerita(id: string) {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `access_token=${token}`,
+        Authorization: `Bearer${token}`,
       },
     });
 

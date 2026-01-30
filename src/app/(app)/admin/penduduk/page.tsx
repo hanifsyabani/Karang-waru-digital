@@ -10,9 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default function page() {
-
-   
-
     return (
         <>
             <div className="bg-gradient-to-r from-emerald-600 to-green-700 text-white shadow-xl">
