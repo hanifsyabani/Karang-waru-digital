@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
-import ModalBerita from "./modal-berita";
+import ModalBerita from "./modal-news";
 import { useMutation } from "@tanstack/react-query";
 import { DeleteBerita } from "@/service/news";
 import { useState } from "react";
@@ -33,6 +33,9 @@ export default function ActionsBerita({ refetch, id }: { refetch: () => void, id
     return (
         <>
             <div className="flex items-center gap-2">
+                <div>
+                    <ModalBerita task="detail" id={id} refetch={refetch} />
+                </div>
                 <div>
                     <ModalBerita task="edit" id={id} refetch={refetch} />
                 </div>

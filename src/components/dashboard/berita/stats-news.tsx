@@ -1,26 +1,22 @@
 'use client'
 
 import Loader from '@/components/ui/loader';
-import { GetAllBerita, GetCountNewsByCategory } from '@/service/news';
+import {  GetCountNewsByCategory } from '@/service/news';
 import { useQuery } from '@tanstack/react-query';
-import { Building2, CheckCircle,  Component,  Cross,  FileText, Newspaper, ShieldCheck,  } from 'lucide-react';
+import { Building2,   Component,  Cross,  FileText, Newspaper, ShieldCheck,  } from 'lucide-react';
 
 export default function StatsNews() {
 
-    const { data: dataAllBerita, isLoading: isLoadingAllBerita } = useQuery({
-        queryFn: () => GetAllBerita(),
-        queryKey: ['berita']
-    })
+    
     const { data: dataCountNews, isLoading: isLoadingCountNews } = useQuery({
         queryFn: () => GetCountNewsByCategory(),
         queryKey: ['count-news']
     })
 
-    const totalBerita = dataAllBerita?.data.length || 0;
     const stats = [
         {
             label: "Total Berita",
-            value: totalBerita,
+            value: dataCountNews?.data?.total,
             icon: FileText,
             color: "bg-gradient-to-br from-blue-500 to-blue-600"
         },
@@ -57,7 +53,7 @@ export default function StatsNews() {
 
     ];
 
-    if (isLoadingAllBerita || isLoadingCountNews) return <Loader />
+    if ( isLoadingCountNews) return <Loader />
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
