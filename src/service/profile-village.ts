@@ -8,7 +8,7 @@ export async function GetInfoUmum() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/profil-desa`, {
+    const res = await axios.get(`${API_URL}/profile-village`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export async function PostInfoUmum(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.post(`${API_URL}/profil-desa`, data, {
+    const res = await axios.post(`${API_URL}/profile-village`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export async function PutInfoUmum(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.put(`${API_URL}/profil-desa`, data, {
+    const res = await axios.put(`${API_URL}/profile-village`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export async function GetDemografis() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/demografis`, {
+    const res = await axios.get(`${API_URL}/demographics`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export async function PostDemografis(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.post(`${API_URL}/demografis`, data, {
+    const res = await axios.post(`${API_URL}/demographics`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +97,7 @@ export async function PutDemografis(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.put(`${API_URL}/demografis`, data, {
+    const res = await axios.put(`${API_URL}/demographics`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -116,7 +116,7 @@ export async function GetSejarah() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/sejarah`, {
+    const res = await axios.get(`${API_URL}/history-village`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -134,7 +134,7 @@ export async function PostSejarah(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.post(`${API_URL}/sejarah`, data, {
+    const res = await axios.post(`${API_URL}/history-village`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -151,7 +151,7 @@ export async function PutSejarah(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.put(`${API_URL}/sejarah`, data, {
+    const res = await axios.put(`${API_URL}/history-village`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",

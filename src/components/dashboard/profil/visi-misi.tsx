@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import Loader from '@/components/ui/loader';
 import { Textarea } from '@/components/ui/textarea';
-import { GetInfoUmum, GetVisiMisi, PostVisiMisi, PutVisiMisi } from '@/service/profile';
+import { GetInfoUmum, GetVisiMisi, PostVisiMisi, PutVisiMisi } from '@/service/profile-village';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';

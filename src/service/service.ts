@@ -9,7 +9,7 @@ export async function GetAllLayanan() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/layanan`, {
+    const res = await axios.get(`${API_URL}/services`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export async function GetLayananByID(id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/layanan/${id}`, {
+    const res = await axios.get(`${API_URL}/service/${id}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export async function PostLayanan(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.post(`${API_URL}/layanan`, data, {
+    const res = await axios.post(`${API_URL}/service`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ export async function PutLayanan(data: any, id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.put(`${API_URL}/layanan/${id}`, data, {
+    const res = await axios.put(`${API_URL}/service/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export async function DeleteLayanan(id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.delete(`${API_URL}/layanan/${id}`, {
+    const res = await axios.delete(`${API_URL}/service/${id}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",

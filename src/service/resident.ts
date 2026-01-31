@@ -15,7 +15,7 @@ export async function GetResidents(params? : {
     const cookieStore = await cookies()
     const token = cookieStore.get("access_token")?.value;
     try {
-        const res = await axios.get(`${API_URL}/penduduk`, {
+        const res = await axios.get(`${API_URL}/residents`, {
             params: {
                 query: params?.search,
                 page: params?.page,
@@ -41,7 +41,7 @@ export async function GetResidentByID(id: string) {
     const cookieStore = await cookies()
     const token = cookieStore.get("access_token")?.value;
     try {
-        const res = await axios.get(`${API_URL}/penduduk/${id}`, {
+        const res = await axios.get(`${API_URL}/resident/${id}`, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export async function GetCountResidents() {
     const cookieStore = await cookies()
     const token = cookieStore.get("access_token")?.value;
     try {
-        const res = await axios.get(`${API_URL}/penduduk/count`, {
+        const res = await axios.get(`${API_URL}/resident/count`, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export async function PostResident(data: any) {
     const cookieStore = await cookies()
     const token = cookieStore.get("access_token")?.value;
     try {
-        const res = await axios.post(`${API_URL}/penduduk`, data, {
+        const res = await axios.post(`${API_URL}/resident`, data, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export async function PutResident(data: any, id: string) {
     const cookieStore = await cookies()
     const token = cookieStore.get("access_token")?.value;
     try {
-        const res = await axios.put(`${API_URL}/penduduk/${id}`, data, {
+        const res = await axios.put(`${API_URL}/resident/${id}`, data, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
@@ -110,7 +110,7 @@ export async function DeleteResident(id: string) {
     const cookieStore = await cookies()
     const token = cookieStore.get("access_token")?.value;
     try {
-        const res = await axios.delete(`${API_URL}/penduduk/${id}`, {
+        const res = await axios.delete(`${API_URL}/resident/${id}`, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json",

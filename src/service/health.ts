@@ -8,7 +8,7 @@ export async function GetAllLayananKesehatan() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/kesehatan/layanan`, {
+    const res = await axios.get(`${API_URL}/health/service`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export async function GetLayananKesehatanByID(id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/kesehatan/layanan/${id}`, {
+    const res = await axios.get(`${API_URL}/health/service/${id}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export async function PostLayananKesehatan(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.post(`${API_URL}/kesehatan/layanan`, data, {
+    const res = await axios.post(`${API_URL}/health/service`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export async function PutLayananKesehatan(data: any, id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.put(`${API_URL}/kesehatan/layanan/${id}`, data, {
+    const res = await axios.put(`${API_URL}/health/service/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export async function DeleteLayananKesehatan(id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.delete(`${API_URL}/kesehatan/layanan/${id}`, {
+    const res = await axios.delete(`${API_URL}/health/service/${id}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export async function GetAllFasilitasKesehatan() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/kesehatan/fasilitas`, {
+    const res = await axios.get(`${API_URL}/health/facility`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export async function GetFasilitasKesehatanByID(id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/kesehatan/fasilitas/${id}`, {
+    const res = await axios.get(`${API_URL}/health/facility/${id}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -136,7 +136,7 @@ export async function PostFasilitasKesehatan(data: any) {
   const token = cookieStore.get("access_token")?.value;
   
   try {
-    const res = await axios.post(`${API_URL}/kesehatan/fasilitas`, data, {
+    const res = await axios.post(`${API_URL}/health/facility`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -153,7 +153,7 @@ export async function PutFasilitasKesehatan(data: any, id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.put(`${API_URL}/kesehatan/fasilitas/${id}`, data, {
+    const res = await axios.put(`${API_URL}/health/facility/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -170,7 +170,7 @@ export async function DeleteFasilitasKesehatan(id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.delete(`${API_URL}/kesehatan/fasilitas/${id}`, {
+    const res = await axios.delete(`${API_URL}/health/facility/${id}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
