@@ -54,6 +54,23 @@ export async function GetBeritaByID(id: string) {
     throw new Error(error.response.data.message);
   }
 }
+export async function GetCountNewsByCategory() {
+  const cookieStore = await cookies()
+  const token = cookieStore.get("access_token")?.value;
+  try {
+    const res = await axios.get(`${API_URL}/news/category/count`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+    });
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.message);
+  }
+}
 
 export async function PostBerita(data: any) {
   const cookieStore = await cookies()
