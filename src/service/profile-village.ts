@@ -8,7 +8,7 @@ export async function GetInfoUmum() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/profile-village`, {
+    const res = await axios.get(`${API_URL}/village-profile`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export async function PostInfoUmum(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.post(`${API_URL}/profile-village`, data, {
+    const res = await axios.post(`${API_URL}/village-profile`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export async function PutInfoUmum(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.put(`${API_URL}/profile-village`, data, {
+    const res = await axios.put(`${API_URL}/village-profile`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",

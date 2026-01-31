@@ -24,7 +24,7 @@ export default function ProtectedAdminLayout({
         }
     }, [isLoading, dataProfile, router])
 
-    if (isLoading) return null
+    // if (isLoading) return null
 
     if (dataProfile?.data?.role === 'user') return null
 

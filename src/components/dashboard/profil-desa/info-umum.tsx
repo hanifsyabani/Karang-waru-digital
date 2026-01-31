@@ -4,7 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation} from '@tanstack/react-query';
 import z from 'zod';
 import { toast } from 'react-toastify';
 import { useForm, } from 'react-hook-form';
@@ -12,7 +12,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { Save } from 'lucide-react';
 import Loader from '@/components/ui/loader';
-import { GetInfoUmum, PostInfoUmum, PutInfoUmum } from '@/service/profile-village';
+import { PostInfoUmum, PutInfoUmum } from '@/service/profile-village';
+
+interface InfoUmumProps {
+  dataInfoUmum: any;
+  refetch: () => void;
+}
 
 const schema = z.object({
   alamat: z.string(),
@@ -30,16 +35,12 @@ const schema = z.object({
 })
 type FormFields = z.infer<typeof schema>
 
-export default function InfoUmum() {
+export default function InfoUmum({ dataInfoUmum, refetch }: InfoUmumProps) {
 
   const [isLoading, setIsLoading] = useState(false)
   const [mode, setMode] = useState<'submit' | 'edit'>('submit')
 
 
-  const { data: dataInfoUmum, isLoading: isLoadingInfoUmum, refetch } = useQuery({
-    queryFn: () => GetInfoUmum(),
-    queryKey: ['info-umum'],
-  })
 
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormFields>({
     resolver: zodResolver(schema),
@@ -107,7 +108,6 @@ export default function InfoUmum() {
     }
   }
 
-  if (isLoadingInfoUmum) return <Loader />
   return (
     <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
       <h3 className="text-xl font-semibold text-gray-800 mb-4">Informasi Umum Desa</h3>
