@@ -15,7 +15,7 @@ export async function GetAllBerita(params?: {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/berita`, {
+    const res = await axios.get(`${API_URL}/news`, {
       params: {
         query: params?.query,
         page: params?.page,
@@ -41,7 +41,7 @@ export async function GetBeritaByID(id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.get(`${API_URL}/berita/${id}`, {
+    const res = await axios.get(`${API_URL}/news/${id}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export async function PostBerita(data: any) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.post(`${API_URL}/berita`, data, {
+    const res = await axios.post(`${API_URL}/news`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export async function PutBerita(data: any, id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.put(`${API_URL}/berita/${id}`, data, {
+    const res = await axios.put(`${API_URL}/news/${id}`, data, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export async function DeleteBerita(id: string) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
-    const res = await axios.delete(`${API_URL}/berita/${id}`, {
+    const res = await axios.delete(`${API_URL}/news/${id}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
