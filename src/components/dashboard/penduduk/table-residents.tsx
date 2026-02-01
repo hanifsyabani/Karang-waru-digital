@@ -10,9 +10,9 @@ import ModalDelete from '../modal-delete';
 import { Button } from '@/components/ui/button';
 import { useDebounce } from '@/hooks/use-debounced';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import { DeleteResident, GetCountResidents, GetResidents } from '@/service/resident';
 import { Input } from '@/components/ui/input';
+import PaginationComponent from '@/components/pagination';
 
 const LIMIT = 10
 const SORT_OPTIONS = [
@@ -194,31 +194,11 @@ export default function TableResidents() {
                     </TableBody>
                 </Table>
                 {(dataPenduduk?.data ?? []).length > 0 && (
-                    <Pagination className="my-4">
-                        <PaginationContent >
-                            {page > 1 && (
-                                <PaginationItem>
-                                    <PaginationPrevious
-                                        className='text-primary cursor-pointer'
-                                        onClick={() => setPage((p) => Math.max(p - 1, 1))}
-                                    />
-                                </PaginationItem>
-                            )}
-                            {Array.from({ length: totalPage }, (_, i) => i + 1).map((p) => (
-                                <PaginationItem key={p} onClick={() => setPage(p)} className='cursor-pointer'>
-                                    <PaginationLink isActive={p === page} className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-all duration-200">{p}</PaginationLink>
-                                </PaginationItem>
-                            ))}
-                            {page !== totalPage && (
-                                <PaginationItem>
-                                    <PaginationNext
-                                        className='text-primary cursor-pointer'
-                                        onClick={() => setPage((p) => Math.min(p + 1, totalPage))}
-                                    />
-                                </PaginationItem>
-                            )}
-                        </PaginationContent>
-                    </Pagination>
+                    <PaginationComponent
+                        page={page}
+                        setPage={setPage}
+                        totalPage={totalPage}
+                    />
                 )
                 }
             </div>

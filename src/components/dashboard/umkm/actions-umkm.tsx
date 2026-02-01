@@ -34,6 +34,9 @@ export default function ActionsUmkm({ refetch, id }: { refetch: () => void, id: 
         <>
             <div className="flex items-center gap-2">
                 <div>
+                    <ModalUmkm task="detail" id={id} refetch={refetch} />
+                </div>
+                <div>
                     <ModalUmkm task="edit" id={id} refetch={refetch} />
                 </div>
                 <div>

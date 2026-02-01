@@ -75,7 +75,7 @@ export default function ProfilDashboard() {
         </div>
       </div>
 
-      <StatsProfileVillage dataInfoUmum={dataInfoUmum} />
+      <StatsProfileVillage dataInfoUmum={dataInfoUmum.data} />
     </div>
   );
 }

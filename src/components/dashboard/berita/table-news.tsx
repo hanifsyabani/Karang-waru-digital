@@ -9,7 +9,7 @@ import ModalBerita from "./modal-news";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useDebounce } from "@/hooks/use-debounced";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
+import PaginationComponent from "@/components/pagination";
 
 
 const LIMIT = 10;
@@ -29,7 +29,7 @@ export default function TableNews() {
         placeholderData: keepPreviousData
     })
 
-    const { data: dataCountNews, isLoading: isLoadingCountNews} = useQuery({
+    const { data: dataCountNews, isLoading: isLoadingCountNews } = useQuery({
         queryFn: () => GetCountNewsByCategory(),
         queryKey: ['count-news']
     })
@@ -48,7 +48,7 @@ export default function TableNews() {
         }))
         : [];
 
-    if (isLoadingAllBerita ) return <Loader />
+    if (isLoadingAllBerita || isLoadingCountNews) return <Loader />
 
     return (
         <div>
@@ -72,31 +72,11 @@ export default function TableNews() {
             </div>
 
             {dataCountNews && dataCountNews.data.total > 0 && (
-                <Pagination className="my-4">
-                    <PaginationContent >
-                        {page > 1 && (
-                            <PaginationItem>
-                                <PaginationPrevious
-                                    className='text-primary cursor-pointer'
-                                    onClick={() => setPage((p) => Math.max(p - 1, 1))}
-                                />
-                            </PaginationItem>
-                        )}
-                        {Array.from({ length: totalPage }, (_, i) => i + 1).map((p) => (
-                            <PaginationItem key={p} onClick={() => setPage(p)} className='cursor-pointer'>
-                                <PaginationLink isActive={p === page} className="hover:bg-primary">{p}</PaginationLink>
-                            </PaginationItem>
-                        ))}
-                        {page !== totalPage && (
-                            <PaginationItem>
-                                <PaginationNext
-                                    className='text-primary cursor-pointer'
-                                    onClick={() => setPage((p) => Math.min(p + 1, totalPage))}
-                                />
-                            </PaginationItem>
-                        )}
-                    </PaginationContent>
-                </Pagination>
+                <PaginationComponent
+                    page={page}
+                    setPage={setPage}
+                    totalPage={totalPage}
+                />
             )}
         </div>
     )
