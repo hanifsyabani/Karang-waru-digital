@@ -9,16 +9,16 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ProtectedAdminLayout>
-      <SidebarProvider>
-        <SidebarDashboard />
+    <SidebarProvider>
+      <SidebarDashboard />
+      <ProtectedAdminLayout>
         <main className="bg-gray-100 w-full" >
           <NavbarDash />
           <div className="p-4">
             {children}
           </div>
         </main>
-      </SidebarProvider>
-    </ProtectedAdminLayout>
+      </ProtectedAdminLayout>
+    </SidebarProvider>
   )
 }

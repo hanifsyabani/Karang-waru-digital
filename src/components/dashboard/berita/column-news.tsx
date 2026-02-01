@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import ActionsBerita from "./actions-berita";
+import ActionsBerita from "./actions-news";
 
 export type ColumnBerita = {
     id: string;
@@ -56,7 +56,7 @@ export const getColumns = (
                             Publish
                         </Badge>
                     ) : row.original.status === "draft" ? (
-                        <Badge className="text-white bg-red-600">
+                        <Badge className="text-white bg-gray-500">
                             Draft
                         </Badge>
                     ) : (
@@ -67,8 +67,6 @@ export const getColumns = (
                 </>
             ),
         },
-
-
         {
             id: "actions",
             header: "Aksi",
