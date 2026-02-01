@@ -9,7 +9,7 @@ import { GetAccounts } from "@/service/account"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { useDebounce } from "@/hooks/use-debounced"
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
+import PaginationComponent from "@/components/pagination"
 
 const LIMIT = 10
 
@@ -56,31 +56,11 @@ export default function TableAccount() {
       <DataTable data={formattedAkun} columns={getColumns({ refetch, refetchAll })} />
 
       {dataAkun && dataAkun.data.length > 0 && (
-        <Pagination className="my-4">
-          <PaginationContent >
-            {page > 1 && (
-              <PaginationItem>
-                <PaginationPrevious
-                  className='text-primary cursor-pointer'
-                  onClick={() => setPage((p) => Math.max(p - 1, 1))}
-                />
-              </PaginationItem>
-            )}
-            {Array.from({ length: totalPage }, (_, i) => i + 1).map((p) => (
-              <PaginationItem key={p} onClick={() => setPage(p)} className='cursor-pointer'>
-                <PaginationLink isActive={p === page} className="hover:bg-primary">{p}</PaginationLink>
-              </PaginationItem>
-            ))}
-            {page !== totalPage && (
-              <PaginationItem>
-                <PaginationNext
-                  className='text-primary cursor-pointer'
-                  onClick={() => setPage((p) => Math.min(p + 1, totalPage))}
-                />
-              </PaginationItem>
-            )}
-          </PaginationContent>
-        </Pagination>
+        <PaginationComponent
+          page={page}
+          setPage={setPage}
+          totalPage={totalPage}
+        />
       )}
     </>
   )

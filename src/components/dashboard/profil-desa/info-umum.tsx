@@ -4,7 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useMutation} from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import z from 'zod';
 import { toast } from 'react-toastify';
 import { useForm, } from 'react-hook-form';
@@ -212,19 +212,17 @@ export default function InfoUmum({ dataInfoUmum, refetch }: InfoUmumProps) {
           </div>
         </div>
 
-        <div className='grid grid-cols-2 gap-4'>
-          <div>
-            <Label className="block text-sm font-medium text-gray-700 mb-2">Tahun Pembentukan</Label>
-            <Input
-              type="number"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ringgreeb-500 focus:bordergreeb-500"
-              placeholder="Tahun pembentukan desa"
-              {...register('tahun_pembentukan')}
-            />
-            {errors.tahun_pembentukan && <p className="text-red-500 text-sm mt-1">{errors.tahun_pembentukan.message}</p>}
-          </div>
-
+        <div>
+          <Label className="block text-sm font-medium text-gray-700 mb-2">Tahun Pembentukan</Label>
+          <Input
+            type="number"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ringgreeb-500 focus:bordergreeb-500"
+            placeholder="Tahun pembentukan desa"
+            {...register('tahun_pembentukan')}
+          />
+          {errors.tahun_pembentukan && <p className="text-red-500 text-sm mt-1">{errors.tahun_pembentukan.message}</p>}
         </div>
+
 
         <div className="grid grid-cols-2 gap-4">
           <div>

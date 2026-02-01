@@ -31,3 +31,20 @@ export type ApbdDesaType = {
   created_at: string
   updated_at: string
 }
+
+
+export type CommonInfoType = {
+  id: number;
+  alamat: string;
+  kecamatan: string;
+  kabupaten: string;
+  provinsi: string;
+  kode_pos: string;
+  jumlah_penduduk: number;
+  jumlah_laki: number;
+  jumlah_perempuan: number;
+  jumlah_kk: number;
+  tahun_pembentukan: number;
+  telepon: string;
+  email: string;
+}

@@ -1,4 +1,6 @@
-import UmkmView from "@/components/dashboard/umkm/umkm-view";
+import StatsUmkm from "@/components/dashboard/umkm/stats-umkm";
+import TableUmkm from "@/components/dashboard/umkm/table-umkm";
+import UmkmView from "@/components/dashboard/umkm/table-umkm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +10,8 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-        <UmkmView/>
+      <StatsUmkm />
+      <TableUmkm />
     </>
   )
 }

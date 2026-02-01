@@ -1,6 +1,7 @@
+import { CommonInfoType } from "@/types/apbd-type";
 import { Building, Clock, Mail, MapPin, Phone, Users } from "lucide-react";
 
-export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: any }) {
+export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: CommonInfoType }) {
     return (
         <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
@@ -12,6 +13,7 @@ export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: an
                             <div>
                                 <p className="text-sm font-medium text-blue-900">Total Penduduk</p>
                                 <p className="text-2xl font-bold text-blue-600">
+                                    {dataInfoUmum.jumlah_penduduk}
                                 </p>
                             </div>
                         </div>
@@ -21,6 +23,7 @@ export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: an
                             <div>
                                 <p className="text-sm font-medium text-green-900">Jumlah KK</p>
                                 <p className="text-2xl font-bold text-green-600">
+                                    {dataInfoUmum.jumlah_kk}
                                 </p>
                             </div>
                         </div>
@@ -30,7 +33,7 @@ export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: an
                             <div>
                                 <p className="text-sm font-medium text-purple-900">Luas Wilayah</p>
                                 <p className="text-2xl font-bold text-purple-600">
-                                    Km²
+                                  1000 Km²
                                 </p>
                             </div>
                         </div>
@@ -40,6 +43,7 @@ export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: an
                             <div>
                                 <p className="text-sm font-medium text-orange-900">Tahun Berdiri</p>
                                 <p className="text-2xl font-bold text-orange-600">
+                                    {dataInfoUmum.tahun_pembentukan}
                                 </p>
                             </div>
                         </div>
@@ -55,7 +59,7 @@ export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: an
                             <Phone className="h-5 w-5 text-gray-400 mr-3" />
                             <div>
                                 <p className="text-sm font-medium text-gray-900">Telepon</p>
-                                <p className="text-sm text-gray-600">Belum diisi</p>
+                                <p className="text-sm text-gray-600">{dataInfoUmum.telepon}</p>
                             </div>
                         </div>
 
@@ -63,7 +67,7 @@ export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: an
                             <Mail className="h-5 w-5 text-gray-400 mr-3" />
                             <div>
                                 <p className="text-sm font-medium text-gray-900">Email</p>
-                                <p className="text-sm text-gray-600">Belum diisi</p>
+                                <p className="text-sm text-gray-600">{dataInfoUmum.email}</p>
                             </div>
                         </div>
 
@@ -72,7 +76,7 @@ export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: an
                             <div>
                                 <p className="text-sm font-medium text-gray-900">Alamat</p>
                                 <p className="text-sm text-gray-600">
-                                    Belum diisi
+                                    {dataInfoUmum.alamat}, Kec. {dataInfoUmum.kecamatan}, Kab. {dataInfoUmum.kabupaten}, Prov. {dataInfoUmum.provinsi}, {dataInfoUmum.kode_pos}
                                 </p>
                             </div>
                         </div>
