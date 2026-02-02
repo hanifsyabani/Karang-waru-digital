@@ -48,3 +48,18 @@ export type CommonInfoType = {
   telepon: string;
   email: string;
 }
+
+export type LayananDesa = {
+  id: number;
+  service_name: string;
+  description?: string;
+  category?: string;
+  image?: string;
+  slug: string;
+  status?: string;
+  estimated_time?: string;
+  cost?: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at?: string | null;
+};

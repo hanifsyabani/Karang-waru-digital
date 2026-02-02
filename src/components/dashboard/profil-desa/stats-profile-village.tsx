@@ -1,4 +1,4 @@
-import { CommonInfoType } from "@/types/apbd-type";
+import { CommonInfoType } from "@/types";
 import { Building, Clock, Mail, MapPin, Phone, Users } from "lucide-react";
 
 export default function StatsProfileVillage({ dataInfoUmum }: { dataInfoUmum: CommonInfoType }) {

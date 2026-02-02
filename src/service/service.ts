@@ -5,11 +5,24 @@ import { cookies } from "next/headers";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function GetAllLayanan() {
+export async function GetAllServiceVillage(params? : {
+  search?: string;
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortOrder?: string;
+}) {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
   try {
     const res = await axios.get(`${API_URL}/services`, {
+      params: {
+        search: params?.search,
+        page: params?.page,
+        limit: params?.limit,
+        sort_by: params?.sortBy,
+        sort_order: params?.sortOrder,
+      },
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",

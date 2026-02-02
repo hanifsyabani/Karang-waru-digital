@@ -1,4 +1,4 @@
-import { ApbdDesaType } from "@/types/apbd-type"
+import { ApbdDesaType } from "@/types"
 import { ColumnApbd, getColumns } from "./column-apbd"
 import { DataTable } from "@/components/ui/data-tabe"
 import { formatCurrency } from "@/lib/utils"
