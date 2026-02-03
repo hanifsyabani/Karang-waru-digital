@@ -24,6 +24,7 @@ export async function Login(data: LoginData) {
 
     return res;
   } catch (error: any) {
+    console.log(error);
     throw new Error(error.response.data.message);
   }
 }
