@@ -1,4 +1,5 @@
-import LayananView from "@/components/dashboard/layanan-desa/layanan-view";
+import ListServiceVillage from "@/components/dashboard/village-service/list-service-village";
+import StatsServiceVillage from "@/components/dashboard/village-service/stats-service-village";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Layanan",
@@ -7,7 +8,8 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <LayananView/>
+      <StatsServiceVillage/>
+      <ListServiceVillage/>
     </>
   )
 }

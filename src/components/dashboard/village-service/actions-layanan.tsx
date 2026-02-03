@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import ModalDelete from "../modal-delete";
-import ModalLayanan from "./modal-layanan";
+import ModalLayanan from "./modal-service-village";
 import { DeleteLayanan } from "@/service/service";
 
 export default function ActionsLayanan({ refetch, id }: { refetch: () => void, id: string }) {
