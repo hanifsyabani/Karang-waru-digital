@@ -3,7 +3,7 @@
 import axios from "axios";
 import { cookies } from "next/headers";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.API_URL;
 export async function GetInfoUmum() {
   const cookieStore = await cookies()
   const token = cookieStore.get("access_token")?.value;
