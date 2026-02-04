@@ -4,7 +4,7 @@
 import { useState } from 'react';
 
 import ModalLayanan from './modal-service-village';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnLayanan, getColumns } from './column-layanan';
 import Loader from '@/components/ui/loader';
 import { DataTable } from '@/components/ui/data-tabe';
@@ -12,8 +12,10 @@ import { LayananDesa } from '@/types';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Grid, List, Pen, Trash } from 'lucide-react';
-import { GetAllServiceVillage } from '@/service/service';
+import { DeleteLayanan, GetAllServiceVillage } from '@/service/service';
 import { useDebounce } from '@/hooks/use-debounced';
+import ModalDelete from '../modal-delete';
+import { toast } from 'react-toastify';
 
 const LIMIT = 10;
 
@@ -21,6 +23,28 @@ export default function ListServiceVillage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [page, setPage] = useState(1);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const [isLoading, setISLoading] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const { mutate: deleteLayanan } = useMutation({
+    mutationFn: (id: string) => DeleteLayanan(id),
+    onSuccess: () => {
+      setISLoading(false)
+      toast.success('Layanan Berhasil Dihapus', {
+        theme: "colored"
+      })
+      setIsOpen(false)
+      refetch()
+    },
+    onError: () => {
+      setISLoading(false)
+      toast.error('Layanan Gagal Dihapus', {
+        theme: "colored"
+      })
+    }
+  })
 
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -187,13 +211,12 @@ export default function ListServiceVillage() {
                       )}
                     </div>
 
-                    {/* Action Buttons */}
                     <div className="flex gap-2">
-                      <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-3 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-1">
-                        <Pen size={15} />
-                        Edit
-                      </button>
-                      <button className="bg-red-50 hover:bg-red-100 text-red-600 py-2 px-3 rounded-lg text-sm font-medium transition-colors">
+                      <ModalLayanan refetch={refetch} task='edit' id={service.id} />
+                      <button onClick={() => {
+                        setSelectedId(service.id);
+                        setIsOpen(true);
+                      }} className="bg-red-50 hover:bg-red-100 cursor-pointer text-red-600 py-2 px-3 rounded-lg text-sm font-medium transition-colors">
                         <Trash size={15} />
                       </button>
                     </div>
@@ -219,6 +242,18 @@ export default function ListServiceVillage() {
           </div>
         )}
       </div>
+
+      {selectedId && (
+        <ModalDelete
+          isLoading={isLoading}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          title='layanan'
+          setIsLoading={setISLoading}
+          onDelete={() => deleteLayanan(selectedId)}
+        />
+      )}
+
     </div>
   );
 }

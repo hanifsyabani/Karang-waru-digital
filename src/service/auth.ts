@@ -1,5 +1,6 @@
-
+'use server'
 import axios from "axios";
+import { cookies } from "next/headers";
 interface LoginData {
   email: string;
   password: string;
@@ -11,20 +12,38 @@ interface RegisterData {
   password: string;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.API_URL;
 
 export async function Login(data: LoginData) {
   try {
     const res = await axios.post(`${API_URL}/login`, data, {
-      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    return res;
+    console.log(res);
+    
+    const token = res.data?.access_token;
+
+    if (!token) {
+      return { success: false, error: "Token tidak ditemukan" };
+    }
+
+    const cookieStore = await cookies();
+
+    cookieStore.set({
+      name: "token",
+      value: token,
+      httpOnly: true,     // WAJIB untuk security
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 1, // 1 hari
+    });
+
+    return { success: true };
   } catch (error: any) {
-    console.log(error);
     throw new Error(error.response.data.message);
   }
 }

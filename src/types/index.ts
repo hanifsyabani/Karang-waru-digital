@@ -50,7 +50,7 @@ export type CommonInfoType = {
 }
 
 export type LayananDesa = {
-  id: number;
+  id: string;
   service_name: string;
   description?: string;
   category?: string;

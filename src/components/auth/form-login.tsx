@@ -31,17 +31,21 @@ export default function FormLogin() {
 
   const { mutate: login } = useMutation({
     mutationFn: (data: FormFields) => Login(data),
-    onSuccess: ({ data }) => {
+    onSuccess: (res) => {
+
+      if(!res) {
+        toast.error('Terjadi Kesalahan. Silahkan Coba Lagi', {
+          theme: "colored"
+        })
+        setISLoading(false)
+        return
+      }
       setISLoading(false)
       toast.success('Login Berhasil', {
         theme: "colored"
       })
 
-      if (data.user.role === 'admin') {
-        router.push('/admin')
-      } else {
-        router.push('/user')
-      }
+      router.push('/user')
     }, onError: () => {
       setISLoading(false)
       toast.error('Periksa Kembali Email dan Password Anda', {
