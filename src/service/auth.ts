@@ -22,8 +22,6 @@ export async function Login(data: LoginData) {
       },
     });
 
-    console.log(res);
-    
     const token = res.data?.access_token;
 
     if (!token) {

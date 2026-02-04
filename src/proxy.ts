@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server';
 const protectedRoutes = ['/admin', '/user'];
 
 export function proxy(request: NextRequest) {
-  const token = request.cookies.get('access_token')?.value;
+  const token = request.cookies.get('token')?.value;
 
   // Cek apakah user mengakses halaman yang diproteksi
   const isProtected = protectedRoutes.some((route) =>
