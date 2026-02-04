@@ -16,6 +16,7 @@ import { DeleteLayanan, GetAllServiceVillage } from '@/service/service';
 import { useDebounce } from '@/hooks/use-debounced';
 import ModalDelete from '../modal-delete';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 const LIMIT = 10;
 
@@ -145,81 +146,84 @@ export default function ListServiceVillage() {
                   key={service.id}
                   className="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 overflow-hidden group"
                 >
-                  <div className="h-40 bg-gradient-to-br from-blue-500 to-blue-600 relative">
-                    {service.image ? (
-                      <Image
-                        width={500}
-                        height={200}
-                        src={service.image}
-                        alt={service.service_name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <svg className="w-16 h-16 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
+                  <Link href={`/admin/layanan-desa/${service.slug}`}>
+                    <div className="h-40 bg-gradient-to-br from-blue-500 to-blue-600 relative">
+                      {service.image ? (
+                        <Image
+                          width={500}
+                          height={200}
+                          src={service.image}
+                          alt={service.service_name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <svg className="w-16 h-16 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                        </div>
+                      )}
+
+                      <div className="absolute top-3 right-3">
+                        <Badge className={`px-3 py-1 rounded-full text-xs font-semibold ${service.status === "published"
+                          ? "bg-green-700 text-white"
+                          : "bg-gray-500 text-white"
+                          }`}>
+                          {service.status === "published" ? "Aktif" : "Tidak Aktif"}
+                        </Badge>
                       </div>
-                    )}
-
-                    <div className="absolute top-3 right-3">
-                      <Badge className={`px-3 py-1 rounded-full text-xs font-semibold ${service.status === "active"
-                        ? "bg-green-500 text-white"
-                        : "bg-gray-500 text-white"
-                        }`}>
-                        {service.status === "active" ? "Aktif" : "Tidak Aktif"}
-                      </Badge>
                     </div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="p-5">
-                    {/* Category */}
-                    {service.category && (
-                      <span className="inline-block bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-3">
-                        {service.category}
-                      </span>
-                    )}
-
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-1">
-                      {service.service_name}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-gray-600 mb-4 line-clamp-2 min-h-[40px]">
-                      {service.description || "Tidak ada deskripsi"}
-                    </p>
-
-                    {/* Details */}
-                    <div className="space-y-2 mb-4 pb-4 border-b border-gray-100">
-                      {service.estimated_time && (
-                        <div className="flex items-center text-xs text-gray-500">
-                          <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span>{service.estimated_time}</span>
-                        </div>
+                    {/* Content */}
+                    <div className='px-5 pt-2'>
+                      {/* Category */}
+                      {service.category && (
+                        <span className="inline-block bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-3">
+                          {service.category}
+                        </span>
                       )}
-                      {service.cost && (
-                        <div className="flex items-center text-xs text-gray-500">
-                          <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span className="font-semibold">{service.cost === "0" || service.cost === "gratis" ? "Gratis" : `Rp ${service.cost}`}</span>
-                        </div>
-                      )}
-                    </div>
 
-                    <div className="flex gap-2">
-                      <ModalLayanan refetch={refetch} task='edit' id={service.id} />
-                      <button onClick={() => {
-                        setSelectedId(service.id);
-                        setIsOpen(true);
-                      }} className="bg-red-50 hover:bg-red-100 cursor-pointer text-red-600 py-2 px-3 rounded-lg text-sm font-medium transition-colors">
-                        <Trash size={15} />
-                      </button>
+                      {/* Title */}
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-1">
+                        {service.service_name}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-sm text-gray-600 mb-4 line-clamp-2 min-h-[40px]">
+                        {service.description || "Tidak ada deskripsi"}
+                      </p>
+
+                      {/* Details */}
+                      <div className="space-y-2 mb-4 pb-4 border-b border-gray-100">
+                        {service.estimated_time && (
+                          <div className="flex items-center text-xs text-gray-500">
+                            <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>{service.estimated_time}</span>
+                          </div>
+                        )}
+                        {service.cost && (
+                          <div className="flex items-center text-xs text-gray-500">
+                            <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span className="font-semibold">{service.cost === "0" || service.cost === "gratis" ? "Gratis" : `Rp ${service.cost}`}</span>
+                          </div>
+                        )}
+                      </div>
+
+
                     </div>
+                  </Link>
+                  <div className="flex gap-2 px-5 pb-2">
+                    <ModalLayanan refetch={refetch} task='edit' id={service.id} />
+                    <button onClick={() => {
+                      setSelectedId(service.id);
+                      setIsOpen(true);
+                    }} className="bg-red-50 hover:bg-red-100 cursor-pointer text-red-600 py-2 px-3 rounded-lg text-sm font-medium transition-colors">
+                      <Trash size={15} />
+                    </button>
                   </div>
                 </div>
               ))}
