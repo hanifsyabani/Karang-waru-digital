@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 const API_URL = process.env.API_URL;
 export async function GetInfoUmum() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/village-profile`, {
       withCredentials: true,
@@ -24,7 +24,7 @@ export async function GetInfoUmum() {
 
 export async function PostInfoUmum(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/village-profile`, data, {
       withCredentials: true,
@@ -41,7 +41,7 @@ export async function PostInfoUmum(data: any) {
 }
 export async function PutInfoUmum(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/village-profile`, data, {
       withCredentials: true,
@@ -60,7 +60,7 @@ export async function PutInfoUmum(data: any) {
 
 export async function GetDemografis() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/demographics`, {
       withCredentials: true,
@@ -78,7 +78,7 @@ export async function GetDemografis() {
 
 export async function PostDemografis(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/demographics`, data, {
       withCredentials: true,
@@ -95,7 +95,7 @@ export async function PostDemografis(data: any) {
 }
 export async function PutDemografis(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/demographics`, data, {
       withCredentials: true,
@@ -114,7 +114,7 @@ export async function PutDemografis(data: any) {
 
 export async function GetSejarah() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/history-village`, {
       withCredentials: true,
@@ -132,7 +132,7 @@ export async function GetSejarah() {
 
 export async function PostSejarah(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/history-village`, data, {
       withCredentials: true,
@@ -149,7 +149,7 @@ export async function PostSejarah(data: any) {
 }
 export async function PutSejarah(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/history-village`, data, {
       withCredentials: true,
@@ -168,7 +168,7 @@ export async function PutSejarah(data: any) {
 
 export async function GetVisiMisi() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/visi-misi`, {
       withCredentials: true,
@@ -186,7 +186,7 @@ export async function GetVisiMisi() {
 
 export async function PostVisiMisi(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/visi-misi`, data, {
       withCredentials: true,
@@ -203,7 +203,7 @@ export async function PostVisiMisi(data: any) {
 }
 export async function PutVisiMisi(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/visi-misi`, data, {
       withCredentials: true,

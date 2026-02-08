@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Clock, DollarSign, FileText, User, Phone, Mail, MapPin, Upload, CheckCircle, AlertCircle } from "lucide-react"
+import { Clock, DollarSign, FileText, User, Phone, Mail, MapPin, Upload, CheckCircle, AlertCircle, Plus } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 // Tipe data layanan
@@ -178,13 +178,6 @@ export default function ServiceVillage() {
         setSubmitStatus('idle')
 
         try {
-            // Simulasi API call
-            // const response = await fetch('/api/pengajuan-layanan', {
-            //   method: 'POST',
-            //   body: JSON.stringify(formData)
-            // })
-
-            // Simulasi delay
             await new Promise(resolve => setTimeout(resolve, 2000))
 
             setSubmitStatus('success')
@@ -225,7 +218,7 @@ export default function ServiceVillage() {
             </div>
         )
     }
-    
+
     if (!layanan) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -242,13 +235,19 @@ export default function ServiceVillage() {
     return (
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-                {/* Header Section */}
                 <div className="mb-8">
-                    <div className="flex items-center gap-2 mb-4">
-                        <Badge variant="secondary">{layanan.category}</Badge>
-                        <Badge variant={layanan.status === 'Published' ? 'default' : 'outline'}>
-                            {layanan.status}
-                        </Badge>
+                    <div className="flex justify-between items-center gap-2 mb-4">
+                        <div className="flex gap-2">
+                            <Badge variant="secondary" className="text-white">{layanan.category}</Badge>
+                            <Badge variant={layanan.status === 'Published' ? 'default' : 'outline'}>
+                                {layanan.status}
+                            </Badge>
+                        </div>
+                        <Button className="cursor-pointer">
+                            <Plus/>
+                            Tambah 
+                        </Button>
+
                     </div>
 
                     <h1 className="text-3xl font-bold text-gray-900 mb-4">
@@ -279,7 +278,6 @@ export default function ServiceVillage() {
                 </div>
 
                 <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Sidebar - Daftar Sub Layanan */}
                     <div className="lg:col-span-1">
                         <Card>
                             <CardHeader>
@@ -297,9 +295,9 @@ export default function ServiceVillage() {
                                         <button
                                             key={sub.id}
                                             onClick={() => handleSelectChange('jenis_layanan', sub.id.toString())}
-                                            className={`w-full text-left px-4 py-3 rounded-lg border transition-all ${formData.jenis_layanan === sub.id.toString()
-                                                    ? 'border-blue-600 bg-blue-50 text-blue-900'
-                                                    : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
+                                            className={`w-full cursor-pointer text-left px-4 py-3 rounded-lg border transition-all ${formData.jenis_layanan === sub.id.toString()
+                                                ? 'border-green-600 bg-green-50 text-green-900'
+                                                : 'border-gray-200 hover:border-green-300 hover:bg-gray-50'
                                                 }`}
                                         >
                                             <p className="font-medium">{sub.nama}</p>

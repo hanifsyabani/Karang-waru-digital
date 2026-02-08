@@ -13,7 +13,7 @@ export async function GetAllBerita(params?: {
   sortOrder?: "asc" | "desc"
 }) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/news`, {
       params: {
@@ -39,7 +39,7 @@ export async function GetAllBerita(params?: {
 
 export async function GetBeritaByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/news/${id}`, {
       withCredentials: true,
@@ -56,7 +56,7 @@ export async function GetBeritaByID(id: string) {
 }
 export async function GetCountNewsByCategory() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/news/category/count`, {
       withCredentials: true,
@@ -74,7 +74,7 @@ export async function GetCountNewsByCategory() {
 
 export async function PostBerita(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/news`, data, {
       withCredentials: true,
@@ -91,7 +91,7 @@ export async function PostBerita(data: any) {
 }
 export async function PutBerita(data: any, id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/news/${id}`, data, {
       withCredentials: true,
@@ -108,7 +108,7 @@ export async function PutBerita(data: any, id: string) {
 }
 export async function DeleteBerita(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/news/${id}`, {
       withCredentials: true,

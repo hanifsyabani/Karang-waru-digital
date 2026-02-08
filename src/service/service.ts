@@ -13,7 +13,7 @@ export async function GetAllServiceVillage(params? : {
   sortOrder?: string;
 }) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/services`, {
       params: {
@@ -39,7 +39,7 @@ export async function GetAllServiceVillage(params? : {
 
 export async function GetLayananByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/service/${id}`, {
       withCredentials: true,
@@ -57,7 +57,7 @@ export async function GetLayananByID(id: string) {
 
 export async function PostLayanan(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/service`, data, {
       withCredentials: true,
@@ -74,7 +74,7 @@ export async function PostLayanan(data: any) {
 }
 export async function PutLayanan(data: any, id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/service/${id}`, data, {
       withCredentials: true,
@@ -91,7 +91,7 @@ export async function PutLayanan(data: any, id: string) {
 }
 export async function DeleteLayanan(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/service/${id}`, {
       withCredentials: true,

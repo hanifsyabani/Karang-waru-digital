@@ -8,16 +8,15 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function StatsServiceVillage() {
 
-    const { data: dataAllLayanan, isLoading: isLoadingLayanan, refetch } = useQuery({
+    const { data: dataAllLayanan, isLoading: isLoadingLayanan } = useQuery({
         queryFn: () => GetAllServiceVillage(),
         queryKey: ['layanan'],
     })
 
-
     const stats = {
-        total: dataAllLayanan?.data.length,
-        active: dataAllLayanan?.data.filter((s : LayananDesa) => s.status === "active").length,
-        inactive: dataAllLayanan?.data.filter((s : LayananDesa) => s.status !== "active").length,
+        total: (dataAllLayanan?.data ?? []).length,
+        active: (dataAllLayanan?.data ?? []).filter((s: LayananDesa) => s.status === "active").length,
+        inactive: (dataAllLayanan?.data ?? []).filter((s: LayananDesa) => s.status !== "active").length,
     };
 
     if (isLoadingLayanan) return <Loader />

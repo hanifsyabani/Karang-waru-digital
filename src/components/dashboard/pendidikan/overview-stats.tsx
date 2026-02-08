@@ -1,10 +1,28 @@
 'use client'
 
 import { Card, CardContent } from "@/components/ui/card";
+import Loader from "@/components/ui/loader";
+import { GetLembagaPendidikan, GetProgramPendidikan, GetStatistikPendidikan } from "@/service/education";
+import { useQuery } from "@tanstack/react-query";
 
 import { BookOpen, School, TrendingUp, Users } from "lucide-react";
 
-export default function OverviewStats({ dataLembagaPendidikan, dataStatistikPendidikan, dataProgramPendidikan }: any) {
+export default function OverviewStats() {
+
+    const { data: dataStatistikPendidikan, isLoading: isLoadingStatistikPendidikan } = useQuery({
+        queryKey: ['dataStatistikPendidikan'],
+        queryFn: () => GetStatistikPendidikan()
+    })
+
+    const { data: dataProgramPendidikan, isLoading: isLoadingProgramPendidikan } = useQuery({
+        queryKey: ['dataProgramPendidikan'],
+        queryFn: () => GetProgramPendidikan()
+    })
+
+    const { data: dataLembagaPendidikan, isLoading: isLoadingLembagaPendidikan } = useQuery({
+        queryKey: ['dataLembagaPendidikan'],
+        queryFn: () => GetLembagaPendidikan()
+    })
 
     const totalStudents = dataStatistikPendidikan?.data ? dataStatistikPendidikan.data.reduce((acc: number, curr: any) => acc + curr.sd + curr.smp + curr.sma, 0) : 0;
 
@@ -15,6 +33,8 @@ export default function OverviewStats({ dataLembagaPendidikan, dataStatistikPend
         { title: 'Tingkat Literasi', value: '94.5%', icon: TrendingUp, color: 'text-lime-600', bg: 'bg-lime-50' },
     ];
 
+        if (isLoadingLembagaPendidikan || isLoadingStatistikPendidikan || isLoadingProgramPendidikan) return <Loader />
+    
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -6,7 +6,7 @@ const API_URL = process.env.API_URL;
 
 export async function GetAllApbd() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/apbd`, {
       withCredentials: true,
@@ -25,7 +25,7 @@ export async function GetAllApbd() {
 
 export async function GetApbdByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/apbd/${id}`, {
       withCredentials: true,
@@ -43,7 +43,7 @@ export async function GetApbdByID(id: string) {
 
 export async function PostApbd(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/apbd`, data, {
       withCredentials: true,
@@ -60,7 +60,7 @@ export async function PostApbd(data: any) {
 }
 export async function PutApbd(data: any, id: string) {
     const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/apbd/${id}`, data, {
       withCredentials: true,
@@ -77,7 +77,7 @@ export async function PutApbd(data: any, id: string) {
 }
 export async function DeleteApbd(id: string) {
     const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/apbd/${id}`, {
       withCredentials: true,

@@ -13,7 +13,7 @@ export async function GetResidents(params? : {
     sortOrder?: string,
 }) {
     const cookieStore = await cookies()
-    const token = cookieStore.get("access_token")?.value;
+    const token = cookieStore.get("token")?.value;
     try {
         const res = await axios.get(`${API_URL}/residents`, {
             params: {
@@ -39,7 +39,7 @@ export async function GetResidents(params? : {
 
 export async function GetResidentByID(id: string) {
     const cookieStore = await cookies()
-    const token = cookieStore.get("access_token")?.value;
+    const token = cookieStore.get("token")?.value;
     try {
         const res = await axios.get(`${API_URL}/resident/${id}`, {
             withCredentials: true,
@@ -56,7 +56,7 @@ export async function GetResidentByID(id: string) {
 }
 export async function GetCountResidents() {
     const cookieStore = await cookies()
-    const token = cookieStore.get("access_token")?.value;
+    const token = cookieStore.get("token")?.value;
     try {
         const res = await axios.get(`${API_URL}/resident/count`, {
             withCredentials: true,
@@ -74,7 +74,7 @@ export async function GetCountResidents() {
 
 export async function PostResident(data: any) {
     const cookieStore = await cookies()
-    const token = cookieStore.get("access_token")?.value;
+    const token = cookieStore.get("token")?.value;
     try {
         const res = await axios.post(`${API_URL}/resident`, data, {
             withCredentials: true,
@@ -91,7 +91,7 @@ export async function PostResident(data: any) {
 }
 export async function PutResident(data: any, id: string) {
     const cookieStore = await cookies()
-    const token = cookieStore.get("access_token")?.value;
+    const token = cookieStore.get("token")?.value;
     try {
         const res = await axios.put(`${API_URL}/resident/${id}`, data, {
             withCredentials: true,
@@ -108,7 +108,7 @@ export async function PutResident(data: any, id: string) {
 }
 export async function DeleteResident(id: string) {
     const cookieStore = await cookies()
-    const token = cookieStore.get("access_token")?.value;
+    const token = cookieStore.get("token")?.value;
     try {
         const res = await axios.delete(`${API_URL}/resident/${id}`, {
             withCredentials: true,
