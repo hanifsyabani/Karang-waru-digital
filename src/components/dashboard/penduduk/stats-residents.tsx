@@ -12,10 +12,10 @@ export default function StatResidents() {
         queryKey: ['countPenduduk'],
     })
     const stats = [
-        { label: 'Total Penduduk', value: dataCountResidents?.data.total, icon: Users, color: 'bg-emerald-500', change: '+12' },
-        { label: 'Laki-laki', value: dataCountResidents?.data.male, icon: Users, color: 'bg-blue-500', change: '+5' },
-        { label: 'Perempuan', value: dataCountResidents?.data.female, icon: Users, color: 'bg-pink-500', change: '+7' },
-        { label: 'Kartu Keluarga', value: dataCountResidents?.data.family_card_count, icon: Home, color: 'bg-amber-500', change: '+3' }
+        { label: 'Total Penduduk', value: dataCountResidents?.data.total, icon: Users, color: 'bg-emerald-500' },
+        { label: 'Laki-laki', value: dataCountResidents?.data.male, icon: Users, color: 'bg-blue-500' },
+        { label: 'Perempuan', value: dataCountResidents?.data.female, icon: Users, color: 'bg-pink-500' },
+        { label: 'Kartu Keluarga', value: dataCountResidents?.data.family_card_count, icon: Home, color: 'bg-amber-500' }
     ];
 
     if (isLoadingCountResidents) return <Loader />
@@ -27,7 +27,6 @@ export default function StatResidents() {
                         <div>
                             <p className="text-gray-600 text-sm font-medium">{stat.label}</p>
                             <p className="text-3xl font-bold text-gray-900 mt-2">{stat.value}</p>
-                            <p className="text-emerald-600 text-sm mt-2 font-medium">{stat.change} bulan ini</p>
                         </div>
                         <div className={`${stat.color} p-4 rounded-2xl shadow-lg`}>
                             <stat.icon className="w-8 h-8 text-white" />

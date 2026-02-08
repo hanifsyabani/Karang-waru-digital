@@ -7,7 +7,7 @@ import { cookies } from "next/headers";
 const API_URL = process.env.API_URL;
 export async function GetLembagaPendidikan() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/institution`, {
       withCredentials: true,
@@ -25,7 +25,7 @@ export async function GetLembagaPendidikan() {
 
 export async function GetLembagaPendidikanByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/institution/${id}`, {
       withCredentials: true,
@@ -43,7 +43,7 @@ export async function GetLembagaPendidikanByID(id: string) {
 
 export async function PostLembagaPendidikan(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/education/institution`, data, {
       withCredentials: true,
@@ -60,7 +60,7 @@ export async function PostLembagaPendidikan(data: any) {
 }
 export async function PutLembagaPendidikan(data: any, id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/education/institution/${id}`, data, {
       withCredentials: true,
@@ -78,7 +78,7 @@ export async function PutLembagaPendidikan(data: any, id: string) {
 
 export async function DeleteLembagaPendidikan(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/education/institution/${id}`, {
       withCredentials: true,
@@ -96,7 +96,7 @@ export async function DeleteLembagaPendidikan(id: string) {
 
 export async function GetStatistikPendidikan() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/statistic`, {
       withCredentials: true,
@@ -114,7 +114,7 @@ export async function GetStatistikPendidikan() {
 
 export async function GetStatistikPendidikanByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/statistic/${id}`, {
       withCredentials: true,
@@ -133,7 +133,7 @@ export async function GetStatistikPendidikanByID(id: string) {
 
 export async function PostStatistikPendidikan(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
 
   try {
     const res = await axios.post(`${API_URL}/education/statistic`, data, {
@@ -151,7 +151,7 @@ export async function PostStatistikPendidikan(data: any) {
 }
 export async function PutStatistikPendidikan(data: any, id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/education/statistic/${id}`, data, {
       withCredentials: true,
@@ -170,7 +170,7 @@ export async function PutStatistikPendidikan(data: any, id: string) {
 
 export async function DeleteStatistikPendidikan(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/education/statistic/${id}`, {
       withCredentials: true,
@@ -188,7 +188,7 @@ export async function DeleteStatistikPendidikan(id: string) {
 
 export async function GetProgramPendidikan() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/program`, {
       withCredentials: true,
@@ -206,7 +206,7 @@ export async function GetProgramPendidikan() {
 
 export async function GetProgramPendidikanByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/program/${id}`, {
       withCredentials: true,
@@ -225,7 +225,7 @@ export async function GetProgramPendidikanByID(id: string) {
 
 export async function PostProgramPendidikan(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/education/program`, data, {
       withCredentials: true,
@@ -242,7 +242,7 @@ export async function PostProgramPendidikan(data: any) {
 }
 export async function PutProgramPendidikan(data: any, id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/education/program/${id}`, data, {
       withCredentials: true,
@@ -261,7 +261,7 @@ export async function PutProgramPendidikan(data: any, id: string) {
 
 export async function DeleteProgramPendidikan(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/education/program/${id}`, {
       withCredentials: true,
@@ -280,7 +280,7 @@ export async function DeleteProgramPendidikan(id: string) {
 
 export async function GetCapaianPendidikan() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/achievements`, {
       withCredentials: true,
@@ -298,7 +298,7 @@ export async function GetCapaianPendidikan() {
 
 export async function GetCapaianPendidikanByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/achievments/${id}`, {
       withCredentials: true,
@@ -317,7 +317,7 @@ export async function GetCapaianPendidikanByID(id: string) {
 
 export async function PostCapaianPendidikan(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/education/achievments`, data, {
       withCredentials: true,
@@ -334,7 +334,7 @@ export async function PostCapaianPendidikan(data: any) {
 }
 export async function PutCapaianPendidikan(data: any, id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/education/achievments/${id}`, data, {
       withCredentials: true,
@@ -353,7 +353,7 @@ export async function PutCapaianPendidikan(data: any, id: string) {
 
 export async function DeleteCapaianPendidikan(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/education/achievments/${id}`, {
       withCredentials: true,
@@ -372,7 +372,7 @@ export async function DeleteCapaianPendidikan(id: string) {
 
 export async function GetDokumentasiPendidikan() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/documentation`, {
       withCredentials: true,
@@ -390,7 +390,7 @@ export async function GetDokumentasiPendidikan() {
 
 export async function GetDokumentasiPendidikanByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/education/documentation/${id}`, {
       withCredentials: true,
@@ -409,7 +409,7 @@ export async function GetDokumentasiPendidikanByID(id: string) {
 
 export async function PostDokumentasiPendidikan(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/education/documentation`, data, {
       withCredentials: true,
@@ -426,7 +426,7 @@ export async function PostDokumentasiPendidikan(data: any) {
 }
 export async function PutDokumentasiPendidikan(data: any, id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/education/documentation/${id}`, data, {
       withCredentials: true,
@@ -445,7 +445,7 @@ export async function PutDokumentasiPendidikan(data: any, id: string) {
 
 export async function DeleteDokumentasiPendidikan(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/education/documentation/${id}`, {
       withCredentials: true,

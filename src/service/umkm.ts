@@ -14,7 +14,7 @@ export async function GetAllUmkm(params?: {
   sortOrder?: "asc" | "desc",
 }) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/umkm`, {
       params: {
@@ -41,7 +41,7 @@ export async function GetAllUmkm(params?: {
 
 export async function GetUmkmByID(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/umkm/${id}`, {
       withCredentials: true,
@@ -58,7 +58,7 @@ export async function GetUmkmByID(id: string) {
 }
 export async function GetCountStatus() {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.get(`${API_URL}/umkm/count-status`, {
       withCredentials: true,
@@ -76,7 +76,7 @@ export async function GetCountStatus() {
 
 export async function PostUmkm(data: any) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.post(`${API_URL}/umkm`, data, {
       withCredentials: true,
@@ -93,7 +93,7 @@ export async function PostUmkm(data: any) {
 }
 export async function PutUmkm(data: any, id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.put(`${API_URL}/umkm/${id}`, data, {
       withCredentials: true,
@@ -110,7 +110,7 @@ export async function PutUmkm(data: any, id: string) {
 }
 export async function DeleteUmkm(id: string) {
   const cookieStore = await cookies()
-  const token = cookieStore.get("access_token")?.value;
+  const token = cookieStore.get("token")?.value;
   try {
     const res = await axios.delete(`${API_URL}/umkm/${id}`, {
       withCredentials: true,
