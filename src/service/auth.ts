@@ -1,11 +1,11 @@
 'use server'
+
 import axios from "axios";
 import { cookies } from "next/headers";
 interface LoginData {
   email: string;
   password: string;
 }
-
 interface RegisterData {
   name: string;
   email: string;
@@ -13,7 +13,6 @@ interface RegisterData {
 }
 
 const API_URL = process.env.API_URL;
-
 export async function Login(data: LoginData) {
   try {
     const res = await axios.post(`${API_URL}/login`, data, {
@@ -58,7 +57,12 @@ export async function Logout() {
         },
       }
     );
+    const cookieStore = await cookies();
+
+    cookieStore.delete("token");
+
   } catch (error: any) {
+    
     throw new Error(error.response.data.message);
   }
 }

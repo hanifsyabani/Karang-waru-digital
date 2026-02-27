@@ -30,7 +30,16 @@ export default function SidebarDashboard() {
                     <SidebarGroupContent>
                         <SidebarMenu className="space-y-2">
                             {adminNavLinks.map((item) => {
-                                const isActive = item.href === "/" ? pathname === item.href : pathname.startsWith(item.href);
+                                let isActive = false;
+
+                                if (item.href === "/admin") {
+                                    isActive = pathname === "/admin";
+                                } else {
+                                    isActive =
+                                        pathname === item.href ||
+                                        pathname.startsWith(item.href + "/");
+                                }
+
                                 return (
                                     <SidebarMenuItem key={item.title} className={`${isActive && "bg-primary text-white rounded-lg"}`}>
                                         <SidebarMenuButton asChild>
