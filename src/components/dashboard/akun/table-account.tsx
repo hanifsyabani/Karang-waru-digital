@@ -44,7 +44,7 @@ export default function TableAccount() {
   if (isLoadingAkun || isLoadingAllAkun) return <Loader />
   return (
     <>
-      <HeaderDashboard refetch={refetch} refetchAll={refetchAll} />
+      <HeaderDashboard />
       <div className="flex items-center  px-2 py-4">
         <Input
           placeholder={`Cari berdasarkan nama atau email...`}

@@ -10,7 +10,9 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, Pen, Plus } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { Eye, Pen, Plus, User, Mail, ShieldCheck, EyeOff } from "lucide-react";
 import { GetAccountById, PostAccount, PutAccount } from "@/service/account";
 
 interface ModalProps {
@@ -21,16 +23,11 @@ interface ModalProps {
 }
 
 export const schema = z
-  .object({
-    name: z.string().min(3, { message: "Nama lengkap minimal 3 karakter" }),
-    email: z.string().regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { message: "Email tidak valid" }),
-    password: z.string().min(8, { message: "Password minimal 8 karakter" }),
-    confirmPassword: z.string().min(8),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Password tidak sama",
-    path: ["confirmPassword"],
-  })
+    .object({
+        name: z.string().min(3, { message: "Nama lengkap minimal 3 karakter" }),
+        email: z.string().regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { message: "Email tidak valid" }),
+        password: z.string().min(8, { message: "Password minimal 8 karakter" }),
+    })
 
 type FormFields = z.infer<typeof schema>
 
@@ -44,7 +41,7 @@ export default function ModalAccount({ refetch, task, id }: ModalProps) {
     const { data: dataAccount } = useQuery({
         queryFn: () => GetAccountById(id || ""),
         queryKey: ["accountByID", id],
-        enabled: task === "edit" && !!id,
+        enabled: (task === "edit" || task === "detail") && !!id,
     })
 
     const { handleSubmit, register, setValue, formState: { errors } } = useForm<FormFields>({
@@ -54,8 +51,9 @@ export default function ModalAccount({ refetch, task, id }: ModalProps) {
     useEffect(() => {
         if (dataAccount?.data) {
             const d = dataAccount.data
-            console.log(d)
-
+            setValue("name", d.name)
+            setValue("email", d.email)
+            setValue("password", d.password)
         }
     }, [dataAccount, setValue])
 
@@ -90,10 +88,9 @@ export default function ModalAccount({ refetch, task, id }: ModalProps) {
     async function onSubmit(data: FormFields) {
         setIsLoading(true)
 
-        const payload ={
+        const payload = {
             name: data.name,
             email: data.email,
-            password: data.password,
         }
         if (task === "edit" && id) editAccount(payload as any)
         else addAccount(payload as any)
@@ -138,15 +135,11 @@ export default function ModalAccount({ refetch, task, id }: ModalProps) {
                             {errors.email && <p className="text-red-500">{errors.email.message}</p>}
                         </div>
                         <div className="space-y-3">
-                            <Label htmlFor="password">Password</Label>
-                            <Input type="password" {...register("password")} placeholder="Masukan password" id="password" className="py-6" />
+                            <Label htmlFor="password" >Password</Label>
+                            <Input readOnly  type="password" {...register("password")} placeholder="Masukan password" id="password" className="py-6" />
                             {errors.password && <p className="text-red-500">{errors.password.message}</p>}
                         </div>
-                        <div className="space-y-3">
-                            <Label htmlFor="password">Konfirmasi Password</Label>
-                            <Input type="password" {...register("confirmPassword")} placeholder="Masukan password kembali" id="password" className="py-6" />
-                            {errors.confirmPassword && <p className="text-red-500">{errors.confirmPassword.message}</p>}
-                        </div>
+                       
                         <div className="flex justify-end">
                             <Button disabled={isLoading} className="cursor-pointer">
                                 {isLoading ? <span className="loader" /> : buttonMessage}
@@ -156,8 +149,46 @@ export default function ModalAccount({ refetch, task, id }: ModalProps) {
                 )}
 
                 {task === "detail" && (
-                    <div className="p-4 space-y-6">
+                    <div className="space-y-6 my-4">
+                        <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50">
+                            <div className="flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary">
+                                <User className="w-7 h-7" />
+                            </div>
+                            <div>
+                                <p className="text-lg font-semibold">{dataAccount?.data?.name || "-"}</p>
+                                <p className="text-sm text-muted-foreground">{dataAccount?.data?.email || "-"}</p>
+                            </div>
+                        </div>
 
+                        <Separator />
+
+                        <div className="grid gap-4">
+                            <div className="flex items-start gap-3">
+                                <User className="w-5 h-5 mt-0.5 text-muted-foreground" />
+                                <div>
+                                    <p className="text-sm text-muted-foreground">Nama Lengkap</p>
+                                    <p className="font-medium">{dataAccount?.data?.name || "-"}</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-3">
+                                <Mail className="w-5 h-5 mt-0.5 text-muted-foreground" />
+                                <div>
+                                    <p className="text-sm text-muted-foreground">Email</p>
+                                    <p className="font-medium">{dataAccount?.data?.email || "-"}</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-3">
+                                <ShieldCheck className="w-5 h-5 mt-0.5 text-muted-foreground" />
+                                <div>
+                                    <p className="text-sm text-muted-foreground">Role</p>
+                                    <Badge variant="outline" className="mt-1 capitalize">
+                                        {dataAccount?.data?.role || "-"}
+                                    </Badge>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 )}
             </DialogContent>
